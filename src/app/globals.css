@@ -1,26 +1,93 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/**
+ * DESIGN TOKENS — single source of truth, mirrors src/lib/theme.ts.
+ * Edit to reskin.
+ */
+@theme {
+  /* Core surface */
+  --color-ink:         #0A0E1A;
+  --color-paper:       #F5F2EB;
+
+  /* Accents */
+  --color-ember:       #E8A861;
+  --color-ember-soft:  #E8A86130;
+  --color-soul:        #7B6BDB;
+  --color-soul-soft:   #7B6BDB26;
+
+  /* Structural */
+  --color-mist:        #151929;
+  --color-mist-soft:   #0F131E;
+  --color-rule:        #1F2435;
+  --color-whisper:     #8B8B95;
+
+  /* Status */
+  --color-positive:    #7BDBAF;
+  --color-warning:     #E8A861;
+
+  /* Type */
+  --font-sans:    var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-mono:    ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Editorial scale */
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1.0625rem;
+  --text-lg:   1.25rem;
+  --text-xl:   1.5rem;
+  --text-2xl:  1.875rem;
+  --text-3xl:  2.5rem;
+  --text-4xl:  3.75rem;
+  --text-5xl:  5rem;
+  --text-6xl:  7rem;
+
+  /* Motion */
+  --ease-out:   cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-smooth:cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    background: var(--color-ink);
+    color: var(--color-paper);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  body {
+    font-size: var(--text-base);
+    line-height: 1.55;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(123, 107, 219, 0.12), transparent 50%),
+      radial-gradient(ellipse at 80% 100%, rgba(232, 168, 97, 0.08), transparent 50%),
+      var(--color-ink);
+    min-height: 100vh;
+  }
+  ::selection {
+    background: var(--color-ember);
+    color: var(--color-ink);
+  }
+  /* Instrument Serif italic is the real display treatment */
+  .italic-display {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Lenis smooth scroll required class (applied to html by provider) */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
