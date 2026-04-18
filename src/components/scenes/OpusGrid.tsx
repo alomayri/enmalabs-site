@@ -20,6 +20,15 @@ import {
   Rebis,
   Heptagram,
 } from "@/components/sigils";
+import {
+  cx,
+  layout,
+  motion as motionSystem,
+  projectStatusClass,
+  projectTintClass,
+  surfaces,
+  typography,
+} from "@/lib/design-system";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -58,34 +67,6 @@ const sigilMap = {
 
 type SigilName = keyof typeof sigilMap;
 
-function tintToToken(tint: string): string {
-  switch (tint) {
-    case "warm":
-      return "violet-soft";
-    case "pale":
-      return "paper";
-    case "gold":
-      return "violet";
-    case "ember":
-      return "soul";
-    default:
-      return "violet-soft";
-  }
-}
-
-function statusPillClassName(status: Project["status"]): string {
-  const base =
-    "rounded-full border px-3 py-1 font-mono text-[0.65rem] uppercase tracking-[0.28em]";
-  switch (status) {
-    case "In development":
-      return `${base} border-violet-soft/40 bg-violet-soft/10 text-violet-soft`;
-    case "Forming":
-      return `${base} border-rule bg-mist text-whisper`;
-    case "Distant":
-      return `${base} border-rule/60 bg-mist/50 text-whisper/60`;
-  }
-}
-
 // ─── Card ─────────────────────────────────────────────────────────────────────
 
 function ProjectCard({
@@ -98,7 +79,7 @@ function ProjectCard({
   reduce: boolean;
 }) {
   const SigilComponent = sigilMap[project.sigil as SigilName] ?? Ouroboros;
-  const colorToken = tintToToken(project.tint);
+  const colorClassName = projectTintClass(project.tint);
 
   // Pointer-driven tilt — subtle, spring-damped so it never overshoots.
   const cardRef = useRef<HTMLElement>(null);
@@ -136,14 +117,17 @@ function ProjectCard({
           ? undefined
           : { rotateX: rx, rotateY: ry, transformPerspective: 900 }
       }
-      className="group relative flex flex-col gap-6 rounded-3xl border border-rule bg-mist/40 p-8 backdrop-blur-xl transition-colors hover:bg-mist-soft md:p-10 [transform-style:preserve-3d] will-change-transform"
+      className={cx(
+        "group relative flex flex-col gap-6 p-8 md:p-10 [transform-style:preserve-3d] will-change-transform",
+        surfaces.card,
+      )}
       initial={reduce ? false : { opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+      viewport={motionSystem.cardViewport}
       transition={{
-        duration: 0.35,
+        duration: motionSystem.reveal.duration,
         delay: cardIndex * 0.05,
-        ease: [0.16, 1, 0.3, 1],
+        ease: motionSystem.reveal.ease,
       }}
     >
       {/* Pointer-following warm glow (candlelight that tracks the cursor) */}
@@ -156,7 +140,7 @@ function ProjectCard({
       )}
       {/* Top row: sigil (ambient, uncaptioned) + roman numeral */}
       <div className="flex items-start justify-between">
-        <div className={`text-${colorToken} opacity-80`}>
+        <div className={cx(colorClassName, "opacity-80")}>
           <SigilComponent size={52} />
         </div>
         <span className="font-mono text-[0.65rem] uppercase tracking-[0.35em] text-whisper/70">
@@ -169,29 +153,19 @@ function ProjectCard({
       <div>
         {project.name ? (
           <>
-            <h3 className="font-display font-light text-4xl leading-tight text-paper md:text-5xl">
-              {project.name}
-            </h3>
-            <p className="mt-4 font-serif italic text-xl text-paper/70">
-              {project.kind}
-            </p>
+            <h3 className={typography.namedProject}>{project.name}</h3>
+            <p className={cx("mt-4 text-xl", typography.italicVoice)}>{project.kind}</p>
           </>
         ) : (
-          <h3 className="font-serif italic font-normal text-3xl leading-tight text-paper/80 md:text-4xl">
-            {project.kind}
-          </h3>
+          <h3 className={typography.unnamedProject}>{project.kind}</h3>
         )}
-        <p className="mt-6 max-w-prose leading-relaxed text-paper/80">
-          {project.description}
-        </p>
+        <p className={cx("mt-6 max-w-prose", typography.bodySoft)}>{project.description}</p>
       </div>
 
       {/* Meta row */}
       <div className="mt-auto flex items-center justify-between border-t border-rule pt-5">
-        <span className="font-mono text-[0.65rem] uppercase tracking-[0.3em] text-whisper">
-          {project.platform}
-        </span>
-        <span className={statusPillClassName(project.status)}>
+        <span className={typography.meta}>{project.platform}</span>
+        <span className={projectStatusClass(project.status)}>
           {project.status}
         </span>
       </div>
@@ -206,16 +180,10 @@ export function OpusGrid({ id, eyebrow, heading, projects }: OpusGridProps) {
 
   return (
     <section id={id} className="relative border-t border-rule">
-      <div className="mx-auto max-w-[90rem] px-6 py-28 md:py-36">
-        <p className="font-mono text-xs uppercase tracking-[0.42em] text-whisper">
-          {eyebrow}
-        </p>
-        <h2 className="mt-6 font-display text-5xl leading-tight tracking-tight text-paper md:text-[clamp(3.5rem,6vw,6.2rem)]">
-          {heading}
-        </h2>
-        <p className="mt-4 max-w-xl text-whisper">
-          Four tools. Each for a different kind of weight.
-        </p>
+      <div className={cx(layout.page, layout.sectionSpace)}>
+        <p className={typography.eyebrow}>{eyebrow}</p>
+        <h2 className={cx("mt-6", typography.displayTitle)}>{heading}</h2>
+        <p className={typography.sectionLead}>Four tools. Each for a different kind of weight.</p>
 
         <div className="mt-16 grid gap-6 md:grid-cols-2">
           {projects.map((project, i) => (

@@ -6,9 +6,15 @@ import { useTexture } from "@react-three/drei";
 import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
 import { MotionValue, useReducedMotion } from "framer-motion";
 import * as THREE from "three";
+import { scene } from "@/lib/design-system";
 
 function lerp(a: number, b: number, t: number): number {
   return a + (b - a) * t;
+}
+
+function seededUnit(seed: number) {
+  const x = Math.sin(seed * 12.9898) * 43758.5453;
+  return x - Math.floor(x);
 }
 
 // ── PaintingPlane — the painterly image as a textured plane ─────────────────
@@ -16,14 +22,12 @@ function lerp(a: number, b: number, t: number): number {
 // for parallax drift without exposing edges.
 
 function PaintingPlane() {
-  const texture = useTexture("/hero-reference.png");
+  const texture = useTexture("/hero-reference.png", (loadedTexture) => {
+    loadedTexture.colorSpace = THREE.SRGBColorSpace;
+    loadedTexture.minFilter = THREE.LinearFilter;
+    loadedTexture.magFilter = THREE.LinearFilter;
+  });
   const { viewport } = useThree();
-
-  useEffect(() => {
-    texture.colorSpace = THREE.SRGBColorSpace;
-    texture.minFilter = THREE.LinearFilter;
-    texture.magFilter = THREE.LinearFilter;
-  }, [texture]);
 
   const imgAspect = 1408 / 792;
   const vpAspect = viewport.width / viewport.height;
@@ -56,9 +60,10 @@ function DustMotes() {
     const count = 60;
     const arr = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
-      arr[i * 3] = (Math.random() - 0.5) * viewport.width * 1.3;
-      arr[i * 3 + 1] = (Math.random() - 0.5) * viewport.height * 1.3;
-      arr[i * 3 + 2] = Math.random() * 1.2;
+      const seed = i + 1;
+      arr[i * 3] = (seededUnit(seed * 3) - 0.5) * viewport.width * 1.3;
+      arr[i * 3 + 1] = (seededUnit(seed * 3 + 1) - 0.5) * viewport.height * 1.3;
+      arr[i * 3 + 2] = seededUnit(seed * 3 + 2) * 1.2;
     }
     return arr;
   }, [viewport.width, viewport.height]);
@@ -76,7 +81,7 @@ function DustMotes() {
       </bufferGeometry>
       <pointsMaterial
         size={0.012}
-        color="#F1C98A"
+        color={scene.dust}
         transparent
         opacity={0.55}
         sizeAttenuation
@@ -135,7 +140,7 @@ function InteractiveGroup({
 function SceneContents({ progress }: { progress?: MotionValue<number> }) {
   return (
     <>
-      <color attach="background" args={["#0E0C0A"]} />
+      <color attach="background" args={[scene.heroBackground]} />
 
       <InteractiveGroup progress={progress}>
         <PaintingPlane />
@@ -143,8 +148,16 @@ function SceneContents({ progress }: { progress?: MotionValue<number> }) {
       </InteractiveGroup>
 
       <EffectComposer>
-        <Bloom intensity={0.35} luminanceThreshold={0.72} luminanceSmoothing={0.25} mipmapBlur />
-        <Vignette offset={0.35} darkness={0.45} />
+        <Bloom
+          intensity={scene.heroBloom.intensity}
+          luminanceThreshold={scene.heroBloom.threshold}
+          luminanceSmoothing={scene.heroBloom.smoothing}
+          mipmapBlur
+        />
+        <Vignette
+          offset={scene.heroBloom.vignetteOffset}
+          darkness={scene.heroBloom.vignetteDarkness}
+        />
       </EffectComposer>
     </>
   );

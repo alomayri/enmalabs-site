@@ -9,6 +9,12 @@ import {
   useReducedMotion,
   MotionValue,
 } from "framer-motion";
+import {
+  cx,
+  gradients,
+  layout,
+  typography,
+} from "@/lib/design-system";
 
 export type ManifestoSceneProps = {
   eyebrow: string;
@@ -58,11 +64,9 @@ export function ManifestoScene({ eyebrow, heading, paragraphs }: ManifestoSceneP
   if (reducedMotion) {
     return (
       <section id="manifesto" className="border-b border-rule py-24">
-        <div className="mx-auto max-w-7xl px-6">
-          <p className="mb-8 font-mono text-xs uppercase tracking-[0.42em] text-whisper">
-            {eyebrow}
-          </p>
-          <h2 className="font-display font-light text-5xl leading-[0.98] tracking-[-0.02em] text-paper md:text-[clamp(2.75rem,4.5vw,4.25rem)]">
+        <div className={layout.reading}>
+          <p className={cx("mb-8", typography.eyebrow)}>{eyebrow}</p>
+          <h2 className={typography.manifestoTitle}>
             {heading.lead}
             <span className="italic font-light"> {heading.accent1}</span>
             {heading.middle}
@@ -71,7 +75,7 @@ export function ManifestoScene({ eyebrow, heading, paragraphs }: ManifestoSceneP
           </h2>
           <div className="mt-10 max-w-prose space-y-6">
             {paragraphs.map((para, i) => (
-              <p key={i} className="text-whisper">
+              <p key={i} className={typography.body}>
                 {para}
               </p>
             ))}
@@ -123,7 +127,7 @@ export function ManifestoScene({ eyebrow, heading, paragraphs }: ManifestoSceneP
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-ink">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(212,145,61,0.12),transparent_55%)]"
+          className={cx("pointer-events-none absolute inset-0", gradients.manifestoAura)}
         />
 
         <motion.div
@@ -141,12 +145,10 @@ export function ManifestoScene({ eyebrow, heading, paragraphs }: ManifestoSceneP
         </motion.div>
 
         <div className="relative z-10 flex h-full flex-col justify-center px-6 md:px-16">
-          <div className="mx-auto w-full max-w-5xl">
-            <p className="mb-10 font-mono text-xs uppercase tracking-[0.42em] text-whisper">
-              {eyebrow}
-            </p>
+          <div className={layout.narrative}>
+            <p className={cx("mb-10", typography.eyebrow)}>{eyebrow}</p>
 
-            <h2 className="font-display font-light text-5xl leading-[0.98] tracking-[-0.02em] text-paper md:text-[clamp(2.75rem,4.5vw,4.25rem)]">
+            <h2 className={typography.manifestoTitle}>
               {heading.lead}
               <span className="italic font-light"> {heading.accent1}</span>
               {heading.middle}
@@ -156,7 +158,7 @@ export function ManifestoScene({ eyebrow, heading, paragraphs }: ManifestoSceneP
 
             <div className="mt-10 max-w-prose space-y-6">
               {paraElements.map((words, i) => (
-                <p key={i} className="text-whisper leading-relaxed">
+                <p key={i} className={typography.body}>
                   {words}
                 </p>
               ))}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { controls, cx } from "@/lib/design-system";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -51,26 +52,26 @@ export function WaitlistForm() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@domain.com"
           disabled={disabled}
-          className="flex-1 rounded-full border border-rule bg-ink/60 px-5 py-3 text-base text-paper placeholder:text-whisper backdrop-blur-xl focus:border-violet-soft focus:bg-mist-soft focus:outline-none disabled:opacity-60 transition"
+          className={controls.input}
         />
         <button
           type="submit"
           disabled={disabled}
-          className="rounded-full bg-violet px-6 py-3 text-base font-medium text-paper shadow-[0_8px_32px_rgba(212,145,61,0.45)] transition hover:brightness-110 disabled:opacity-60"
+          className={controls.primaryButton}
         >
           {status === "loading" ? "Joining…" : status === "success" ? "Joined" : "Join"}
         </button>
       </div>
       {message && (
         <p
-          className={`text-sm ${status === "error" ? "text-ember" : "text-glow"}`}
+          className={cx("text-sm", status === "error" ? "text-ember" : "text-glow")}
           role={status === "error" ? "alert" : "status"}
         >
           {message}
         </p>
       )}
       <p className="text-xs text-whisper">
-        Occasional letters when we ship something. No noise, unsubscribe in one click.
+        Occasional notes when the work is ready. No noise, unsubscribe in one click.
       </p>
     </form>
   );

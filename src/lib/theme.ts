@@ -26,9 +26,9 @@ export const tokens = {
     glow: "#E8C87A",        // pale warm gold — "alive"
   },
   font: {
-    display: "var(--font-eb-garamond)",
+    display: "var(--font-newsreader)",
     serif: "var(--font-eb-garamond)",
-    sans: "var(--font-inter)",
+    sans: "var(--font-newsreader)",
   },
   motion: {
     ease: {

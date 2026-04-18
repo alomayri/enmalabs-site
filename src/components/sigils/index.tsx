@@ -17,8 +17,8 @@ function sigilBase(size: number, title: string | undefined, rest: Omit<SVGProps<
     strokeWidth: 1.2,
     strokeLinecap: "round" as const,
     strokeLinejoin: "round" as const,
-    "aria-hidden": title ? undefined : (true as true),
-    role: title ? ("img" as const) : undefined,
+    "aria-hidden": title ? undefined : true,
+    role: title ? "img" : undefined,
     ...rest,
   };
 }

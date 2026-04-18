@@ -2,50 +2,53 @@
 
 import Link from "next/link";
 import { nav, site } from "@/lib/content";
+import {
+  controls,
+  cx,
+  layout,
+  surfaces,
+  typography,
+} from "@/lib/design-system";
 
 export function Nav() {
   return (
     <header className="fixed inset-x-0 top-0 z-40 pointer-events-none">
-      <div className="mx-auto flex max-w-[90rem] items-center justify-between px-6 py-5 pointer-events-auto">
-        {/* Brand */}
+      <div
+        className={cx(
+          layout.page,
+          "pointer-events-auto flex items-center justify-between py-5",
+        )}
+      >
         <Link href="/" className="flex flex-col leading-tight">
-          <span className="font-serif italic text-lg text-paper">
-            {site.name}
-          </span>
-          <span className="font-mono text-[0.6rem] uppercase tracking-[0.3em] text-whisper">
-            {site.tagline ?? "AI research lab"}
-          </span>
+          <span className={typography.brandMark}>{site.name}</span>
+          <span className={typography.brandMeta}>{site.tagline}</span>
         </Link>
 
-        {/* Capsule nav — desktop only */}
         <nav
           aria-label="Primary navigation"
-          className="hidden md:flex items-center gap-1 rounded-full border border-rule bg-ink/50 px-2 py-1.5 backdrop-blur-xl shadow-[0_4px_32px_rgba(14,12,10,0.4)]"
+          className={cx("hidden items-center gap-1 md:flex", surfaces.navCapsule)}
         >
           {nav.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="rounded-full px-4 py-2 text-sm font-sans text-whisper transition-colors hover:text-paper hover:bg-mist"
+              className={controls.navLink}
             >
               {item.label}
             </a>
           ))}
         </nav>
 
-        {/* CTAs */}
         <div className="flex items-center gap-2">
-          {/* Secondary — hidden on mobile to save space */}
           <a
-            href="#waitlist"
-            className="hidden md:inline-flex rounded-full border border-rule bg-ink/50 px-4 py-2 text-sm text-paper backdrop-blur-xl hover:bg-mist transition-colors"
+            href="#manifesto"
+            className={cx("hidden md:inline-flex", controls.secondaryButton)}
           >
-            Sign in
+            Why this exists
           </a>
-          {/* Primary violet pill */}
           <a
             href="#waitlist"
-            className="rounded-full bg-violet px-4 py-2 text-sm font-medium text-paper shadow-[0_6px_24px_rgba(212,145,61,0.45)] transition hover:brightness-110 active:brightness-95"
+            className={controls.pillButton}
           >
             Join waitlist
           </a>

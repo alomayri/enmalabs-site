@@ -26,7 +26,7 @@
   --color-whisper:     #8F8270;   /* warm muted tan */
 
   /* Status — warm-only. Any "success/alive" signal uses glow; errors
-     use ember (same hex as legacy --color-warning, redundancy retired). */
+     use ember. No cool-state fallback tokens remain in the system. */
   --color-glow:        #E8C87A;
 
   /* Type — one genre throughout. Display + body = Newsreader (optical

@@ -11,6 +11,7 @@ import {
   type MotionValue,
 } from "framer-motion";
 import * as THREE from "three";
+import { cx, layout, scene, surfaces, typography } from "@/lib/design-system";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -31,10 +32,15 @@ function clamp01(v: number): number {
   return Math.max(0, Math.min(1, v));
 }
 
-/** Muller sphere sampling — uniform random point on sphere surface of radius r */
-function randomSpherePoint(r: number): [number, number, number] {
-  const theta = Math.random() * Math.PI * 2;
-  const phi = Math.acos(2 * Math.random() - 1);
+function seededUnit(seed: number) {
+  const x = Math.sin(seed * 12.9898) * 43758.5453;
+  return x - Math.floor(x);
+}
+
+/** Muller sphere sampling — uniform point on sphere surface of radius r */
+function randomSpherePoint(seed: number, r: number): [number, number, number] {
+  const theta = seededUnit(seed) * Math.PI * 2;
+  const phi = Math.acos(2 * seededUnit(seed + 1) - 1);
   return [
     r * Math.sin(phi) * Math.cos(theta),
     r * Math.sin(phi) * Math.sin(theta),
@@ -58,13 +64,13 @@ function Particles({ progress }: ParticlesProps) {
     const init = new Float32Array(COUNT * 3);
     const tgt = new Float32Array(COUNT * 3);
     for (let i = 0; i < COUNT; i++) {
-      const [x, y, z] = randomSpherePoint(5);
+      const [x, y, z] = randomSpherePoint(i * 2 + 1, 5);
       init[i * 3] = x;
       init[i * 3 + 1] = y;
       init[i * 3 + 2] = z;
 
       // Tight cluster around origin — tiny random offset
-      const [tx, ty, tz] = randomSpherePoint(0.08);
+      const [tx, ty, tz] = randomSpherePoint(i * 2 + 2, 0.08);
       tgt[i * 3] = tx;
       tgt[i * 3 + 1] = ty;
       tgt[i * 3 + 2] = tz;
@@ -72,11 +78,14 @@ function Particles({ progress }: ParticlesProps) {
     return { initial: init, target: tgt };
   }, []);
 
-  // Working positions buffer (mutated every frame)
-  const positions = useMemo(() => new Float32Array(COUNT * 3), []);
-
   useFrame(() => {
     const p = clamp01(progress.get());
+    const attr = pointsRef.current?.geometry.getAttribute(
+      "position",
+    ) as THREE.BufferAttribute | undefined;
+    const positions = attr?.array as Float32Array | undefined;
+
+    if (!attr || !positions) return;
 
     // Move each particle toward center
     for (let i = 0; i < COUNT; i++) {
@@ -87,9 +96,6 @@ function Particles({ progress }: ParticlesProps) {
 
     const pts = pointsRef.current;
     if (pts) {
-      const geo = pts.geometry as THREE.BufferGeometry;
-      const attr = geo.getAttribute("position") as THREE.BufferAttribute;
-      attr.set(positions);
       attr.needsUpdate = true;
       // Slow global rotation for organic feel
       pts.rotation.y += 0.002;
@@ -110,12 +116,12 @@ function Particles({ progress }: ParticlesProps) {
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
-            args={[positions, 3]}
+            args={[initial.slice(), 3]}
           />
         </bufferGeometry>
         <pointsMaterial
           size={0.03}
-          color="#F1C98A"
+          color={scene.particleField}
           transparent
           opacity={0.85}
           sizeAttenuation
@@ -127,7 +133,7 @@ function Particles({ progress }: ParticlesProps) {
       {/* Central glowing core — appears when convergence is ~complete */}
       <mesh ref={coreRef} scale={0}>
         <sphereGeometry args={[0.18, 48, 48]} />
-        <meshBasicMaterial color="#F5D98B" toneMapped={false} />
+        <meshBasicMaterial color={scene.particleCore} toneMapped={false} />
       </mesh>
     </>
   );
@@ -146,12 +152,15 @@ function SceneContents({ progress }: SceneContentsProps) {
       <Particles progress={progress} />
       <EffectComposer>
         <Bloom
-          intensity={1.4}
-          luminanceThreshold={0.3}
-          luminanceSmoothing={0.5}
+          intensity={scene.closingBloom.intensity}
+          luminanceThreshold={scene.closingBloom.threshold}
+          luminanceSmoothing={scene.closingBloom.smoothing}
           mipmapBlur
         />
-        <Vignette offset={0.3} darkness={0.8} />
+        <Vignette
+          offset={scene.closingBloom.vignetteOffset}
+          darkness={scene.closingBloom.vignetteDarkness}
+        />
       </EffectComposer>
     </>
   );
@@ -176,16 +185,10 @@ export function ClosingScene({ eyebrow, title, sub, children }: ClosingSceneProp
   if (reducedMotion) {
     return (
       <section className="relative border-t border-rule overflow-hidden">
-        <div className="relative mx-auto max-w-5xl px-6 py-28 text-center md:py-40">
-          <p className="font-mono text-xs uppercase tracking-[0.42em] text-whisper">
-            {eyebrow}
-          </p>
-          <h2 className="mt-6 font-display text-5xl md:text-7xl text-paper">
-            {title}
-          </h2>
-          <p className="mx-auto mt-8 max-w-xl text-lg text-whisper md:text-xl">
-            {sub}
-          </p>
+        <div className={cx(layout.narrative, "relative px-6 py-28 text-center md:py-40")}>
+          <p className={typography.eyebrow}>{eyebrow}</p>
+          <h2 className={cx("mt-6 md:text-7xl", typography.displayTitle)}>{title}</h2>
+          <p className={cx("mx-auto mt-8 max-w-xl", typography.bodyLarge)}>{sub}</p>
           {children && (
             <div className="mx-auto mt-10 max-w-xl">{children}</div>
           )}
@@ -218,19 +221,15 @@ export function ClosingScene({ eyebrow, title, sub, children }: ClosingSceneProp
         <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
           <motion.div
             style={{ opacity: textOpacity, y: textY }}
-            className="mx-auto max-w-5xl rounded-3xl border border-rule bg-mist/30 p-10 backdrop-blur-xl shadow-[0_20px_80px_rgba(212,145,61,0.18)] md:p-16"
+            className={cx("mx-auto max-w-5xl p-10 md:p-16", surfaces.quietPanel)}
           >
-            <p className="font-mono text-xs uppercase tracking-[0.42em] text-whisper">
-              {eyebrow}
-            </p>
+            <p className={typography.eyebrow}>{eyebrow}</p>
 
             <h2 className="mt-6 font-display leading-tight text-paper [font-size:clamp(3.5rem,8vw,7rem)]">
               {title}
             </h2>
 
-            <p className="mx-auto mt-8 max-w-xl text-lg text-whisper md:text-xl">
-              {sub}
-            </p>
+            <p className={cx("mx-auto mt-8 max-w-xl", typography.bodyLarge)}>{sub}</p>
 
             {children && (
               <div className="mx-auto mt-10 max-w-xl">{children}</div>
