@@ -42,11 +42,20 @@ export const metadata: Metadata = {
     url: site.url,
     siteName: site.name,
     type: "website",
+    images: [
+      {
+        url: "/hero-reference.png",
+        width: 1408,
+        height: 792,
+        alt: "A single glass flask on a dark wooden study table, lit by candlelight.",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: site.name,
     description: hero.sub,
+    images: ["/hero-reference.png"],
   },
 };
 

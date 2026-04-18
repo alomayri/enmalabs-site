@@ -1,6 +1,13 @@
 "use client";
 
-import { useReducedMotion, motion } from "framer-motion";
+import { useRef } from "react";
+import {
+  useReducedMotion,
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import {
   Ouroboros,
   Alembic,
@@ -19,8 +26,7 @@ import {
 export type Project = {
   readonly index: string;
   readonly name: string;
-  readonly operation: string;
-  readonly phase: string;
+  readonly tint: string;
   readonly sigil: string;
   readonly platform: string;
   readonly kind: string;
@@ -52,16 +58,16 @@ const sigilMap = {
 
 type SigilName = keyof typeof sigilMap;
 
-function phaseToToken(phase: string): string {
-  switch (phase) {
-    case "Nigredo":
-      return "rubedo";
-    case "Albedo":
-      return "albedo";
-    case "Citrinitas":
-      return "citrinitas";
-    case "Rubedo":
-      return "rubedo";
+function tintToToken(tint: string): string {
+  switch (tint) {
+    case "warm":
+      return "violet-soft";
+    case "pale":
+      return "paper";
+    case "gold":
+      return "violet";
+    case "ember":
+      return "soul";
     default:
       return "violet-soft";
   }
@@ -69,10 +75,10 @@ function phaseToToken(phase: string): string {
 
 function statusPillClassName(status: Project["status"]): string {
   const base =
-    "rounded-full border px-3 py-1 font-mono text-xs uppercase tracking-[0.24em]";
+    "rounded-full border px-3 py-1 font-mono text-[0.65rem] uppercase tracking-[0.28em]";
   switch (status) {
     case "In development":
-      return `${base} border-positive/40 bg-positive/10 text-positive`;
+      return `${base} border-violet-soft/40 bg-violet-soft/10 text-violet-soft`;
     case "Forming":
       return `${base} border-rule bg-mist text-whisper`;
     case "Distant":
@@ -91,43 +97,76 @@ function ProjectCard({
   cardIndex: number;
   reduce: boolean;
 }) {
-  const SigilComponent =
-    sigilMap[project.sigil as SigilName] ?? Ouroboros;
-  const colorToken = phaseToToken(project.phase);
+  const SigilComponent = sigilMap[project.sigil as SigilName] ?? Ouroboros;
+  const colorToken = tintToToken(project.tint);
+
+  // Pointer-driven tilt — subtle, spring-damped so it never overshoots.
+  const cardRef = useRef<HTMLElement>(null);
+  const px = useMotionValue(0);
+  const py = useMotionValue(0);
+  const springCfg = { stiffness: 140, damping: 18, mass: 0.4 };
+  const rx = useSpring(useTransform(py, [-0.5, 0.5], [3.5, -3.5]), springCfg);
+  const ry = useSpring(useTransform(px, [-0.5, 0.5], [-4.5, 4.5]), springCfg);
+  const glowX = useTransform(px, [-0.5, 0.5], [18, 82]);
+  const glowY = useTransform(py, [-0.5, 0.5], [18, 82]);
+  const glowBg = useTransform(
+    [glowX, glowY],
+    ([x, y]: number[]) =>
+      `radial-gradient(260px circle at ${x}% ${y}%, rgba(241,201,138,0.10), transparent 65%)`,
+  );
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLElement>) => {
+    if (reduce || !cardRef.current) return;
+    const r = cardRef.current.getBoundingClientRect();
+    px.set((e.clientX - r.left) / r.width - 0.5);
+    py.set((e.clientY - r.top) / r.height - 0.5);
+  };
+  const handlePointerLeave = () => {
+    px.set(0);
+    py.set(0);
+  };
 
   return (
     <motion.article
-      className="group relative flex flex-col gap-6 rounded-3xl border border-rule bg-mist/40 p-8 backdrop-blur-xl transition-colors hover:bg-mist-soft md:p-10"
-      initial={reduce ? false : { opacity: 0, y: 24 }}
+      ref={cardRef}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
+      style={
+        reduce
+          ? undefined
+          : { rotateX: rx, rotateY: ry, transformPerspective: 900 }
+      }
+      className="group relative flex flex-col gap-6 rounded-3xl border border-rule bg-mist/40 p-8 backdrop-blur-xl transition-colors hover:bg-mist-soft md:p-10 [transform-style:preserve-3d] will-change-transform"
+      initial={reduce ? false : { opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
       transition={{
-        duration: 0.8,
+        duration: 0.35,
         delay: cardIndex * 0.05,
         ease: [0.16, 1, 0.3, 1],
       }}
     >
-      {/* Top row: sigil + index */}
+      {/* Pointer-following warm glow (candlelight that tracks the cursor) */}
+      {!reduce && (
+        <motion.div
+          aria-hidden
+          style={{ background: glowBg }}
+          className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        />
+      )}
+      {/* Top row: sigil (ambient, uncaptioned) + roman numeral */}
       <div className="flex items-start justify-between">
-        <div className={`text-${colorToken} opacity-90`}>
-          <SigilComponent size={56} title={project.operation} />
+        <div className={`text-${colorToken} opacity-80`}>
+          <SigilComponent size={52} />
         </div>
-        <div className="text-right">
-          <span className="font-mono text-xs uppercase tracking-[0.3em] text-whisper">
-            Opus {project.index}
-          </span>
-          <p className="mt-1 font-mono text-[0.65rem] uppercase tracking-[0.35em] text-whisper/70">
-            {project.phase}
-          </p>
-        </div>
+        <span className="font-mono text-[0.65rem] uppercase tracking-[0.35em] text-whisper/70">
+          {project.index}
+        </span>
       </div>
 
       {/* Body */}
       <div>
-        <p className="font-mono text-xs uppercase tracking-[0.3em] text-whisper/80">
-          {project.operation}
-        </p>
-        <h3 className="mt-3 font-display text-4xl leading-tight text-paper md:text-5xl">
+        <h3 className="font-display text-4xl leading-tight text-paper md:text-5xl">
           {project.name}
         </h3>
         <p className="mt-4 font-serif italic text-xl text-violet-soft">
@@ -140,7 +179,7 @@ function ProjectCard({
 
       {/* Meta row */}
       <div className="mt-auto flex items-center justify-between border-t border-rule pt-5">
-        <span className="font-mono text-xs uppercase tracking-[0.3em] text-whisper">
+        <span className="font-mono text-[0.65rem] uppercase tracking-[0.3em] text-whisper">
           {project.platform}
         </span>
         <span className={statusPillClassName(project.status)}>
@@ -159,7 +198,6 @@ export function OpusGrid({ id, eyebrow, heading, projects }: OpusGridProps) {
   return (
     <section id={id} className="relative border-t border-rule">
       <div className="mx-auto max-w-[90rem] px-6 py-28 md:py-36">
-        {/* Header */}
         <p className="font-mono text-xs uppercase tracking-[0.42em] text-whisper">
           {eyebrow}
         </p>
@@ -167,10 +205,9 @@ export function OpusGrid({ id, eyebrow, heading, projects }: OpusGridProps) {
           {heading}
         </h2>
         <p className="mt-4 max-w-xl text-whisper">
-          Four operations of the magnum opus. One lab.
+          Four tools. Each for a different kind of weight.
         </p>
 
-        {/* Grid */}
         <div className="mt-16 grid gap-6 md:grid-cols-2">
           {projects.map((project, i) => (
             <ProjectCard

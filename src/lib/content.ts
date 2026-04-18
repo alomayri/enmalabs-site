@@ -1,12 +1,16 @@
 /**
  * All site copy. Edit here; the rest of the site reflects changes.
  *
- * Voice: a person wrote this, not a brand. Keep it that way.
- * إنماء (Arabic: to grow) + anima (Jung: the inner self).
+ * Voice rules:
+ * - A person wrote this, not a brand.
+ * - The opener of any paragraph is the actual thought, not setup for it.
+ * - Forbidden phrases: seamless, empower, leverage, streamline, crafted,
+ *   transformative, meaningful, curated, thoughtful, delightful, intuitive,
+ *   holistic, "we believe", "it's worth noting".
  *
- * Alchemical frame: each project in this lab corresponds to one operation
- * of the magnum opus — the classical map of psychic transformation that Jung
- * spent the last thirty years of his life reading carefully.
+ * Naming: إنماء (Arabic: to grow) + anima (Latin: soul). Two words for
+ * the same thing. The lab's internal map stays internal — it shapes
+ * structure and palette, never shows up in copy.
  */
 
 export const site = {
@@ -20,39 +24,41 @@ export const hero = {
   eyebrow: "A lab for inner work",
   title: {
     line1: "Software for the parts",
-    line2: "of becoming", // italic serif
+    line2: "of becoming",
     line3: "that most software ignores.",
   },
   sub:
-    "I'm one person. The name comes from two words — إنماء, Arabic for growing, and anima, Jung's word for the inner life. They're saying the same thing. " +
-    "Each app I make here is built for a specific kind of inner operation. Balsam is the first. There will be others.",
+    "I'm one person. The name comes from two words — إنماء, Arabic for growing, " +
+    "and anima, Latin for soul. They're pointing at the same thing. Each app in " +
+    "the lab is built for a specific kind of inner work. Balsam is the first. " +
+    "There will be others.",
 };
 
 export const manifesto = {
   eyebrow: "Why this exists",
   heading: {
-    lead: "Jung spent thirty years",
-    accent1: "reading alchemists.",
-    middle: "I spent a few years wondering",
-    accent2: "why the apps felt hollow.",
+    lead: "Most apps are built",
+    accent1: "to keep you inside them.",
+    middle: " These are built",
+    accent2: "to help you leave.",
     trail: "",
   },
   paragraphs: [
-    "He wasn't being mystical. He was using alchemy as a map — the medieval operations of the magnum opus as a way of naming what happens when a person changes from the inside. Nigredo, the blackening. Albedo, the clarifying. Rubedo, the integration. He thought they described something real about how psyches actually move.",
-    "I kept building apps and kept running into the same problem. The tools didn't seem to know what they were for. They tracked things. They gamified things. They pushed notifications. They made money by making you stay longer. None of them seemed designed for the operation I was in the middle of.",
-    "So this lab exists to try the other direction. Every project starts with a specific alchemical operation — a specific kind of transformation — and is shaped around helping a person do that work, not around getting them to come back tomorrow.",
-    "It's a bit embarrassing to write out this plainly. But I'd rather say it plainly than hide it behind product language.",
+    "Most software knows exactly what it's doing. It tracks. It gamifies. It sends notifications at the moment you're least likely to ignore them. The business model assumes your attention is the unit of value, and shapes the product to extract it.",
+    "That's fine for some kinds of work. Not for the kind I'm interested in — the quiet operations a person runs on themselves during a difficult year. Those don't respond well to tools that want something from you.",
+    "So the lab exists to try the other direction. Each project starts from a specific inner operation — a particular weight someone is carrying — and is shaped around the shape of that work. Not around what makes them open the app tomorrow.",
+    "It's an embarrassingly small thing to say out loud. I'd rather say it plainly than dress it up in product language.",
   ],
 };
 
-// THE WORK — the lab's projects, each mapped to one alchemical operation.
-// Balsam is in active development. The others are forming.
+// Projects. The `tint` field names a color intent, nothing more. The
+// structural mapping lives in OpusGrid's phaseToToken — everything here
+// stays neutral enough to read as design metadata.
 export const projects = [
   {
     index: "I",
     name: "Balsam",
-    operation: "Dissolutio",
-    phase: "Nigredo",
+    tint: "warm",
     sigil: "Alembic",
     platform: "iOS",
     kind: "For the work of inner healing",
@@ -63,53 +69,50 @@ export const projects = [
   {
     index: "II",
     name: "— (in formation)",
-    operation: "Calcinatio",
-    phase: "Nigredo",
+    tint: "warm",
     sigil: "Sulfur",
     platform: "macOS",
     kind: "For burning the noise away",
     description:
-      "This one is still forming. The intent: what happens when a tool treats attention as something to protect, not harvest. I'll say more when there's more to say.",
+      "Still forming. The intent: what happens when a tool treats attention as something to protect, not harvest. More when there's more to say.",
     status: "Forming" as const,
   },
   {
     index: "III",
     name: "— (in formation)",
-    operation: "Coagulatio",
-    phase: "Citrinitas",
+    tint: "gold",
     sigil: "Salt",
     platform: "iOS",
-    kind: "For consolidating what remains",
+    kind: "For holding what you've learned",
     description:
-      "This one shows up later. The intent: helping a person hold on to what they've actually learned about themselves, instead of losing it to the next week.",
+      "This one comes later. The intent: helping a person keep what they've actually learned about themselves, instead of losing it to the next week.",
     status: "Forming" as const,
   },
   {
     index: "IV",
     name: "— (further out)",
-    operation: "Conjunctio",
-    phase: "Rubedo",
+    tint: "ember",
     sigil: "Rebis",
     platform: "iOS + macOS",
-    kind: "For the integration of opposites",
+    kind: "For the parts that only make sense together",
     description:
       "Further out. This one might not happen for a long time. But it's where the lab is pointed.",
     status: "Distant" as const,
   },
 ] as const;
 
-// JOURNAL — essays and notes, not marketing.
+// Journal. Not marketing. Length signals weight: note → reflection → essay.
 export const writing = [
   {
-    slug: "why-alchemy",
+    slug: "what-the-tools-dont-do",
     date: "2026-04-18",
     category: "Note",
-    title: "Why I'm framing this in alchemy, when I know how it sounds.",
+    title: "What the tools don't do.",
     excerpt:
-      "Jung spent the last thirty years of his life reading alchemical texts. That part of his work is the part most people skip, and the part I can't.",
+      "Every app I've admired this year has a quiet list of things it refuses to do. I'm noticing the refusals more than the features.",
   },
   {
-    slug: "one-app-is-not-enough",
+    slug: "one-tool-is-not-enough",
     date: "2026-04-10",
     category: "Note",
     title: "Balsam is one tool. There have to be more.",
@@ -122,7 +125,7 @@ export const writing = [
     category: "Note",
     title: "Slow is the point, not the apology.",
     excerpt:
-      "I've been building at a pace that would get a VC-funded founder fired. That is a feature of the lab, not a bug.",
+      "I've been building at a pace that would get a VC-funded founder fired. That's a feature of the lab, not a bug.",
   },
 ];
 

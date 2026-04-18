@@ -33,20 +33,17 @@ export function HeroSection({ eyebrow, title, sub }: HeroSectionProps) {
         <HeroSceneClient progress={scrollYProgress} />
       </div>
 
-      {/* Soft radial vignette anchored on the text side — no hard seam */}
+      {/* Light radial wash under the text column — the painting already carries
+          deep ink on the left, so this is a legibility lift, not a curtain. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(ellipse_70%_90%_at_18%_55%,rgba(14,12,10,0.92)_0%,rgba(14,12,10,0.72)_35%,rgba(14,12,10,0.25)_65%,rgba(14,12,10,0)_85%)]"
+        className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(ellipse_55%_70%_at_22%_62%,rgba(14,12,10,0.55)_0%,rgba(14,12,10,0.28)_40%,rgba(14,12,10,0)_75%)]"
       />
 
-      {/* Top & bottom atmospheric fade — keeps scene felt, not framed */}
+      {/* Soft bottom fade into the next section — no hard seam. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-32 bg-gradient-to-b from-ink to-transparent"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-40 bg-gradient-to-t from-ink to-transparent"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-24 bg-gradient-to-t from-ink to-transparent"
       />
 
       <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-6 pb-20 pt-32 md:max-w-[90rem] md:pb-28">

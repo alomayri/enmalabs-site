@@ -59,8 +59,8 @@ export function WritingFeed({ id, eyebrow, heading, entries }: WritingFeedProps)
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-20% 0px -10% 0px" }}
               transition={{
-                duration: 0.7,
-                delay: i * 0.06,
+                duration: 0.35,
+                delay: i * 0.05,
                 ease: [0.16, 1, 0.3, 1],
               }}
               className="group grid gap-4 border-t border-rule py-8 md:grid-cols-[1fr_3fr] md:py-10"

@@ -25,14 +25,6 @@
   --color-rule:        #3D3329;   /* warm brown border */
   --color-whisper:     #8F8270;   /* warm muted tan */
 
-  /* Alchemical phase tokens — semantic names for the four stages.
-     Nigredo/albedo are distinct hues; citrinitas == --color-violet,
-     rubedo == --color-soul (intentional — semantic aliases only). */
-  --color-nigredo:     #1A1410;   /* the raw material; deeper than ink */
-  --color-albedo:      #E8DCC4;   /* the whitening; pale bone/silver-cream */
-  --color-citrinitas:  #D4913D;   /* warm gold; alias of --color-violet */
-  --color-rubedo:      #8A3C24;   /* deep oxblood; alias of --color-soul */
-
   /* Status */
   --color-positive:    #7BDBAF;
   --color-warning:     #E8A861;

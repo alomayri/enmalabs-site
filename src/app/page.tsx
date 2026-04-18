@@ -24,7 +24,7 @@ export default function Home() {
       <OpusGrid
         id="work"
         eyebrow="The Work"
-        heading="Four operations. One lab."
+        heading="Four tools. One lab."
         projects={projects}
       />
 
