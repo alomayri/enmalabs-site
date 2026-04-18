@@ -1,56 +1,56 @@
 /**
  * All site copy. Edit here; the rest of the site reflects changes.
  *
- * Voice: technology with soul. Poetic, unhurried, specific.
- * Arabic root: إنماء (to develop, to grow). Latin: anima (soul).
+ * Voice: a person wrote this, not a brand. Keep it that way.
+ * إنماء (Arabic: to grow) + anima (Jung: the inner self).
  */
 
 export const site = {
   name: "Enma Labs",
-  tagline: "Technology with a soul.",
+  tagline: "Software, slowly.",
   url: "https://enmalabs.com",
   contactEmail: "hello@enmalabs.com",
 };
 
 export const hero = {
-  eyebrow: "A creative technology lab",
+  eyebrow: "A software lab",
   title: {
     line1: "We make software",
     line2: "that remembers",
     line3: "there's a person there.",
   },
   sub:
-    "A small lab building iOS and macOS apps at the edge of what software can feel like. " +
-    "Tools for focus, healing, journey, attention — the parts of a life most apps ignore.",
+    "It's a small lab. We work on iOS and macOS. " +
+    "Balsam is the first app we're putting out — it's for the kind of night where you want something on your phone that doesn't make you feel worse. " +
+    "Whatever comes after that will take a while.",
   cta: "Join the waitlist",
 };
 
 export const manifesto = {
-  eyebrow: "Why we make what we make",
+  eyebrow: "Why this exists",
   heading: {
-    lead: "We believe the next decade of software is not",
-    accent1: "faster",
-    middle: ". It is",
-    accent2: "quieter",
+    lead: "The best software probably",
+    accent1: "makes you",
+    middle: "use your phone a",
+    accent2: "little less",
     trail: ".",
   },
   paragraphs: [
-    "Enma comes from two roots. From anima — the soul, the inner self Jung spent his life mapping. " +
-      "From إنماء — the Arabic word for growing, developing, bringing something into its fuller form.",
-    "Both roots point the same way. Software should help a person become more themselves, not less.",
-    "So we build slowly. We ship less. We make the apps we would want to live inside.",
+    "The name is a bit indulgent but it's honest. Anima is Jung's word for the inner part of a person. إنماء is Arabic for growing. They're saying roughly the same thing, which is: becoming a little more yourself. That's what we want software to be good at, and mostly it isn't.",
+    "So we're trying to see if a small app can go the other way — if it can be the thing you open when the day was a lot, and close ten minutes later feeling slightly more like a person. That's the whole goal. It's a bit embarrassing to write out, but there it is.",
+    "Practically, that means we ship less than we could, we're okay with it, and if you're looking for a company that's growing fast, this isn't one.",
   ],
 };
 
 export const balsamSection = {
-  eyebrow: "What we're building first",
-  heading: "One app, made with care.",
+  eyebrow: "The first one",
+  heading: "What Balsam actually is.",
 };
 
 export const chaptersSection = {
-  eyebrow: "How we work",
-  headingLead: "Three chapters",
-  headingAccent: "one workshop",
+  eyebrow: "About us",
+  headingLead: "A few things",
+  headingAccent: "we keep learning",
   headingTrail: ".",
 };
 
@@ -59,36 +59,37 @@ export const apps = [
     name: "Balsam",
     platform: "iOS",
     kind: "Healing",
-    tagline: "An inner journey, held in your hand.",
+    tagline: "For the late-night parts of getting better.",
     description:
-      "A gentle, guided companion for the long work of becoming okay. " +
-      "The app stays out of the way when you need it to, and shows up when you don't.",
+      "An iPhone app for the weeks you'd rather have a companion than another feed. " +
+      "It remembers where you left off. It doesn't ask you to rate your mood on a scale of one to ten, " +
+      "and it doesn't want you there for eight hours a day.",
     status: "In development" as const,
   },
 ];
 
 export const balsamStory = {
-  eyebrow: "A quiet scene from Balsam",
+  eyebrow: "An evening on Balsam",
   beats: [
     {
       cue: "Late evening",
-      text: "The day has more edges than you have hands.",
+      text: "The day had more edges than you had hands.",
     },
     {
-      cue: "9:12 PM",
-      text: "You sit down. The room is quieter than it was an hour ago.",
+      cue: "9:12",
+      text: "You sat down. The room was quieter than it was an hour ago.",
     },
     {
       cue: "9:13",
-      text: "You open Balsam. It begins from where you left off instead of making you start over.",
+      text: "You opened Balsam. It started where you left off. No 'welcome back.'",
     },
     {
       cue: "9:52",
-      text: "Forty minutes later you notice you have not checked your phone once.",
+      text: "Forty minutes went by. You didn't check your phone.",
     },
     {
       cue: "Tomorrow",
-      text: "The app remembers enough to make returning easier.",
+      text: "It will remember enough that you don't start over.",
     },
   ],
 };
@@ -96,34 +97,38 @@ export const balsamStory = {
 export const chapters = [
   {
     index: "01",
-    title: "The premise",
+    title: "Why we started",
     body:
-      "Every app we make begins with the same question — what would this look like if it were made by someone who cared?",
+      "I kept using apps that felt like nobody really cared if they were any good. " +
+      "I wanted to see what happened if somebody did.",
   },
   {
     index: "02",
-    title: "The practice",
+    title: "How we work",
     body:
-      "We work across iOS, macOS, and the uncomfortable spaces between design, neuroscience, and craft. Some of what we make is for everyone. Some of it is only for the people who find it.",
+      "Code on Macs, ship to iPhones. We read a lot about attention and the inner life, some of it useful. " +
+      "Most of the ideas actually come from noticing what other software does poorly, " +
+      "and wishing it didn't.",
   },
   {
     index: "03",
-    title: "The promise",
+    title: "What to expect from us",
     body:
-      "You will not hear from us when we do not have anything to say. When we ship something, you will know. Until then, we are in the workshop.",
+      "No newsletter cadence. If you get an email from us, it's because something real exists. " +
+      "Otherwise assume we're busy making it.",
   },
 ];
 
 export const closingCta = {
-  eyebrow: "When we ship something, you will know",
-  title: "Join the waitlist.",
-  sub: "Occasional letters. No noise. Unsubscribe in one click.",
+  eyebrow: "Before you go",
+  title: "Leave us your email.",
+  sub: "We'll write to you when Balsam has a beta to try, and not really before that.",
 };
 
 export const nav = [
-  { label: "Manifesto", href: "#manifesto" },
-  { label: "What we're building", href: "#apps" },
-  { label: "Chapters", href: "#chapters" },
+  { label: "Why", href: "#manifesto" },
+  { label: "Balsam", href: "#apps" },
+  { label: "About", href: "#chapters" },
   { label: "Contact", href: "#contact" },
 ];
 
