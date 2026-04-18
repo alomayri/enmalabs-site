@@ -35,7 +35,7 @@ function Track({
   const w = useTransform(p, [i * step, (i + 1) * step], ["0%", "100%"]);
   return (
     <div className="h-px flex-1 overflow-hidden bg-rule">
-      <motion.div style={{ width: w }} className="h-full bg-ember" />
+      <motion.div style={{ width: w }} className="h-full bg-violet" />
     </div>
   );
 }
@@ -44,20 +44,20 @@ function Track({
 
 function ChapterCard({ chapter }: { chapter: Chapter }) {
   return (
-    <article className="min-w-[85vw] md:min-w-[65vw] flex flex-col justify-end h-full px-8 md:px-12 py-10 md:py-14">
+    <article className="min-w-[80vw] md:min-w-[75vw] flex flex-col justify-end h-[80%] my-auto mx-4 md:mx-6 rounded-3xl border border-rule bg-mist/35 p-8 md:p-12 backdrop-blur-xl shadow-[0_20px_60px_rgba(140,82,255,0.15)]">
       {/* Left typographic anchor */}
       <div className="flex items-start gap-6 md:gap-8">
         <div className="flex flex-col items-center gap-3 pt-1">
           <div className="h-16 w-px bg-rule" />
           <motion.div
-            className="w-2 h-2 rounded-full bg-ember"
+            className="w-2 h-2 rounded-full bg-violet-soft shadow-[0_0_16px_rgba(184,186,255,0.65)]"
             animate={{ scale: [1, 1.3, 1], opacity: [0.6, 1, 0.6] }}
             transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
           />
         </div>
 
         <div className="flex flex-col gap-4">
-          <p className="font-mono text-sm text-ember">{chapter.index}</p>
+          <p className="font-mono text-sm text-violet-soft">{chapter.index}</p>
           <h3 className="font-display text-4xl md:text-6xl text-paper leading-tight">
             {chapter.title}
           </h3>
@@ -92,7 +92,7 @@ function StaticLayout({
               key={ch.index}
               className="grid gap-6 border-t border-rule pt-8 md:grid-cols-[1fr_3fr]"
             >
-              <p className="font-mono text-sm text-ember">{ch.index}</p>
+              <p className="font-mono text-sm text-violet-soft">{ch.index}</p>
               <div>
                 <h3 className="font-display text-3xl md:text-5xl">
                   {ch.title}
@@ -140,6 +140,8 @@ export function ChaptersRibbon({ eyebrow, heading, chapters }: ChaptersRibbonPro
     >
       {/* ── Pinned viewport ── */}
       <div className="sticky top-0 h-screen overflow-hidden bg-ink">
+        {/* Ambient radial violet glow */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_40%,rgba(140,82,255,0.08),transparent_55%)]" />
         {/* Header */}
         <div className="mx-auto max-w-7xl px-6 md:px-10 pt-10 md:pt-16">
           <p className="font-mono text-xs uppercase tracking-[0.42em] text-whisper">

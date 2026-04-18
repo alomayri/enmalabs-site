@@ -33,7 +33,7 @@ function BeatCard({ beat, index, total, progress, reduce }: BeatCardProps) {
     return (
       <article className="border-t border-rule py-10">
         {beat.cue && (
-          <p className="font-mono text-xs uppercase tracking-[0.35em] text-ember">
+          <p className="font-mono text-xs uppercase tracking-[0.35em] text-violet-soft">
             {beat.cue}
           </p>
         )}
@@ -50,7 +50,7 @@ function BeatCard({ beat, index, total, progress, reduce }: BeatCardProps) {
       style={{ opacity, y, filter, willChange: "opacity, transform, filter" }}
     >
       {beat.cue && (
-        <p className="font-mono text-xs uppercase tracking-[0.38em] text-ember">
+        <p className="font-mono text-xs uppercase tracking-[0.38em] text-violet-soft">
           {beat.cue}
         </p>
       )}
@@ -117,7 +117,7 @@ export function NarratedStory({
         {/* Soft ember halo behind the text — ties the story to the hero motif */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(201,138,74,0.10),transparent_55%)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(140,82,255,0.12),transparent_55%)]"
         />
 
         <div className="relative mx-auto flex h-full max-w-6xl items-center">
@@ -172,7 +172,7 @@ function Scrubber({
   const width = useTransform(progress, [start, end], ["0%", "100%"]);
   return (
     <div className="h-px flex-1 overflow-hidden bg-rule">
-      <motion.div style={{ width }} className="h-full origin-left bg-ember" />
+      <motion.div style={{ width }} className="h-full origin-left bg-violet" />
     </div>
   );
 }

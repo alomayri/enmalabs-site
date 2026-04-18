@@ -117,7 +117,7 @@ function Particles({ progress }: ParticlesProps) {
         </bufferGeometry>
         <pointsMaterial
           size={0.03}
-          color="#E8A861"
+          color="#B8BAFF"
           transparent
           opacity={0.85}
           sizeAttenuation
@@ -223,7 +223,7 @@ export function ClosingScene({ eyebrow, title, sub, children }: ClosingSceneProp
         <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
           <motion.div
             style={{ opacity: textOpacity, y: textY }}
-            className="mx-auto max-w-5xl"
+            className="mx-auto max-w-5xl rounded-3xl border border-rule bg-mist/30 p-10 backdrop-blur-xl shadow-[0_20px_80px_rgba(140,82,255,0.18)] md:p-16"
           >
             <p className="font-mono text-xs uppercase tracking-[0.42em] text-whisper">
               {eyebrow}

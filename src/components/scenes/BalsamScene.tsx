@@ -133,9 +133,9 @@ interface SceneContentsProps {
 function SceneContents({ scrollYProgress }: SceneContentsProps) {
   return (
     <>
-      <ambientLight intensity={0.35} color="#1A1A2A" />
-      <directionalLight position={[3, 4, 5]} intensity={1.4} color="#E8A861" />
-      <pointLight position={[-2, 1, 3]} intensity={0.8} color="#7B6BDB" />
+      <ambientLight intensity={0.35} color="#1E2242" />
+      <directionalLight position={[3, 4, 5]} intensity={1.4} color="#B8BAFF" />
+      <pointLight position={[-2, 1, 3]} intensity={0.8} color="#8C52FF" />
 
       <Suspense fallback={null}>
         <PhoneModel scrollYProgress={scrollYProgress} />
@@ -143,7 +143,7 @@ function SceneContents({ scrollYProgress }: SceneContentsProps) {
 
       <EffectComposer>
         <Bloom
-          intensity={0.8}
+          intensity={1.2}
           luminanceThreshold={0.4}
           luminanceSmoothing={0.6}
           mipmapBlur
@@ -245,7 +245,7 @@ export function BalsamScene({ eyebrow, heading, app }: BalsamSceneProps) {
                 </span>
               </div>
 
-              <p className="font-display text-xl italic text-ember">
+              <p className="font-serif text-xl italic text-ember">
                 {app.tagline}
               </p>
               <p className="text-whisper">{app.description}</p>
@@ -271,7 +271,7 @@ export function BalsamScene({ eyebrow, heading, app }: BalsamSceneProps) {
             <div className="flex flex-col items-center justify-center gap-6">
               {/* Top floating label */}
               <div className="w-full max-w-xs">
-                <div className="h-px bg-gradient-to-r from-transparent via-ember to-transparent" />
+                <div className="h-px bg-gradient-to-r from-transparent via-violet-soft to-transparent" />
                 <div className="mt-2 inline-flex rounded-full border border-rule bg-ink/60 px-4 py-2 backdrop-blur-md">
                   <span className="font-mono text-xs text-whisper">
                     Tonight&#39;s session — 38 min
@@ -306,13 +306,15 @@ export function BalsamScene({ eyebrow, heading, app }: BalsamSceneProps) {
         {/* Ambient radial glow */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_70%_40%,rgba(232,168,97,0.07),transparent_55%)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_70%_40%,rgba(140,82,255,0.12),transparent_55%)]"
         />
 
         {/* Two-column grid */}
         <div className="relative z-10 grid h-full md:grid-cols-[1fr_1.2fr]">
           {/* ── LEFT: Text content ── */}
           <div className="flex flex-col justify-center px-8 md:px-14">
+            <div className="mx-6 my-auto">
+              <div className="relative rounded-3xl border border-rule bg-mist/40 p-8 backdrop-blur-xl shadow-[0_20px_80px_rgba(140,82,255,0.18)] md:p-12">
             <motion.div
               style={{ opacity: textOpacity, y: textY }}
               className="space-y-5"
@@ -346,7 +348,7 @@ export function BalsamScene({ eyebrow, heading, app }: BalsamSceneProps) {
               </div>
 
               {/* Tagline */}
-              <p className="font-display text-xl italic text-ember">
+              <p className="font-serif text-xl italic text-ember">
                 {app.tagline}
               </p>
 
@@ -369,6 +371,8 @@ export function BalsamScene({ eyebrow, heading, app }: BalsamSceneProps) {
                 </div>
               </dl>
             </motion.div>
+              </div>
+            </div>
           </div>
 
           {/* ── RIGHT: 3D Canvas + floating labels ── */}
@@ -378,8 +382,8 @@ export function BalsamScene({ eyebrow, heading, app }: BalsamSceneProps) {
               style={{ y: topLabelY }}
               className="absolute right-6 top-8 z-20 flex flex-col items-end gap-1"
             >
-              {/* Ember glow line above */}
-              <div className="h-px w-32 bg-gradient-to-r from-transparent via-ember to-transparent" />
+              {/* Violet-soft glow line above */}
+              <div className="h-px w-32 bg-gradient-to-r from-transparent via-violet-soft to-transparent" />
               <div className="rounded-full border border-rule bg-ink/60 px-4 py-2 backdrop-blur-md">
                 <span className="font-mono text-xs text-whisper">
                   Tonight&#39;s session — 38 min

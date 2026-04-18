@@ -96,10 +96,12 @@ export function MuteButton() {
       onClick={handleClick}
       aria-label={label}
       aria-pressed={isUnmuted}
-      className="fixed right-4 top-4 z-50 flex items-center gap-2 rounded-full border border-rule bg-ink/70 px-3 py-2 text-xs font-mono uppercase tracking-[0.24em] text-whisper backdrop-blur-md hover:text-paper"
+      className="fixed bottom-5 right-5 z-50 flex items-center gap-2 rounded-full border border-rule bg-ink/60 px-3 py-2 backdrop-blur-xl text-whisper transition hover:text-paper hover:shadow-[0_0_24px_rgba(184,186,255,0.25)]"
     >
       {isUnmuted ? <SpeakerOnIcon /> : <SpeakerOffIcon />}
-      <span>{isUnmuted ? "sound on" : "sound off"}</span>
+      <span className="font-mono text-xs uppercase tracking-[0.3em]">
+        {isUnmuted ? "SOUND ON" : "SOUND OFF"}
+      </span>
     </button>
   );
 }

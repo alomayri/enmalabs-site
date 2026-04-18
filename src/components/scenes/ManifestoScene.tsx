@@ -70,7 +70,7 @@ export function ManifestoScene({ eyebrow, heading, paragraphs }: ManifestoSceneP
           </p>
           <h2 className="font-display text-5xl leading-tight tracking-tight text-paper">
             {heading.lead}
-            <span className="italic text-ember"> {heading.accent1}</span>
+            <span className="font-serif italic text-violet-soft"> {heading.accent1}</span>
             {heading.middle}
             <span className="italic text-soul"> {heading.accent2}</span>
             {heading.trail}
@@ -129,7 +129,7 @@ export function ManifestoScene({ eyebrow, heading, paragraphs }: ManifestoSceneP
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-ink">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(232,168,97,0.08),transparent_55%)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(140,82,255,0.12),transparent_55%)]"
         />
 
         <motion.div
@@ -139,9 +139,9 @@ export function ManifestoScene({ eyebrow, heading, paragraphs }: ManifestoSceneP
             scale: glyphScale,
             rotate: glyphRotate,
             x: glyphX,
-            filter: "blur(0.5px) drop-shadow(0 0 80px rgba(232,168,97,0.35))",
+            filter: "blur(0.5px) drop-shadow(0 0 80px rgba(184,186,255,0.35))",
           }}
-          className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center font-display text-ember/80 [direction:rtl] [font-size:min(72vh,56vw)] leading-none select-none"
+          className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center font-display text-violet-soft/60 [direction:rtl] [font-size:min(72vh,56vw)] leading-none select-none"
         >
           إنماء
         </motion.div>
@@ -154,7 +154,7 @@ export function ManifestoScene({ eyebrow, heading, paragraphs }: ManifestoSceneP
 
             <h2 className="font-display text-5xl leading-tight tracking-tight text-paper md:text-[clamp(3rem,5vw,4.5rem)]">
               {heading.lead}
-              <span className="italic text-ember"> {heading.accent1}</span>
+              <span className="font-serif italic text-violet-soft"> {heading.accent1}</span>
               {heading.middle}
               <span className="italic text-soul"> {heading.accent2}</span>
               {heading.trail}

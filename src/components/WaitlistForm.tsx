@@ -51,19 +51,19 @@ export function WaitlistForm() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@domain.com"
           disabled={disabled}
-          className="flex-1 rounded-full border border-rule bg-mist/60 px-5 py-3 text-base text-paper placeholder:text-whisper focus:border-ember focus:bg-mist focus:outline-none disabled:opacity-60"
+          className="flex-1 rounded-full border border-rule bg-ink/60 px-5 py-3 text-base text-paper placeholder:text-whisper backdrop-blur-xl focus:border-violet-soft focus:bg-mist-soft focus:outline-none disabled:opacity-60 transition"
         />
         <button
           type="submit"
           disabled={disabled}
-          className="rounded-full bg-ember px-6 py-3 text-base font-medium text-ink transition hover:brightness-110 disabled:opacity-60"
+          className="rounded-full bg-violet px-6 py-3 text-base font-medium text-paper shadow-[0_8px_32px_rgba(140,82,255,0.45)] transition hover:brightness-110 disabled:opacity-60"
         >
           {status === "loading" ? "Joining…" : status === "success" ? "Joined" : "Join"}
         </button>
       </div>
       {message && (
         <p
-          className={`text-sm ${status === "error" ? "text-ember" : "text-whisper"}`}
+          className={`text-sm ${status === "error" ? "text-ember" : "text-positive"}`}
           role={status === "error" ? "alert" : "status"}
         >
           {message}

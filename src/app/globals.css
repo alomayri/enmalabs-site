@@ -6,20 +6,22 @@
  */
 @theme {
   /* Core surface */
-  --color-ink:         #0A0E1A;
-  --color-paper:       #F5F2EB;
+  --color-ink:         #0B0D2A;   /* deep indigo night */
+  --color-paper:       #EDEAF5;   /* lavender-tinted white */
 
   /* Accents */
   --color-ember:       #E8A861;
   --color-ember-soft:  #E8A86130;
-  --color-soul:        #7B6BDB;
+  --color-soul:        #7B6BDB;   /* legacy; slightly cooler */
   --color-soul-soft:   #7B6BDB26;
+  --color-violet:      #8C52FF;   /* primary magenta accent */
+  --color-violet-soft: #B8BAFF;   /* cool periwinkle accent */
 
   /* Structural */
-  --color-mist:        #151929;
-  --color-mist-soft:   #0F131E;
-  --color-rule:        #1F2435;
-  --color-whisper:     #8B8B95;
+  --color-mist:        #161B42;   /* navy mid-depth */
+  --color-mist-soft:   #1E2242;   /* slightly lighter navy */
+  --color-rule:        #282B42;   /* border color */
+  --color-whisper:     #9E9DBF;   /* muted periwinkle */
 
   /* Status */
   --color-positive:    #7BDBAF;
@@ -27,7 +29,8 @@
 
   /* Type */
   --font-sans:    var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif:   var(--font-instrument-serif), ui-serif, Georgia, serif;
   --font-mono:    ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* Editorial scale */
@@ -61,8 +64,9 @@
     font-size: var(--text-base);
     line-height: 1.55;
     background:
-      radial-gradient(ellipse at 20% 0%, rgba(123, 107, 219, 0.12), transparent 50%),
-      radial-gradient(ellipse at 80% 100%, rgba(232, 168, 97, 0.08), transparent 50%),
+      radial-gradient(ellipse at 20% 0%, rgba(140, 82, 255, 0.14), transparent 55%),
+      radial-gradient(ellipse at 80% 30%, rgba(184, 186, 255, 0.06), transparent 50%),
+      radial-gradient(ellipse at 50% 100%, rgba(232, 168, 97, 0.05), transparent 40%),
       var(--color-ink);
     min-height: 100vh;
   }
@@ -71,7 +75,7 @@
     color: var(--color-ink);
   }
   .italic-display {
-    font-family: var(--font-display);
+    font-family: var(--font-serif);
     font-style: italic;
     font-weight: 400;
   }
