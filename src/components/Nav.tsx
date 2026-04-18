@@ -9,7 +9,6 @@ export function Nav() {
       <nav className="pointer-events-auto mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         <Link href="/" className="flex items-baseline gap-2 text-paper">
           <span className="font-display text-xl tracking-tight">{site.name}</span>
-          <span className="text-xs text-whisper">{site.location}</span>
         </Link>
         <ul className="hidden items-center gap-8 text-sm text-whisper md:flex">
           {nav.map((item) => (

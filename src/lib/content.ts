@@ -8,13 +8,12 @@
 export const site = {
   name: "Enma Labs",
   tagline: "Technology with a soul.",
-  location: "Riyadh",
   url: "https://enmalabs.com",
   contactEmail: "hello@enmalabs.com",
 };
 
 export const hero = {
-  eyebrow: "Enma Labs — Riyadh",
+  eyebrow: "A creative technology lab",
   title: {
     line1: "We make software",
     line2: "that remembers",

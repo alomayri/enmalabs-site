@@ -9,7 +9,7 @@ export function Footer() {
           <p className="mt-3 max-w-md text-base text-whisper">
             <em className="italic-display text-lg text-paper">Anima</em> and{" "}
             <em className="italic-display text-lg text-paper">إنماء</em> — soul and growth.
-            A small lab in Riyadh, making slow software.
+            A small, independent lab making slow software.
           </p>
         </div>
 
@@ -40,7 +40,7 @@ export function Footer() {
 
       <div className="border-t border-rule">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-6 text-xs text-whisper md:flex-row">
-          <p>© {new Date().getFullYear()} {site.name}. Riyadh, Saudi Arabia.</p>
+          <p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
           <p className="font-mono">enmalabs.com</p>
         </div>
       </div>
