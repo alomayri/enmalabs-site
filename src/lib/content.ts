@@ -27,13 +27,31 @@ export const hero = {
 
 export const manifesto = {
   eyebrow: "Why we make what we make",
-  title: "We believe the next decade of software is not faster. It is quieter.",
+  heading: {
+    lead: "We believe the next decade of software is not",
+    accent1: "faster",
+    middle: ". It is",
+    accent2: "quieter",
+    trail: ".",
+  },
   paragraphs: [
     "Enma comes from two roots. From anima — the soul, the inner self Jung spent his life mapping. " +
       "From إنماء — the Arabic word for growing, developing, bringing something into its fuller form.",
     "Both roots point the same way. Software should help a person become more themselves, not less.",
     "So we build slowly. We ship less. We make the apps we would want to live inside.",
   ],
+};
+
+export const balsamSection = {
+  eyebrow: "What we're building first",
+  heading: "One app, made with care.",
+};
+
+export const chaptersSection = {
+  eyebrow: "How we work",
+  headingLead: "Three chapters",
+  headingAccent: "one workshop",
+  headingTrail: ".",
 };
 
 export const apps = [

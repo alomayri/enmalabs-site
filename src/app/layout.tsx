@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { LenisProvider } from "@/components/LenisProvider";
+import { AudioProvider } from "@/components/audio/AudioProvider";
+import { MuteButton } from "@/components/audio/MuteButton";
 import { site, hero } from "@/lib/content";
 
 const inter = Inter({
@@ -45,7 +47,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${instrument.variable}`}>
       <body>
-        <LenisProvider>{children}</LenisProvider>
+        <AudioProvider>
+          <MuteButton />
+          <LenisProvider>{children}</LenisProvider>
+        </AudioProvider>
       </body>
     </html>
   );
