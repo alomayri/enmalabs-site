@@ -24,7 +24,7 @@ export function Nav() {
         {/* Capsule nav — desktop only */}
         <nav
           aria-label="Primary navigation"
-          className="hidden md:flex items-center gap-1 rounded-full border border-rule bg-ink/50 px-2 py-1.5 backdrop-blur-xl shadow-[0_4px_32px_rgba(11,13,42,0.4)]"
+          className="hidden md:flex items-center gap-1 rounded-full border border-rule bg-ink/50 px-2 py-1.5 backdrop-blur-xl shadow-[0_4px_32px_rgba(14,12,10,0.4)]"
         >
           {nav.map((item) => (
             <a
@@ -49,7 +49,7 @@ export function Nav() {
           {/* Primary violet pill */}
           <a
             href="#waitlist"
-            className="rounded-full bg-violet px-4 py-2 text-sm font-medium text-paper shadow-[0_6px_24px_rgba(140,82,255,0.45)] transition hover:brightness-110 active:brightness-95"
+            className="rounded-full bg-violet px-4 py-2 text-sm font-medium text-paper shadow-[0_6px_24px_rgba(212,145,61,0.45)] transition hover:brightness-110 active:brightness-95"
           >
             Join waitlist
           </a>

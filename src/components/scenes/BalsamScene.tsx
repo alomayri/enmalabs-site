@@ -133,9 +133,9 @@ interface SceneContentsProps {
 function SceneContents({ scrollYProgress }: SceneContentsProps) {
   return (
     <>
-      <ambientLight intensity={0.35} color="#1E2242" />
-      <directionalLight position={[3, 4, 5]} intensity={1.4} color="#B8BAFF" />
-      <pointLight position={[-2, 1, 3]} intensity={0.8} color="#8C52FF" />
+      <ambientLight intensity={0.35} color="#221C17" />
+      <directionalLight position={[3, 4, 5]} intensity={1.4} color="#F1C98A" />
+      <pointLight position={[-2, 1, 3]} intensity={0.8} color="#D4913D" />
 
       <Suspense fallback={null}>
         <PhoneModel scrollYProgress={scrollYProgress} />
@@ -306,7 +306,7 @@ export function BalsamScene({ eyebrow, heading, app }: BalsamSceneProps) {
         {/* Ambient radial glow */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_70%_40%,rgba(140,82,255,0.12),transparent_55%)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_70%_40%,rgba(212,145,61,0.12),transparent_55%)]"
         />
 
         {/* Two-column grid */}
@@ -314,7 +314,7 @@ export function BalsamScene({ eyebrow, heading, app }: BalsamSceneProps) {
           {/* ── LEFT: Text content ── */}
           <div className="flex flex-col justify-center px-8 md:px-14">
             <div className="mx-6 my-auto">
-              <div className="relative rounded-3xl border border-rule bg-mist/40 p-8 backdrop-blur-xl shadow-[0_20px_80px_rgba(140,82,255,0.18)] md:p-12">
+              <div className="relative rounded-3xl border border-rule bg-mist/40 p-8 backdrop-blur-xl shadow-[0_20px_80px_rgba(212,145,61,0.18)] md:p-12">
             <motion.div
               style={{ opacity: textOpacity, y: textY }}
               className="space-y-5"

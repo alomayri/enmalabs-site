@@ -45,7 +45,7 @@ function StarField() {
       </bufferGeometry>
       <pointsMaterial
         size={0.012}
-        color="#EDEAF5"
+        color="#F5EDDB"
         transparent
         opacity={0.75}
         sizeAttenuation
@@ -87,7 +87,7 @@ function FloraLeaf({
       <mesh ref={meshRef} position={[x, y, z]} scale={[scaleX, scaleY, 1]}>
         <planeGeometry args={[1, 1]} />
         <meshBasicMaterial
-          color="#0B0D2A"
+          color="#0E0C0A"
           transparent
           opacity={0.92}
           alphaMap={alphaMap}
@@ -171,7 +171,7 @@ function DustMotes() {
       </bufferGeometry>
       <pointsMaterial
         size={0.025}
-        color="#B8BAFF"
+        color="#F1C98A"
         transparent
         opacity={0.6}
         sizeAttenuation
@@ -207,8 +207,8 @@ function Wing({ side, upper, pivotRef, alphaMap }: WingProps) {
       >
         <planeGeometry args={[1, 1]} />
         <meshPhysicalMaterial
-          color="#8C52FF"
-          emissive="#B8BAFF"
+          color="#D4913D"
+          emissive="#F1C98A"
           emissiveIntensity={0.55}
           transparent
           opacity={0.72}
@@ -296,8 +296,8 @@ function LuminousMoth({ progress }: { progress?: MotionValue<number> }) {
       <mesh ref={bodyRef} scale={[1, 2.2, 1]} /* initial stretch; updated each frame */>
         <sphereGeometry args={[0.08, 16, 16]} />
         <meshPhysicalMaterial
-          color="#2A2455"
-          emissive="#B8BAFF"
+          color="#1A0F08"
+          emissive="#F1C98A"
           emissiveIntensity={0.35}
           metalness={0.3}
           roughness={0.4}
@@ -365,8 +365,8 @@ function MiniMoth({
       <mesh scale={[1, 2.2, 1]}>
         <sphereGeometry args={[0.08, 8, 8]} />
         <meshPhysicalMaterial
-          color="#2A2455"
-          emissive="#B8BAFF"
+          color="#1A0F08"
+          emissive="#F1C98A"
           emissiveIntensity={0.4}
           metalness={0.2}
           roughness={0.5}
@@ -376,8 +376,8 @@ function MiniMoth({
         <mesh position={[-0.3, 0.1, 0]} rotation={[0, 0, -0.2]} scale={[0.65, 0.5, 1]}>
           <planeGeometry args={[1, 1]} />
           <meshPhysicalMaterial
-            color="#8C52FF"
-            emissive="#B8BAFF"
+            color="#D4913D"
+            emissive="#F1C98A"
             emissiveIntensity={0.55}
             transparent
             opacity={0.65}
@@ -394,8 +394,8 @@ function MiniMoth({
         <mesh position={[0.3, 0.1, 0]} rotation={[0, 0, 0.2]} scale={[0.65, 0.5, 1]}>
           <planeGeometry args={[1, 1]} />
           <meshPhysicalMaterial
-            color="#8C52FF"
-            emissive="#B8BAFF"
+            color="#D4913D"
+            emissive="#F1C98A"
             emissiveIntensity={0.55}
             transparent
             opacity={0.65}
@@ -426,21 +426,21 @@ function SideCreatures() {
 function SceneContents({ progress }: { progress?: MotionValue<number> }) {
   return (
     <>
-      <color attach="background" args={["#0B0D2A"]} />
-      <fog attach="fog" args={["#0B0D2A", 6, 18]} />
+      <color attach="background" args={["#0E0C0A"]} />
+      <fog attach="fog" args={["#0E0C0A", 6, 18]} />
 
-      <ambientLight intensity={0.25} color="#1E2242" />
+      <ambientLight intensity={0.25} color="#221C17" />
       <pointLight
         position={[0, 0.2, 2]}
         intensity={2.4}
-        color="#B8BAFF"
+        color="#F1C98A"
         distance={8}
         decay={2}
       />
       <pointLight
         position={[-2, 1, -1]}
         intensity={1.4}
-        color="#8C52FF"
+        color="#D4913D"
         distance={7}
         decay={2}
       />

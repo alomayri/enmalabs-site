@@ -56,7 +56,7 @@ export function WaitlistForm() {
         <button
           type="submit"
           disabled={disabled}
-          className="rounded-full bg-violet px-6 py-3 text-base font-medium text-paper shadow-[0_8px_32px_rgba(140,82,255,0.45)] transition hover:brightness-110 disabled:opacity-60"
+          className="rounded-full bg-violet px-6 py-3 text-base font-medium text-paper shadow-[0_8px_32px_rgba(212,145,61,0.45)] transition hover:brightness-110 disabled:opacity-60"
         >
           {status === "loading" ? "Joining…" : status === "success" ? "Joined" : "Join"}
         </button>

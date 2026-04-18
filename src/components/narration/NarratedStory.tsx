@@ -117,7 +117,7 @@ export function NarratedStory({
         {/* Soft ember halo behind the text — ties the story to the hero motif */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(140,82,255,0.12),transparent_55%)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(212,145,61,0.12),transparent_55%)]"
         />
 
         <div className="relative mx-auto flex h-full max-w-6xl items-center">

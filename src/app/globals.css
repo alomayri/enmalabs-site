@@ -5,23 +5,25 @@
  * Edit to reskin.
  */
 @theme {
-  /* Core surface */
-  --color-ink:         #0B0D2A;   /* deep indigo night */
-  --color-paper:       #EDEAF5;   /* lavender-tinted white */
+  /* Core surface — "candlelight" palette. Warm not cool. Lamplit room,
+     not AI-tool violet. Kept `violet` / `violet-soft` / `soul` token names
+     so existing components don't break; the colors behind them are warm. */
+  --color-ink:         #0E0C0A;   /* warm deep near-black, slight brown */
+  --color-paper:       #F5EDDB;   /* aged cream paper */
 
-  /* Accents */
-  --color-ember:       #E8A861;
+  /* Accents (warm) */
+  --color-ember:       #E8A861;   /* warm amber (unchanged) */
   --color-ember-soft:  #E8A86130;
-  --color-soul:        #7B6BDB;   /* legacy; slightly cooler */
-  --color-soul-soft:   #7B6BDB26;
-  --color-violet:      #8C52FF;   /* primary magenta accent */
-  --color-violet-soft: #B8BAFF;   /* cool periwinkle accent */
+  --color-soul:        #8A3C24;   /* deep oxblood / clay */
+  --color-soul-soft:   #8A3C2426;
+  --color-violet:      #D4913D;   /* primary WARM AMBER (was magenta) */
+  --color-violet-soft: #F1C98A;   /* pale gold glow (was periwinkle) */
 
-  /* Structural */
-  --color-mist:        #161B42;   /* navy mid-depth */
-  --color-mist-soft:   #1E2242;   /* slightly lighter navy */
-  --color-rule:        #282B42;   /* border color */
-  --color-whisper:     #9E9DBF;   /* muted periwinkle */
+  /* Structural (warm dark surfaces) */
+  --color-mist:        #1A1612;   /* warm dark card surface */
+  --color-mist-soft:   #221C17;   /* slightly lighter warm dark */
+  --color-rule:        #3D3329;   /* warm brown border */
+  --color-whisper:     #8F8270;   /* warm muted tan */
 
   /* Status */
   --color-positive:    #7BDBAF;
@@ -64,9 +66,9 @@
     font-size: var(--text-base);
     line-height: 1.55;
     background:
-      radial-gradient(ellipse at 20% 0%, rgba(140, 82, 255, 0.14), transparent 55%),
-      radial-gradient(ellipse at 80% 30%, rgba(184, 186, 255, 0.06), transparent 50%),
-      radial-gradient(ellipse at 50% 100%, rgba(232, 168, 97, 0.05), transparent 40%),
+      radial-gradient(ellipse at 20% 0%, rgba(212, 145, 61, 0.12), transparent 55%),
+      radial-gradient(ellipse at 80% 30%, rgba(241, 201, 138, 0.05), transparent 50%),
+      radial-gradient(ellipse at 50% 100%, rgba(138, 60, 36, 0.06), transparent 40%),
       var(--color-ink);
     min-height: 100vh;
   }
