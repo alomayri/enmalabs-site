@@ -2,6 +2,7 @@
 
 import { motion, useInView, useReducedMotion, HTMLMotionProps } from "framer-motion";
 import { useRef, ReactNode } from "react";
+import { motion as motionSystem } from "@/lib/design-system";
 
 /**
  * Scroll-triggered reveal: fades in + slight rise when entering the viewport.
@@ -27,7 +28,11 @@ export function Reveal({ children, delay = 0, y = 24, className, as = "div" }: P
       ref={ref}
       initial={reduce ? false : { opacity: 0, y }}
       animate={inView ? { opacity: 1, y: 0 } : undefined}
-      transition={{ duration: 0.9, delay, ease: [0.16, 1, 0.3, 1] }}
+      transition={{
+        duration: motionSystem.reveal.duration,
+        delay,
+        ease: motionSystem.reveal.ease,
+      }}
       className={className}
     >
       {children}

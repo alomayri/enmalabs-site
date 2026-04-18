@@ -16,6 +16,7 @@ export function AmbientBed() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const sourceRef = useRef<MediaElementAudioSourceNode | null>(null);
   const localGainRef = useRef<GainNode | null>(null);
+  const pauseTimerRef = useRef<number | null>(null);
 
   // Wire the <audio> element into the Web Audio graph once the user unmutes.
   useEffect(() => {
@@ -38,6 +39,11 @@ export function AmbientBed() {
     const localGain = localGainRef.current;
     if (!localGain) return;
 
+    if (pauseTimerRef.current !== null) {
+      window.clearTimeout(pauseTimerRef.current);
+      pauseTimerRef.current = null;
+    }
+
     if (isUnmuted) {
       void el.play().catch(() => undefined);
       const now = ctx.currentTime;
@@ -49,7 +55,17 @@ export function AmbientBed() {
       localGain.gain.cancelScheduledValues(now);
       localGain.gain.setValueAtTime(localGain.gain.value, now);
       localGain.gain.linearRampToValueAtTime(0, now + FADE_OUT);
+      pauseTimerRef.current = window.setTimeout(() => {
+        el.pause();
+      }, FADE_OUT * 1000);
     }
+
+    return () => {
+      if (pauseTimerRef.current !== null) {
+        window.clearTimeout(pauseTimerRef.current);
+        pauseTimerRef.current = null;
+      }
+    };
   }, [isUnmuted, getContext, masterGain]);
 
   return (

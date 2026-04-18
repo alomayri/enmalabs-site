@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Enma Labs
 
-## Getting Started
+`enmalabs.com` is the public site for Enma Labs.
 
-First, run the development server:
+It is the front door for a one-person lab making software for inner work, with
+**Balsam** as the first concrete product and a small public journal documenting
+the work around it.
+
+## What this repo contains
+
+- the homepage at `/`
+- real journal entries at `/journal/[slug]`
+- the Balsam waitlist form UI
+- the shared visual system and creative-direction docs that govern the site
+
+## Canonical sources
+
+Read these first:
+
+1. `AGENTS.md`
+2. `docs/CREATIVE-DIRECTION.md`
+3. `src/lib/content.ts`
+4. `src/app/globals.css`
+5. `src/lib/theme.ts`
+6. `src/lib/design-system.ts`
+
+## Commands
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run lint
+npm run build
+vercel --prod --yes
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Notes
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `src/app/api/waitlist/route.ts` is intentionally left alone unless the waitlist
+  provider itself is being changed.
+- `public/hero-reference.png` is the canonical hero image.
+- If you change palette or type roles, update both `globals.css` and `theme.ts`.

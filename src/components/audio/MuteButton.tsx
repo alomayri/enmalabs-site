@@ -1,6 +1,7 @@
 "use client";
 
 import { useAudioContext } from "./AudioProvider";
+import { controls, typography } from "@/lib/design-system";
 
 function SpeakerOnIcon() {
   return (
@@ -96,10 +97,10 @@ export function MuteButton() {
       onClick={handleClick}
       aria-label={label}
       aria-pressed={isUnmuted}
-      className="fixed bottom-5 right-5 z-50 flex items-center gap-2 rounded-full border border-rule bg-ink/60 px-3 py-2 backdrop-blur-xl text-whisper transition hover:text-paper hover:shadow-[0_0_24px_rgba(241,201,138,0.25)]"
+      className={`fixed bottom-5 right-5 z-50 ${controls.iconButton}`}
     >
       {isUnmuted ? <SpeakerOnIcon /> : <SpeakerOffIcon />}
-      <span className="font-mono text-xs uppercase tracking-[0.3em]">
+      <span className={typography.meta}>
         {isUnmuted ? "SOUND ON" : "SOUND OFF"}
       </span>
     </button>

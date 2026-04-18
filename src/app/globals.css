@@ -37,6 +37,11 @@
   --font-serif:   var(--font-eb-garamond), ui-serif, Georgia, serif;
   --font-mono:    ui-monospace, SFMono-Regular, Menlo, monospace;
 
+  /* Shape */
+  --radius-card:  1.75rem;
+  --radius-panel: 2.25rem;
+  --radius-pill:  9999px;
+
   /* Editorial scale */
   --text-xs:   0.75rem;
   --text-sm:   0.875rem;

@@ -1,10 +1,9 @@
 "use client";
 
 import { useRef } from "react";
-import { useScroll } from "framer-motion";
-import { cx, gradients, layout, typography } from "@/lib/design-system";
+import { useReducedMotion, useScroll } from "framer-motion";
+import { controls, cx, gradients, layout, typography } from "@/lib/design-system";
 import { HeroSceneClient } from "@/components/HeroSceneClient";
-import { WaitlistForm } from "@/components/WaitlistForm";
 import { Reveal } from "@/components/Reveal";
 
 type HeroSectionProps = {
@@ -15,6 +14,7 @@ type HeroSectionProps = {
 
 export function HeroSection({ eyebrow, title, sub }: HeroSectionProps) {
   const ref = useRef<HTMLElement>(null);
+  const reducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
@@ -22,17 +22,29 @@ export function HeroSection({ eyebrow, title, sub }: HeroSectionProps) {
 
   return (
     <section
-      id="waitlist"
+      id="top"
       ref={ref}
       className="relative min-h-[100svh] overflow-hidden"
     >
-      <div
-        aria-hidden
-        className="absolute inset-0 z-0"
-        style={{ contain: "strict" }}
-      >
-        <HeroSceneClient progress={scrollYProgress} />
-      </div>
+      {reducedMotion ? (
+        <div
+          aria-hidden
+          className="absolute inset-0 z-0 bg-cover bg-center"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(14,12,10,0.12), rgba(14,12,10,0.3)), url('/hero-reference.png')",
+            contain: "strict",
+          }}
+        />
+      ) : (
+        <div
+          aria-hidden
+          className="absolute inset-0 z-0"
+          style={{ contain: "strict" }}
+        >
+          <HeroSceneClient progress={scrollYProgress} />
+        </div>
+      )}
 
       {/* Light radial wash under the text column — the painting already carries
           deep ink on the left, so this is a legibility lift, not a curtain. */}
@@ -52,10 +64,10 @@ export function HeroSection({ eyebrow, title, sub }: HeroSectionProps) {
       <div
         className={cx(
           layout.page,
-          "relative z-10 flex min-h-[100svh] flex-col justify-end pb-20 pt-32 md:max-w-[90rem] md:pb-28",
+          layout.heroShell,
         )}
       >
-        <div className="max-w-3xl md:max-w-[56%]">
+        <div className={layout.heroCopy}>
           <Reveal>
             <p className={cx("mb-8", typography.eyebrow)}>{eyebrow}</p>
           </Reveal>
@@ -74,8 +86,13 @@ export function HeroSection({ eyebrow, title, sub }: HeroSectionProps) {
             <p className={cx("mt-10 max-w-2xl", typography.bodyLarge)}>{sub}</p>
           </Reveal>
           <Reveal delay={0.45}>
-            <div className="mt-10">
-              <WaitlistForm />
+            <div className="mt-10 flex flex-wrap gap-3">
+              <a href="#waitlist" className={controls.primaryButton}>
+                Join for Balsam
+              </a>
+              <a href="#manifesto" className={controls.secondaryButton}>
+                Read why
+              </a>
             </div>
           </Reveal>
         </div>

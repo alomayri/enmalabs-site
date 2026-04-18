@@ -7,14 +7,20 @@ export function cx(...values: ClassValue[]) {
 }
 
 type ProjectTint = "warm" | "pale" | "gold" | "ember";
-type ProjectStatus = "In development" | "Forming" | "Distant";
+type ProjectStatus = "Active" | "In notes" | "Distant";
 
 export const layout = {
   page: "mx-auto max-w-[90rem] px-6",
   reading: "mx-auto max-w-7xl px-6",
   narrative: "mx-auto w-full max-w-5xl",
   sectionSpace: "py-28 md:py-36",
+  compactSectionSpace: "py-24 md:py-32",
   sectionBorder: "border-t border-rule",
+  heroShell:
+    "relative z-10 flex min-h-[100svh] flex-col justify-end pb-20 pt-32 md:pb-28",
+  heroCopy: "max-w-3xl md:max-w-[54%]",
+  panelPad: "p-8 md:p-10",
+  panelPadLarge: "p-10 md:p-14",
 } as const;
 
 export const typography = {
@@ -26,6 +32,8 @@ export const typography = {
     "font-display font-light text-[3.25rem] leading-[0.93] tracking-[-0.025em] md:text-[clamp(3.5rem,6.5vw,7rem)]",
   displayTitle:
     "font-display text-5xl leading-tight tracking-tight text-paper md:text-[clamp(3.5rem,6vw,6.2rem)]",
+  ctaTitle:
+    "font-display font-light text-4xl leading-tight tracking-[-0.02em] text-paper md:text-[clamp(3rem,5.5vw,5.5rem)]",
   manifestoTitle:
     "font-display font-light text-5xl leading-[0.98] tracking-[-0.02em] text-paper md:text-[clamp(2.75rem,4.5vw,4.25rem)]",
   bodyLarge: "text-lg text-whisper md:text-xl",
@@ -38,31 +46,39 @@ export const typography = {
   namedProject:
     "font-display text-4xl font-light leading-tight text-paper md:text-5xl",
   meta: "font-mono text-[0.65rem] uppercase tracking-[0.3em] text-whisper",
+  journalTitle: "font-display text-2xl leading-tight text-paper md:text-3xl",
 } as const;
 
 export const surfaces = {
   navCapsule:
     "rounded-full border border-rule bg-ink/50 px-2 py-1.5 shadow-[0_4px_32px_rgba(14,12,10,0.4)] backdrop-blur-xl",
   card:
-    "rounded-[1.75rem] border border-rule bg-mist/40 backdrop-blur-xl transition-colors hover:bg-mist-soft",
+    "rounded-[var(--radius-card)] border border-rule bg-mist/40 backdrop-blur-xl transition-colors hover:bg-mist-soft",
   quietPanel:
-    "rounded-[2rem] border border-rule bg-mist/30 backdrop-blur-xl shadow-[0_20px_80px_rgba(212,145,61,0.18)]",
+    "rounded-[var(--radius-panel)] border border-rule bg-mist/30 backdrop-blur-xl shadow-[0_20px_80px_rgba(212,145,61,0.18)]",
   footerPanel:
-    "rounded-[1.75rem] border border-rule/80 bg-mist/20 backdrop-blur-xl",
+    "rounded-[var(--radius-card)] border border-rule/80 bg-mist/20 backdrop-blur-xl",
+  notebookCard:
+    "rounded-[var(--radius-card)] border border-rule bg-mist/24 backdrop-blur-xl transition-colors hover:bg-mist/40",
 } as const;
 
 export const controls = {
   navLink:
-    "rounded-full px-4 py-2 text-sm text-whisper transition-colors hover:bg-mist hover:text-paper",
+    "inline-flex min-h-11 items-center rounded-full px-4 py-2 text-sm text-whisper transition-colors hover:bg-mist hover:text-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-soft focus-visible:ring-offset-2 focus-visible:ring-offset-ink",
   secondaryButton:
-    "rounded-full border border-rule bg-ink/50 px-4 py-2 text-sm text-paper backdrop-blur-xl transition-colors hover:bg-mist",
+    "inline-flex min-h-11 items-center justify-center rounded-full border border-rule bg-ink/50 px-4 py-2 text-sm text-paper backdrop-blur-xl transition-colors hover:bg-mist focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-soft focus-visible:ring-offset-2 focus-visible:ring-offset-ink",
   primaryButton:
-    "rounded-full bg-violet px-6 py-3 text-base font-medium text-paper shadow-[0_8px_32px_rgba(212,145,61,0.45)] transition hover:brightness-110 disabled:opacity-60",
+    "inline-flex min-h-12 items-center justify-center rounded-full bg-violet-soft px-6 py-3 text-base font-medium text-ink shadow-[0_8px_32px_rgba(212,145,61,0.32)] transition hover:bg-paper disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper focus-visible:ring-offset-2 focus-visible:ring-offset-ink",
   pillButton:
-    "rounded-full bg-violet px-4 py-2 text-sm font-medium text-paper shadow-[0_6px_24px_rgba(212,145,61,0.45)] transition hover:brightness-110 active:brightness-95",
+    "inline-flex min-h-11 items-center justify-center rounded-full bg-violet-soft px-4 py-2 text-sm font-medium text-ink shadow-[0_6px_24px_rgba(212,145,61,0.28)] transition hover:bg-paper active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper focus-visible:ring-offset-2 focus-visible:ring-offset-ink",
   input:
-    "flex-1 rounded-full border border-rule bg-ink/60 px-5 py-3 text-base text-paper placeholder:text-whisper backdrop-blur-xl transition focus:border-violet-soft focus:bg-mist-soft focus:outline-none disabled:opacity-60",
-  footerLink: "text-paper transition hover:text-ember",
+    "min-h-12 flex-1 rounded-full border border-rule bg-ink/60 px-5 py-3 text-base text-paper placeholder:text-whisper backdrop-blur-xl transition focus:border-violet-soft focus:bg-mist-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-soft focus-visible:ring-offset-2 focus-visible:ring-offset-ink disabled:opacity-60",
+  footerLink:
+    "text-paper transition hover:text-ember focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-soft focus-visible:ring-offset-2 focus-visible:ring-offset-ink",
+  iconButton:
+    "inline-flex min-h-11 items-center gap-2 rounded-full border border-rule bg-ink/60 px-4 py-2 text-whisper backdrop-blur-xl transition hover:text-paper hover:shadow-[0_0_24px_rgba(241,201,138,0.25)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-soft focus-visible:ring-offset-2 focus-visible:ring-offset-ink",
+  skipLink:
+    "sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-violet-soft focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-ink",
 } as const;
 
 export const gradients = {
@@ -75,9 +91,10 @@ export const gradients = {
 
 export const motion = {
   reveal: {
-    duration: 0.35,
+    duration: 0.55,
     ease: [0.16, 1, 0.3, 1] as const,
   },
+  staggerStep: 0.05,
   cardViewport: { once: true, margin: "-10% 0px -10% 0px" } as const,
   listViewport: { once: true, margin: "-20% 0px -10% 0px" } as const,
 } as const;
@@ -88,18 +105,11 @@ export const scene = {
   particleField: tokens.color.violetSoft,
   particleCore: "#F5D98B",
   heroBloom: {
-    intensity: 0.35,
+    intensity: 0.22,
     threshold: 0.72,
     smoothing: 0.25,
     vignetteOffset: 0.35,
     vignetteDarkness: 0.45,
-  },
-  closingBloom: {
-    intensity: 1.4,
-    threshold: 0.3,
-    smoothing: 0.5,
-    vignetteOffset: 0.3,
-    vignetteDarkness: 0.8,
   },
 } as const;
 
@@ -123,9 +133,9 @@ export function projectStatusClass(status: ProjectStatus): string {
     "rounded-full border px-3 py-1 font-mono text-[0.65rem] uppercase tracking-[0.28em]";
 
   switch (status) {
-    case "In development":
+    case "Active":
       return `${base} border-violet-soft/40 bg-violet-soft/10 text-violet-soft`;
-    case "Forming":
+    case "In notes":
       return `${base} border-rule bg-mist text-whisper`;
     case "Distant":
       return `${base} border-rule/60 bg-mist/50 text-whisper/60`;

@@ -16,23 +16,22 @@
 
 export const site = {
   name: "Enma Labs",
-  tagline: "A workshop for inner software.",
+  tagline: "Software for inner work.",
   url: "https://enmalabs.com",
   contactEmail: "hello@enmalabs.com",
 };
 
 export const hero = {
-  eyebrow: "A lab for inner work",
+  eyebrow: "Enma Labs",
   title: {
     line1: "Software for the parts",
-    line2: "of becoming",
-    line3: "that most software ignores.",
+    line2: "of inner work",
+    line3: "that most software mishandles.",
   },
   sub:
-    "I'm one person. The name comes from two words. إنماء is Arabic for growing. " +
-    "Anima is Latin for soul. They point at the same thing. Each app in the lab " +
-    "is built for a specific kind of inner work. Balsam is the first. " +
-    "There will be others.",
+    "Enma Labs is where I make software for inner work. Balsam is the first " +
+    "release and the reason to join the list. The rest of the lab stays quiet " +
+    "until there is something real to show.",
 };
 
 export const manifesto = {
@@ -45,10 +44,10 @@ export const manifesto = {
     trail: "",
   },
   paragraphs: [
-    "Most software knows exactly what it's doing. It tracks. It gamifies. It sends notifications at the moment you're least likely to ignore them. The business model assumes your attention is the unit of value, and shapes the product to extract it.",
-    "That's fine for some kinds of work. Not the kind I'm interested in. The quiet operations a person runs on themselves during a difficult year don't respond well to tools that want something from them.",
-    "So the lab exists to try the other direction. Each project starts from a specific inner operation, a particular weight someone is carrying, and is shaped around that work. Not around what makes them open the app tomorrow.",
-    "It's an embarrassingly small thing to say out loud. I'd rather say it plainly than dress it up in product language.",
+    "Most software is tuned for return. It learns the habit, rewards the loop, and keeps asking for one more visit.",
+    "That logic breaks when the work is private. Grief, repair, steadiness, and attention do not need a product pushing back at them.",
+    "Enma Labs exists to make smaller tools for those moments. Balsam is the first. Anything else will stay in outline until it earns a name.",
+    "I would rather release one useful thing slowly than publish a confident roadmap too early.",
   ],
 };
 
@@ -64,7 +63,7 @@ export const projects = [
     kind: "For the work of inner healing",
     description:
       "An iPhone companion for the weeks you need a thing that doesn't make the weeks worse. It remembers where you left off, and it doesn't ask you to rate your mood on a ten-point scale.",
-    status: "In development" as const,
+    status: "Active" as const,
   },
   {
     index: "II",
@@ -72,10 +71,10 @@ export const projects = [
     tint: "warm",
     sigil: "Sulfur",
     platform: "macOS",
-    kind: "For burning the noise away",
+    kind: "For clearing the noise",
     description:
-      "Still forming. The intent: what happens when a tool treats attention as something to protect, not harvest. More when there's more to say.",
-    status: "Forming" as const,
+      "Still in notes. A desktop tool for protecting attention instead of farming it.",
+    status: "In notes" as const,
   },
   {
     index: "III",
@@ -83,10 +82,10 @@ export const projects = [
     tint: "gold",
     sigil: "Salt",
     platform: "iOS",
-    kind: "For holding what you've learned",
+    kind: "For keeping what changed",
     description:
-      "This one comes later. The intent: helping a person keep what they've actually learned about themselves, instead of losing it to the next week.",
-    status: "Forming" as const,
+      "Still in notes. A quieter companion for holding onto what you learned after the hard part passes.",
+    status: "In notes" as const,
   },
   {
     index: "IV",
@@ -94,9 +93,9 @@ export const projects = [
     tint: "ember",
     sigil: "Rebis",
     platform: "iOS + macOS",
-    kind: "For the parts that only make sense together",
+    kind: "For work that spans devices",
     description:
-      "Further out. This one might not happen for a long time. But it's where the lab is pointed.",
+      "Further out. One system for the things that only make sense together.",
     status: "Distant" as const,
   },
 ] as const;
@@ -110,6 +109,11 @@ export const writing = [
     title: "What the tools don't do.",
     excerpt:
       "Every app I've admired this year has a quiet list of things it refuses to do. I'm noticing the refusals more than the features.",
+    body: [
+      "The more software I use, the more I pay attention to what it refuses to ask of me.",
+      "Good tools leave a surprising amount of space untouched. They do not ask for a streak, a score, or another quick check-in so the system can feel alive. They let the person stay the subject.",
+      "That has become part of the test for Enma Labs. If a feature makes the product feel busier than the person using it, it does not belong.",
+    ],
   },
   {
     slug: "one-tool-is-not-enough",
@@ -118,6 +122,11 @@ export const writing = [
     title: "Balsam is one tool. There have to be more.",
     excerpt:
       "No single app can do the whole of inner work. That's the premise the lab starts from.",
+    body: [
+      "Balsam can be specific because it is only trying to help with one kind of weight.",
+      "That is the whole point of the lab. Inner work changes shape from season to season, and the software should be allowed to do the same instead of stretching one product until it becomes vague.",
+      "So the ambition here is not a platform. It is a family of smaller tools that each know what they are for.",
+    ],
   },
   {
     slug: "slow-is-the-point",
@@ -126,18 +135,24 @@ export const writing = [
     title: "Slow is the point, not the apology.",
     excerpt:
       "I've been building at a pace that would get a VC-funded founder fired. That's a feature of the lab, not a bug.",
+    body: [
+      "This work has been slow because it is trying not to inherit the speed of the systems it argues with.",
+      "There is a version of this site where every future product already has a polished name, a perfect card, and a promise I cannot yet keep. That version would be easier to ship and less honest to stand behind.",
+      "I would rather let the lab look unfinished than let it pretend certainty it has not earned.",
+    ],
   },
 ];
 
 export const closingCta = {
-  eyebrow: "Before you go",
-  title: "Stay close.",
-  sub: "I'll write when Balsam has a beta, and when the next project has a name. Not before.",
+  eyebrow: "Join for Balsam",
+  title: "Get the beta note.",
+  sub:
+    "The list is for Balsam first. If another Enma Labs tool becomes real, you'll hear when it has shape, not before.",
 };
 
 export const nav = [
   { label: "Why", href: "#manifesto" },
-  { label: "The Work", href: "#work" },
+  { label: "Balsam", href: "#work" },
   { label: "Journal", href: "#journal" },
   { label: "Contact", href: "#contact" },
 ];

@@ -9,6 +9,8 @@ export function WaitlistForm() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState<string>("");
+  const statusId = "waitlist-status";
+  const noteId = "waitlist-note";
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -28,7 +30,7 @@ export function WaitlistForm() {
         return;
       }
       setStatus("success");
-      setMessage("You're on the list. We'll be in touch.");
+      setMessage("You're on the Balsam list. I'll write when the beta is ready.");
       setEmail("");
     } catch {
       setStatus("error");
@@ -52,6 +54,8 @@ export function WaitlistForm() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@domain.com"
           disabled={disabled}
+          aria-invalid={status === "error"}
+          aria-describedby={message ? `${noteId} ${statusId}` : noteId}
           className={controls.input}
         />
         <button
@@ -59,19 +63,20 @@ export function WaitlistForm() {
           disabled={disabled}
           className={controls.primaryButton}
         >
-          {status === "loading" ? "Joining…" : status === "success" ? "Joined" : "Join"}
+          {status === "loading" ? "Joining..." : status === "success" ? "Joined" : "Join for beta"}
         </button>
       </div>
       {message && (
         <p
+          id={statusId}
           className={cx("text-sm", status === "error" ? "text-ember" : "text-glow")}
           role={status === "error" ? "alert" : "status"}
         >
           {message}
         </p>
       )}
-      <p className="text-xs text-whisper">
-        Occasional notes when the work is ready. No noise, unsubscribe in one click.
+      <p id={noteId} className="text-xs text-whisper">
+        Balsam beta first. Rare notes from the lab after that. No noise.
       </p>
     </form>
   );

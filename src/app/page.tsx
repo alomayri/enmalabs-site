@@ -12,38 +12,42 @@ export default function Home() {
   return (
     <>
       <Nav />
+      <main id="main-content">
+        <HeroSection eyebrow={hero.eyebrow} title={hero.title} sub={hero.sub} />
 
-      <HeroSection eyebrow={hero.eyebrow} title={hero.title} sub={hero.sub} />
+        <ManifestoSceneClient
+          eyebrow={manifesto.eyebrow}
+          heading={manifesto.heading}
+          paragraphs={manifesto.paragraphs}
+        />
 
-      <ManifestoSceneClient
-        eyebrow={manifesto.eyebrow}
-        heading={manifesto.heading}
-        paragraphs={manifesto.paragraphs}
-      />
+        <OpusGrid
+          id="work"
+          eyebrow="What is real"
+          heading="Balsam is first."
+          lead="The lab matters because one product is being made in public. The rest stays quieter until it earns more weight."
+          projects={projects}
+        />
 
-      <OpusGrid
-        id="work"
-        eyebrow="The Work"
-        heading="Four tools. One lab."
-        projects={projects}
-      />
+        <WritingFeed
+          id="journal"
+          eyebrow="Journal"
+          heading="Notes from the work."
+          lead="Short writing from the lab while the products are still taking shape."
+          entries={writing}
+        />
 
-      <WritingFeed
-        id="journal"
-        eyebrow="Journal"
-        heading="Notes from the process."
-        entries={writing}
-      />
+        <ClosingSceneClient
+          id="waitlist"
+          eyebrow={closingCta.eyebrow}
+          title={closingCta.title}
+          sub={closingCta.sub}
+        >
+          <WaitlistForm />
+        </ClosingSceneClient>
 
-      <ClosingSceneClient
-        eyebrow={closingCta.eyebrow}
-        title={closingCta.title}
-        sub={closingCta.sub}
-      >
-        <WaitlistForm />
-      </ClosingSceneClient>
-
-      <Footer />
+        <Footer />
+      </main>
     </>
   );
 }

@@ -14,9 +14,7 @@ export function Footer() {
           <div>
             <p className="font-display text-2xl tracking-tight">{site.name}</p>
             <p className="mt-3 max-w-md text-base text-whisper">
-              <em className="italic-display text-lg text-paper">Anima</em> and{" "}
-              <em className="italic-display text-lg text-paper">إنماء</em>. Soul and growth.
-              A small, independent lab making slow software.
+              A one-person lab making software for inner work. Balsam is the first release.
             </p>
           </div>
 

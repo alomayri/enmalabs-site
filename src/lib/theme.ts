@@ -44,7 +44,8 @@ export const tokens = {
     },
   },
   radius: {
-    card: "1.5rem",
+    card: "1.75rem",
+    panel: "2.25rem",
     pill: "9999px",
   },
 } as const;

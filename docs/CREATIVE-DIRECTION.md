@@ -31,8 +31,9 @@ Useful patterns lifted from the storytelling kits:
 For Enma Labs, the current narrative is:
 1. Name the lab and its purpose
 2. State the refusal. This software is not built to trap attention
-3. Show the work as a family of instruments, with Balsam as the first named one
-4. Leave the visitor with one quiet invitation to stay close
+3. Show Balsam as the first concrete thing, and keep the rest of the lab quieter
+4. Let the journal deepen trust instead of acting like brand texture
+5. Leave the visitor with one clear invitation to join for Balsam
 
 ## Visual Position
 
@@ -177,4 +178,5 @@ Rules:
    primitive can hold them
 3. keep Balsam as the first named product while the rest of the lab stays
    honest about being in formation
-4. keep every visible line human, plain, and precise
+4. keep the journal real. If a note is linked, it must exist
+5. keep every visible line human, plain, and precise

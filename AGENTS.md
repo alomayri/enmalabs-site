@@ -11,7 +11,7 @@ This version has breaking changes. APIs, conventions, and file structure may all
 
 ## What this is
 
-A marketing/journal site for **Enma Labs**. A solo dev's lab building iOS/macOS apps for "inner work" (healing, focus, journaling). The first project is **Balsam**. Three more are in formation.
+A public site for **Enma Labs**. A solo dev's lab building iOS/macOS software for inner work. **Balsam** is the first concrete product. The rest of the lab remains quieter until it has earned more shape.
 
 The site has an **implicit grimoire/alchemical aesthetic** that is *never named in copy*. Warm candlelight palette, painterly hero, roman numerals on project cards, uncaptioned sigils. If you find yourself typing "alchemy," "Nigredo," "magnum opus," or "Jung" into user-visible strings, stop. Those are tells. The frame is structural; the surface is quiet.
 
@@ -34,29 +34,29 @@ src/
 ├── app/
 │   ├── layout.tsx          Root layout. AudioProvider, AmbientBed, MuteButton, Lenis.
 │   ├── page.tsx            Homepage composition (Nav → Hero → Manifesto → Opus → Writing → Closing).
+│   ├── journal/[slug]/     Individual journal entry pages.
 │   ├── globals.css         @theme block = color tokens + fonts. CANONICAL source.
 │   └── api/waitlist/       POST endpoint for the waitlist form.
 ├── components/
 │   ├── HeroScene.tsx       R3F: painting plane + dust motes + pointer parallax + scroll dolly.
 │   ├── HeroSceneClient.tsx Dynamic import wrapper (no SSR).
-│   ├── Nav.tsx             Fixed header (brand + primary nav + Join waitlist CTA).
+│   ├── Nav.tsx             Fixed header with desktop + mobile navigation and Balsam beta CTA.
 │   ├── Footer.tsx          Bottom section.
 │   ├── WaitlistForm.tsx    Email capture, POSTs to /api/waitlist.
 │   ├── Reveal.tsx          Intersection-reveal wrapper.
 │   ├── LenisProvider.tsx   Smooth scroll init.
 │   ├── sections/
-│   │   └── HeroSection.tsx Hero layout: canvas + radial vignette + copy column.
+│   │   └── HeroSection.tsx Hero layout: canvas/static image + radial vignette + copy column.
 │   ├── scenes/
-│   │   ├── ManifestoScene.tsx  Pinned 200vh word-by-word scroll reveal.
-│   │   ├── OpusGrid.tsx        2-col project cards with pointer-tilt + glow tracking.
-│   │   ├── WritingFeed.tsx     Journal list.
-│   │   └── ClosingScene.tsx    Closing CTA with R3F particles.
+│   │   ├── ManifestoScene.tsx  Atmospheric manifesto section with paragraph reveals.
+│   │   ├── OpusGrid.tsx        Featured-first project grid with Balsam foregrounded.
+│   │   ├── WritingFeed.tsx     Journal list that links to real note pages.
+│   │   └── ClosingScene.tsx    Quiet closing CTA panel.
 │   ├── sigils/index.tsx    10 SVG glyphs (Ouroboros, Alembic, etc.) using currentColor.
 │   └── audio/
 │       ├── AudioProvider.tsx  AudioContext + masterGain + mute state.
 │       ├── AmbientBed.tsx     Streams /audio/ambient.opus via MediaElementAudioSourceNode.
 │       ├── MuteButton.tsx     Fixed bottom-right control.
-│       └── useAmbient.ts      LEGACY synth-drone hook. Not called anywhere; kept for now.
 └── lib/
     ├── content.ts          ALL site copy. Editing here cascades to the whole site.
     ├── design-system.ts    Shared visual primitives, scene constants, and class recipes.
@@ -181,7 +181,7 @@ For any copy/design change:
 1. `npm run build` passes.
 2. No em dashes in user-visible strings: `grep -n "—" src/lib/content.ts` returns nothing.
 3. No cool-palette tokens in rendered HTML: grep for `bg-positive`, `text-positive`, `#7B` in the served page.
-4. `next start` locally loads the hero without JS errors.
+4. `next start` locally loads the hero and journal routes without JS errors.
 5. Commit message describes the *why*, not the *what*.
 6. Push to `origin/main` (Vercel auto-builds via GitHub integration) or run `vercel --prod --yes` for a manual deploy.
 
