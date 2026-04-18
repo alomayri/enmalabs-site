@@ -63,7 +63,7 @@ export function WaitlistForm() {
       </div>
       {message && (
         <p
-          className={`text-sm ${status === "error" ? "text-ember" : "text-positive"}`}
+          className={`text-sm ${status === "error" ? "text-ember" : "text-glow"}`}
           role={status === "error" ? "alert" : "status"}
         >
           {message}

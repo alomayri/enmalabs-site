@@ -1,23 +1,19 @@
 import type { Metadata } from "next";
-import { Inter, Instrument_Serif, EB_Garamond } from "next/font/google";
+import { Newsreader, EB_Garamond } from "next/font/google";
 import "./globals.css";
 import { LenisProvider } from "@/components/LenisProvider";
 import { AudioProvider } from "@/components/audio/AudioProvider";
+import { AmbientBed } from "@/components/audio/AmbientBed";
 import { MuteButton } from "@/components/audio/MuteButton";
 import { site, hero } from "@/lib/content";
 
-const inter = Inter({
+// Newsreader (Production Type, OFL) — optical-size axis means the letterforms
+// physically change shape at display sizes, unlike uniform-scale UI sans.
+const newsreader = Newsreader({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const instrument = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
+  weight: ["300", "400", "500", "600"],
   style: ["normal", "italic"],
-  variable: "--font-instrument-serif",
+  variable: "--font-newsreader",
   display: "swap",
 });
 
@@ -32,7 +28,7 @@ const ebGaramond = EB_Garamond({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — ${site.tagline}`,
+    default: `${site.name}. ${site.tagline}`,
     template: `%s · ${site.name}`,
   },
   description: hero.sub,
@@ -63,9 +59,10 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${instrument.variable} ${ebGaramond.variable}`}>
+    <html lang="en" className={`${newsreader.variable} ${ebGaramond.variable}`}>
       <body>
         <AudioProvider>
+          <AmbientBed />
           <MuteButton />
           <LenisProvider>{children}</LenisProvider>
         </AudioProvider>

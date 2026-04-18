@@ -7,10 +7,8 @@ import {
   useScroll,
   useTransform,
   useReducedMotion,
-  useInView,
   MotionValue,
 } from "framer-motion";
-import { useAmbient } from "@/components/audio/useAmbient";
 
 export type ManifestoSceneProps = {
   eyebrow: string;
@@ -47,10 +45,6 @@ function RevealWord({ word, scrollYProgress, startProgress, endProgress }: WordP
 export function ManifestoScene({ eyebrow, heading, paragraphs }: ManifestoSceneProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const reducedMotion = useReducedMotion();
-  const inView = useInView(sectionRef, { margin: "-30% 0px -30% 0px" });
-
-  useAmbient({ frequency: 96, detune: 6, filterCutoff: 480, gain: 0.6, active: inView });
-
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"],
@@ -68,11 +62,11 @@ export function ManifestoScene({ eyebrow, heading, paragraphs }: ManifestoSceneP
           <p className="mb-8 font-mono text-xs uppercase tracking-[0.42em] text-whisper">
             {eyebrow}
           </p>
-          <h2 className="font-display text-5xl leading-tight tracking-tight text-paper">
+          <h2 className="font-display font-light text-5xl leading-[0.98] tracking-[-0.02em] text-paper md:text-[clamp(2.75rem,4.5vw,4.25rem)]">
             {heading.lead}
-            <span className="font-serif italic text-violet-soft"> {heading.accent1}</span>
+            <span className="italic font-light"> {heading.accent1}</span>
             {heading.middle}
-            <span className="italic text-soul"> {heading.accent2}</span>
+            <span className="italic font-light"> {heading.accent2}</span>
             {heading.trail}
           </h2>
           <div className="mt-10 max-w-prose space-y-6">
@@ -152,11 +146,11 @@ export function ManifestoScene({ eyebrow, heading, paragraphs }: ManifestoSceneP
               {eyebrow}
             </p>
 
-            <h2 className="font-display text-5xl leading-tight tracking-tight text-paper md:text-[clamp(3rem,5vw,4.5rem)]">
+            <h2 className="font-display font-light text-5xl leading-[0.98] tracking-[-0.02em] text-paper md:text-[clamp(2.75rem,4.5vw,4.25rem)]">
               {heading.lead}
-              <span className="font-serif italic text-violet-soft"> {heading.accent1}</span>
+              <span className="italic font-light"> {heading.accent1}</span>
               {heading.middle}
-              <span className="italic text-soul"> {heading.accent2}</span>
+              <span className="italic font-light"> {heading.accent2}</span>
               {heading.trail}
             </h2>
 

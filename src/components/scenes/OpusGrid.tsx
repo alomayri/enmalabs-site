@@ -164,14 +164,23 @@ function ProjectCard({
         </span>
       </div>
 
-      {/* Body */}
+      {/* Body — when a project has no name yet, the italic `kind` becomes
+          the title, sized up. Avoids the lazy "— (in formation)" placeholder. */}
       <div>
-        <h3 className="font-display text-4xl leading-tight text-paper md:text-5xl">
-          {project.name}
-        </h3>
-        <p className="mt-4 font-serif italic text-xl text-violet-soft">
-          {project.kind}
-        </p>
+        {project.name ? (
+          <>
+            <h3 className="font-display font-light text-4xl leading-tight text-paper md:text-5xl">
+              {project.name}
+            </h3>
+            <p className="mt-4 font-serif italic text-xl text-paper/70">
+              {project.kind}
+            </p>
+          </>
+        ) : (
+          <h3 className="font-serif italic font-normal text-3xl leading-tight text-paper/80 md:text-4xl">
+            {project.kind}
+          </h3>
+        )}
         <p className="mt-6 max-w-prose leading-relaxed text-paper/80">
           {project.description}
         </p>

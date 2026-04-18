@@ -8,11 +8,9 @@ import {
   useScroll,
   useTransform,
   useReducedMotion,
-  useInView,
   type MotionValue,
 } from "framer-motion";
 import * as THREE from "three";
-import { useAmbient } from "@/components/audio/useAmbient";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -164,9 +162,6 @@ function SceneContents({ progress }: SceneContentsProps) {
 export function ClosingScene({ eyebrow, title, sub, children }: ClosingSceneProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const reducedMotion = useReducedMotion();
-  const inView = useInView(sectionRef, { margin: "-25% 0px -25% 0px" });
-
-  useAmbient({ frequency: 180, detune: 14, filterCutoff: 900, gain: 0.7, active: inView });
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,

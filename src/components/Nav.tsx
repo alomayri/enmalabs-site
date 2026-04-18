@@ -12,12 +12,8 @@ export function Nav() {
           <span className="font-serif italic text-lg text-paper">
             {site.name}
           </span>
-          <span className="font-mono text-[0.6rem] uppercase tracking-[0.3em] text-whisper flex items-center gap-1">
+          <span className="font-mono text-[0.6rem] uppercase tracking-[0.3em] text-whisper">
             {site.tagline ?? "AI research lab"}
-            <span
-              className="inline-block h-1.5 w-1.5 rounded-full bg-positive shadow-[0_0_8px_var(--color-positive)]"
-              aria-hidden
-            />
           </span>
         </Link>
 

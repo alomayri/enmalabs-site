@@ -53,11 +53,11 @@ export function HeroSection({ eyebrow, title, sub }: HeroSectionProps) {
               {eyebrow}
             </p>
           </Reveal>
-          <h1 className="font-display text-[3.5rem] leading-[0.96] tracking-[-0.02em] md:text-[clamp(4rem,7.5vw,8rem)]">
+          <h1 className="font-display font-light text-[3.25rem] leading-[0.93] tracking-[-0.025em] md:text-[clamp(3.5rem,6.5vw,7rem)]">
             <Reveal as="span" className="block">
               {title.line1}
             </Reveal>
-            <Reveal delay={0.08} as="span" className="block font-serif italic text-violet-soft">
+            <Reveal delay={0.08} as="span" className="block italic">
               {title.line2}
             </Reveal>
             <Reveal delay={0.16} as="span" className="block">

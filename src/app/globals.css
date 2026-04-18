@@ -25,14 +25,16 @@
   --color-rule:        #3D3329;   /* warm brown border */
   --color-whisper:     #8F8270;   /* warm muted tan */
 
-  /* Status */
-  --color-positive:    #7BDBAF;
-  --color-warning:     #E8A861;
+  /* Status — warm-only. Any "success/alive" signal uses glow; errors
+     use ember (same hex as legacy --color-warning, redundancy retired). */
+  --color-glow:        #E8C87A;
 
-  /* Type */
-  --font-sans:    var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-serif:   var(--font-eb-garamond), var(--font-instrument-serif), ui-serif, Georgia, serif;
+  /* Type — one genre throughout. Display + body = Newsreader (optical
+     size axis). Italic accent + long-form prose = EB Garamond. Mono
+     stays system for UI metadata only. */
+  --font-sans:    var(--font-newsreader), ui-serif, Georgia, serif;
+  --font-display: var(--font-newsreader), ui-serif, Georgia, serif;
+  --font-serif:   var(--font-eb-garamond), ui-serif, Georgia, serif;
   --font-mono:    ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* Editorial scale */

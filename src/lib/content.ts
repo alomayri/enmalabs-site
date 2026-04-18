@@ -4,13 +4,14 @@
  * Voice rules:
  * - A person wrote this, not a brand.
  * - The opener of any paragraph is the actual thought, not setup for it.
+ * - No em dashes. Use periods, commas, or sentence breaks. Em dashes are
+ *   a known LLM tell, and they read as borrowed authority.
  * - Forbidden phrases: seamless, empower, leverage, streamline, crafted,
  *   transformative, meaningful, curated, thoughtful, delightful, intuitive,
  *   holistic, "we believe", "it's worth noting".
  *
- * Naming: إنماء (Arabic: to grow) + anima (Latin: soul). Two words for
- * the same thing. The lab's internal map stays internal — it shapes
- * structure and palette, never shows up in copy.
+ * Naming: إنماء (Arabic: to grow) plus anima (Latin: soul). Two words
+ * for the same thing. The lab's internal map stays internal.
  */
 
 export const site = {
@@ -28,9 +29,9 @@ export const hero = {
     line3: "that most software ignores.",
   },
   sub:
-    "I'm one person. The name comes from two words — إنماء, Arabic for growing, " +
-    "and anima, Latin for soul. They're pointing at the same thing. Each app in " +
-    "the lab is built for a specific kind of inner work. Balsam is the first. " +
+    "I'm one person. The name comes from two words. إنماء is Arabic for growing. " +
+    "Anima is Latin for soul. They point at the same thing. Each app in the lab " +
+    "is built for a specific kind of inner work. Balsam is the first. " +
     "There will be others.",
 };
 
@@ -45,15 +46,14 @@ export const manifesto = {
   },
   paragraphs: [
     "Most software knows exactly what it's doing. It tracks. It gamifies. It sends notifications at the moment you're least likely to ignore them. The business model assumes your attention is the unit of value, and shapes the product to extract it.",
-    "That's fine for some kinds of work. Not for the kind I'm interested in — the quiet operations a person runs on themselves during a difficult year. Those don't respond well to tools that want something from you.",
-    "So the lab exists to try the other direction. Each project starts from a specific inner operation — a particular weight someone is carrying — and is shaped around the shape of that work. Not around what makes them open the app tomorrow.",
+    "That's fine for some kinds of work. Not the kind I'm interested in. The quiet operations a person runs on themselves during a difficult year don't respond well to tools that want something from them.",
+    "So the lab exists to try the other direction. Each project starts from a specific inner operation, a particular weight someone is carrying, and is shaped around that work. Not around what makes them open the app tomorrow.",
     "It's an embarrassingly small thing to say out loud. I'd rather say it plainly than dress it up in product language.",
   ],
 };
 
-// Projects. The `tint` field names a color intent, nothing more. The
-// structural mapping lives in OpusGrid's phaseToToken — everything here
-// stays neutral enough to read as design metadata.
+// Projects. Unnamed projects have `name: ""` and the `kind` becomes the
+// primary identifier. The `tint` field is neutral color metadata only.
 export const projects = [
   {
     index: "I",
@@ -68,7 +68,7 @@ export const projects = [
   },
   {
     index: "II",
-    name: "— (in formation)",
+    name: "",
     tint: "warm",
     sigil: "Sulfur",
     platform: "macOS",
@@ -79,7 +79,7 @@ export const projects = [
   },
   {
     index: "III",
-    name: "— (in formation)",
+    name: "",
     tint: "gold",
     sigil: "Salt",
     platform: "iOS",
@@ -90,7 +90,7 @@ export const projects = [
   },
   {
     index: "IV",
-    name: "— (further out)",
+    name: "",
     tint: "ember",
     sigil: "Rebis",
     platform: "iOS + macOS",
@@ -101,7 +101,7 @@ export const projects = [
   },
 ] as const;
 
-// Journal. Not marketing. Length signals weight: note → reflection → essay.
+// Journal. Not marketing. Length signals weight: note, reflection, essay.
 export const writing = [
   {
     slug: "what-the-tools-dont-do",
