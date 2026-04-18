@@ -68,7 +68,7 @@ function OuroborosRing() {
   });
 
   return (
-    <mesh ref={ringRef} scale={1.8} rotation={[Math.PI / 3, 0, 0]}>
+    <mesh ref={ringRef} position={[1.2, 0, 0]} scale={1.8} rotation={[Math.PI / 3, 0, 0]}>
       <torusGeometry args={[1, 0.004, 12, 160]} />
       <meshBasicMaterial
         color="#D4913D"
@@ -209,7 +209,7 @@ function Vessel({ progress }: { progress?: MotionValue<number> }) {
   );
 
   return (
-    <group ref={groupRef} position={[0, 0, 0]}>
+    <group ref={groupRef} position={[1.2, 0, 0]}>
       {/* Round-bottom flask body */}
       <mesh position={[0, -0.4, 0]}>
         <sphereGeometry args={[0.55, 48, 48]} />
@@ -247,9 +247,9 @@ function SceneContents({ progress }: { progress?: MotionValue<number> }) {
       {/* Ambient */}
       <ambientLight intensity={0.2} color="#221C17" />
 
-      {/* Main warm lamp — slightly from above, in front */}
+      {/* Main warm lamp — slightly from above, in front, tracking the vessel */}
       <pointLight
-        position={[0, 0.8, 2]}
+        position={[1.2, 0.8, 2]}
         intensity={3.6}
         color="#D4913D"
         distance={8}
@@ -258,7 +258,7 @@ function SceneContents({ progress }: { progress?: MotionValue<number> }) {
 
       {/* Oxblood rim — darker edge from behind-left */}
       <pointLight
-        position={[-1.6, -0.4, -1]}
+        position={[-0.4, -0.4, -1]}
         intensity={0.9}
         color="#8A3C24"
         distance={6}
@@ -267,7 +267,7 @@ function SceneContents({ progress }: { progress?: MotionValue<number> }) {
 
       {/* Pale-gold fill */}
       <pointLight
-        position={[1.2, 0.2, 2]}
+        position={[2.4, 0.2, 2]}
         intensity={0.6}
         color="#F1C98A"
         distance={6}

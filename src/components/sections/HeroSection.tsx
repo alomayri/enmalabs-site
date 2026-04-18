@@ -27,15 +27,26 @@ export function HeroSection({ eyebrow, title, sub }: HeroSectionProps) {
     >
       <div
         aria-hidden
-        className="absolute inset-0 z-0 md:left-[35%]"
+        className="absolute inset-0 z-0"
         style={{ contain: "strict" }}
       >
         <HeroSceneClient progress={scrollYProgress} />
       </div>
 
+      {/* Soft radial vignette anchored on the text side — no hard seam */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-ink via-ink/85 to-transparent md:from-ink md:via-ink/70"
+        className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(ellipse_70%_90%_at_18%_55%,rgba(14,12,10,0.92)_0%,rgba(14,12,10,0.72)_35%,rgba(14,12,10,0.25)_65%,rgba(14,12,10,0)_85%)]"
+      />
+
+      {/* Top & bottom atmospheric fade — keeps scene felt, not framed */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-32 bg-gradient-to-b from-ink to-transparent"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-40 bg-gradient-to-t from-ink to-transparent"
       />
 
       <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-6 pb-20 pt-32 md:max-w-[90rem] md:pb-28">
