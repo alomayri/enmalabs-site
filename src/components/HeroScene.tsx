@@ -1,8 +1,7 @@
 "use client";
 
-import { useRef, useMemo, Suspense, type RefObject } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Billboard } from "@react-three/drei";
+import { useRef, useMemo, Suspense } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
 import { MotionValue, useReducedMotion } from "framer-motion";
 import * as THREE from "three";
@@ -18,14 +17,14 @@ function StarField() {
   const reducedMotion = useReducedMotion();
 
   const positions = useMemo(() => {
-    const arr = new Float32Array(220 * 3);
-    for (let i = 0; i < 220; i++) {
-      const azimuth = (Math.random() * 2 - 1) * Math.PI;
-      const elevation = -0.1 + Math.random() * 1.0;
-      const radius = 8 + Math.random() * 6;
-      arr[i * 3] = radius * Math.cos(elevation) * Math.cos(azimuth);
-      arr[i * 3 + 1] = radius * Math.sin(elevation);
-      arr[i * 3 + 2] = radius * Math.cos(elevation) * Math.sin(azimuth) - 4;
+    const arr = new Float32Array(200 * 3);
+    for (let i = 0; i < 200; i++) {
+      const azimuth = Math.random() * Math.PI * 2;
+      const elevation = Math.acos(2 * Math.random() - 1);
+      const radius = 8 + Math.random() * 5;
+      arr[i * 3] = radius * Math.sin(elevation) * Math.cos(azimuth);
+      arr[i * 3 + 1] = radius * Math.cos(elevation);
+      arr[i * 3 + 2] = radius * Math.sin(elevation) * Math.sin(azimuth);
     }
     return arr;
   }, []);
@@ -35,7 +34,7 @@ function StarField() {
     if (!pointsRef.current) return;
     const t = state.clock.elapsedTime;
     const mat = pointsRef.current.material as THREE.PointsMaterial;
-    mat.opacity = 0.6 + Math.sin(t * 0.8) * 0.15;
+    mat.opacity = 0.45 + Math.sin(t * 0.6) * 0.12;
   });
 
   return (
@@ -44,10 +43,10 @@ function StarField() {
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
       <pointsMaterial
-        size={0.012}
+        size={0.01}
         color="#F5EDDB"
         transparent
-        opacity={0.75}
+        opacity={0.6}
         sizeAttenuation
         depthWrite={false}
       />
@@ -55,87 +54,29 @@ function StarField() {
   );
 }
 
-// ── ForegroundFlora ──
+// ── OuroborosRing ──
 
-function FloraLeaf({
-  x,
-  y,
-  z,
-  index,
-  alphaMap,
-}: {
-  x: number;
-  y: number;
-  z: number;
-  index: number;
-  alphaMap: THREE.CanvasTexture;
-}) {
-  const meshRef = useRef<THREE.Mesh>(null);
+function OuroborosRing() {
+  const ringRef = useRef<THREE.Mesh>(null);
   const reducedMotion = useReducedMotion();
-  const scaleX = 0.25 + Math.random() * 0.2;
-  const scaleY = 0.6 + Math.random() * 0.5;
 
   useFrame((state) => {
     if (reducedMotion) return;
-    if (!meshRef.current) return;
+    if (!ringRef.current) return;
     const t = state.clock.elapsedTime;
-    meshRef.current.rotation.z = Math.sin(t * 0.6 + index) * 0.04;
+    ringRef.current.rotation.z = t * 0.08;
   });
 
   return (
-    <Billboard follow={false} lockX lockY>
-      <mesh ref={meshRef} position={[x, y, z]} scale={[scaleX, scaleY, 1]}>
-        <planeGeometry args={[1, 1]} />
-        <meshBasicMaterial
-          color="#0E0C0A"
-          transparent
-          opacity={0.92}
-          alphaMap={alphaMap}
-          depthWrite={false}
-          side={THREE.DoubleSide}
-        />
-      </mesh>
-    </Billboard>
-  );
-}
-
-function ForegroundFlora() {
-  const alphaMap = useMemo(() => {
-    const canvas = document.createElement("canvas");
-    canvas.width = 64;
-    canvas.height = 64;
-    const ctx = canvas.getContext("2d")!;
-    const grad = ctx.createRadialGradient(32, 52, 2, 32, 32, 32);
-    grad.addColorStop(0, "rgba(255,255,255,1)");
-    grad.addColorStop(0.55, "rgba(255,255,255,0.7)");
-    grad.addColorStop(1, "rgba(255,255,255,0)");
-    ctx.fillStyle = grad;
-    ctx.beginPath();
-    ctx.moveTo(32, 4);
-    ctx.bezierCurveTo(50, 10, 58, 30, 50, 52);
-    ctx.bezierCurveTo(42, 64, 22, 64, 14, 52);
-    ctx.bezierCurveTo(6, 30, 14, 10, 32, 4);
-    ctx.closePath();
-    ctx.fill();
-    const tex = new THREE.CanvasTexture(canvas);
-    return tex;
-  }, []);
-
-  const leaves = useMemo(() => {
-    return Array.from({ length: 18 }, (_, i) => ({
-      x: -4 + Math.random() * 8,
-      y: -1.6 + Math.random() * 0.3,
-      z: 1.2 + Math.random() * 1.2,
-      index: i,
-    }));
-  }, []);
-
-  return (
-    <>
-      {leaves.map((leaf, i) => (
-        <FloraLeaf key={i} {...leaf} alphaMap={alphaMap} />
-      ))}
-    </>
+    <mesh ref={ringRef} scale={1.8} rotation={[Math.PI / 3, 0, 0]}>
+      <torusGeometry args={[1, 0.004, 12, 160]} />
+      <meshBasicMaterial
+        color="#D4913D"
+        transparent
+        opacity={0.55}
+        toneMapped={false}
+      />
+    </mesh>
   );
 }
 
@@ -146,13 +87,13 @@ function DustMotes() {
   const reducedMotion = useReducedMotion();
 
   const positions = useMemo(() => {
-    const arr = new Float32Array(70 * 3);
-    for (let i = 0; i < 70; i++) {
-      const r = 0.4 + Math.random() * 1.6;
+    const arr = new Float32Array(80 * 3);
+    for (let i = 0; i < 80; i++) {
+      const r = 1.5 + Math.random() * 2.0;
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
       arr[i * 3] = r * Math.sin(phi) * Math.cos(theta);
-      arr[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta) + 0.15;
+      arr[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
       arr[i * 3 + 2] = r * Math.cos(phi);
     }
     return arr;
@@ -161,7 +102,7 @@ function DustMotes() {
   useFrame(() => {
     if (reducedMotion) return;
     if (!pointsRef.current) return;
-    pointsRef.current.rotation.y += 0.002;
+    pointsRef.current.rotation.y += 0.0015;
   });
 
   return (
@@ -170,10 +111,10 @@ function DustMotes() {
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
       <pointsMaterial
-        size={0.025}
-        color="#F1C98A"
+        size={0.018}
+        color="#D4913D"
         transparent
-        opacity={0.6}
+        opacity={0.5}
         sizeAttenuation
         depthWrite={false}
         blending={THREE.AdditiveBlending}
@@ -182,242 +123,116 @@ function DustMotes() {
   );
 }
 
-// ── Wing ──
+// ── Ember (glowing vapor inside the vessel) ──
 
-interface WingProps {
-  side: 1 | -1;
-  upper: boolean;
-  pivotRef: RefObject<THREE.Group | null>;
-  alphaMap: THREE.CanvasTexture;
-}
-
-function Wing({ side, upper, pivotRef, alphaMap }: WingProps) {
-  const posY = upper ? 0.1 : -0.15;
-  const posX = side * (upper ? 0.3 : 0.22);
-  const baseRotZ = side * (upper ? 0.2 : 0.15);
-  const scaleX = upper ? 0.65 : 0.5;
-  const scaleY = upper ? 0.5 : 0.38;
-
-  return (
-    <group ref={pivotRef} position={[side * 0.02, 0, 0]}>
-      <mesh
-        position={[posX, posY, 0]}
-        rotation={[0, 0, baseRotZ]}
-        scale={[scaleX, scaleY, 1]}
-      >
-        <planeGeometry args={[1, 1]} />
-        <meshPhysicalMaterial
-          color="#D4913D"
-          emissive="#F1C98A"
-          emissiveIntensity={0.55}
-          transparent
-          opacity={0.72}
-          roughness={0.25}
-          metalness={0.1}
-          side={THREE.DoubleSide}
-          toneMapped={false}
-          depthWrite={false}
-          alphaMap={alphaMap}
-        />
-      </mesh>
-    </group>
-  );
-}
-
-// ── LuminousMoth ──
-
-function LuminousMoth({ progress }: { progress?: MotionValue<number> }) {
-  const groupRef = useRef<THREE.Group>(null);
-  const bodyRef = useRef<THREE.Mesh>(null);
-  const ulPivot = useRef<THREE.Group>(null);
-  const urPivot = useRef<THREE.Group>(null);
-  const llPivot = useRef<THREE.Group>(null);
-  const lrPivot = useRef<THREE.Group>(null);
+function Ember({ progress }: { progress?: MotionValue<number> }) {
+  const coreRef = useRef<THREE.Mesh>(null);
   const reducedMotion = useReducedMotion();
-  const { camera } = useThree();
-
-  const wingAlpha = useMemo(() => {
-    const canvas = document.createElement("canvas");
-    canvas.width = 128;
-    canvas.height = 128;
-    const ctx = canvas.getContext("2d")!;
-    const grad = ctx.createRadialGradient(64, 64, 4, 64, 64, 64);
-    grad.addColorStop(0, "rgba(255,255,255,1)");
-    grad.addColorStop(0.6, "rgba(255,255,255,0.6)");
-    grad.addColorStop(1, "rgba(255,255,255,0)");
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, 128, 128);
-    return new THREE.CanvasTexture(canvas);
-  }, []);
 
   useFrame((state) => {
+    if (reducedMotion) return;
+    if (!coreRef.current) return;
     const t = state.clock.elapsedTime;
     const p = progress?.get() ?? 0;
-    const hasScroll = progress !== undefined;
-
-    if (reducedMotion) {
-      // Static mid-flap pose
-      if (ulPivot.current) ulPivot.current.rotation.y = -0.45;
-      if (urPivot.current) urPivot.current.rotation.y = 0.45;
-      if (llPivot.current) llPivot.current.rotation.y = -0.35;
-      if (lrPivot.current) lrPivot.current.rotation.y = 0.35;
-      return;
-    }
-
-    const flap = Math.sin(t * 4.2);
-
-    if (ulPivot.current) ulPivot.current.rotation.y = -flap * 0.9;
-    if (urPivot.current) urPivot.current.rotation.y = flap * 0.9;
-    if (llPivot.current) llPivot.current.rotation.y = -flap * 0.7 + 0.1;
-    if (lrPivot.current) lrPivot.current.rotation.y = flap * 0.7 - 0.1;
-
-    if (bodyRef.current) {
-      const pulse = 1 + 0.04 * Math.sin(t * 1.2);
-      bodyRef.current.scale.set(pulse, 2.2 * pulse, pulse);
-    }
-
-    if (groupRef.current) {
-      groupRef.current.position.y = 0.15 + Math.sin(t * 0.4) * 0.08;
-      groupRef.current.rotation.z = Math.sin(t * 0.25) * 0.03;
-      if (hasScroll) {
-        groupRef.current.rotation.y = lerp(0, Math.PI * 0.25, p);
-      }
-    }
-
-    if (hasScroll) {
-      camera.position.z = lerp(4.8, 3.2, p);
-      camera.position.y = lerp(0.3, 0.8, p);
-    }
+    const pulse = 1 + 0.08 * Math.sin(t * 1.1);
+    const scrollScale = lerp(1.0, 1.4, p);
+    coreRef.current.scale.setScalar(pulse * scrollScale);
   });
 
   return (
-    <group ref={groupRef} position={[0, 0.15, 0]}>
-      {/* Body */}
-      <mesh ref={bodyRef} scale={[1, 2.2, 1]} /* initial stretch; updated each frame */>
-        <sphereGeometry args={[0.08, 16, 16]} />
-        <meshPhysicalMaterial
-          color="#1A0F08"
-          emissive="#F1C98A"
-          emissiveIntensity={0.35}
-          metalness={0.3}
-          roughness={0.4}
+    <group position={[0, -0.3, 0]}>
+      {/* Core bright sphere */}
+      <mesh ref={coreRef}>
+        <sphereGeometry args={[0.18, 48, 48]} />
+        <meshBasicMaterial color="#F1C98A" toneMapped={false} />
+      </mesh>
+      {/* Mid halo */}
+      <mesh>
+        <sphereGeometry args={[0.35, 32, 32]} />
+        <meshBasicMaterial
+          color="#D4913D"
+          transparent
+          opacity={0.25}
+          toneMapped={false}
         />
       </mesh>
-
-      {/* Wings — upper */}
-      <Wing side={-1} upper pivotRef={ulPivot} alphaMap={wingAlpha} />
-      <Wing side={1} upper pivotRef={urPivot} alphaMap={wingAlpha} />
-
-      {/* Wings — lower */}
-      <Wing side={-1} upper={false} pivotRef={llPivot} alphaMap={wingAlpha} />
-      <Wing side={1} upper={false} pivotRef={lrPivot} alphaMap={wingAlpha} />
+      {/* Outer diffuse halo */}
+      <mesh>
+        <sphereGeometry args={[0.55, 24, 24]} />
+        <meshBasicMaterial
+          color="#8A3C24"
+          transparent
+          opacity={0.12}
+          toneMapped={false}
+        />
+      </mesh>
     </group>
   );
 }
 
-// ── SideCreatures ──
+// ── Vessel (alembic / cucurbit) — owns scroll parallax ──
 
-function MiniMoth({
-  startX,
-  startY,
-  z,
-  phaseOffset,
-}: {
-  startX: number;
-  startY: number;
-  z: number;
-  phaseOffset: number;
-}) {
+function Vessel({ progress }: { progress?: MotionValue<number> }) {
   const groupRef = useRef<THREE.Group>(null);
-  const ulPivot = useRef<THREE.Group>(null);
-  const urPivot = useRef<THREE.Group>(null);
   const reducedMotion = useReducedMotion();
 
-  const wingAlpha = useMemo(() => {
-    const canvas = document.createElement("canvas");
-    canvas.width = 64;
-    canvas.height = 64;
-    const ctx = canvas.getContext("2d")!;
-    const grad = ctx.createRadialGradient(32, 32, 2, 32, 32, 32);
-    grad.addColorStop(0, "rgba(255,255,255,1)");
-    grad.addColorStop(0.6, "rgba(255,255,255,0.5)");
-    grad.addColorStop(1, "rgba(255,255,255,0)");
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, 64, 64);
-    return new THREE.CanvasTexture(canvas);
-  }, []);
-
   useFrame((state) => {
-    if (!groupRef.current) return;
-    const t = state.clock.elapsedTime + phaseOffset;
-
-    groupRef.current.position.x = startX + Math.sin(t * 0.15) * 0.3;
-    groupRef.current.position.y = startY + Math.sin(t * 0.22) * 0.2;
-
     if (reducedMotion) return;
-    const flap = Math.sin(t * 3.5);
-    if (ulPivot.current) ulPivot.current.rotation.y = -flap * 0.8;
-    if (urPivot.current) urPivot.current.rotation.y = flap * 0.8;
+    const p = progress?.get() ?? 0;
+
+    if (groupRef.current) {
+      groupRef.current.rotation.y = lerp(0, Math.PI * 0.3, p);
+    }
+
+    // Camera parallax
+    const cam = state.camera;
+    cam.position.y = lerp(-0.3, 0.4, p);
+    cam.position.z = lerp(4.6, 3.4, p);
   });
 
-  return (
-    <group ref={groupRef} position={[startX, startY, z]} scale={0.3}>
-      <mesh scale={[1, 2.2, 1]}>
-        <sphereGeometry args={[0.08, 8, 8]} />
-        <meshPhysicalMaterial
-          color="#1A0F08"
-          emissive="#F1C98A"
-          emissiveIntensity={0.4}
-          metalness={0.2}
-          roughness={0.5}
-        />
-      </mesh>
-      <group ref={ulPivot} position={[-0.02, 0, 0]}>
-        <mesh position={[-0.3, 0.1, 0]} rotation={[0, 0, -0.2]} scale={[0.65, 0.5, 1]}>
-          <planeGeometry args={[1, 1]} />
-          <meshPhysicalMaterial
-            color="#D4913D"
-            emissive="#F1C98A"
-            emissiveIntensity={0.55}
-            transparent
-            opacity={0.65}
-            roughness={0.3}
-            metalness={0.1}
-            side={THREE.DoubleSide}
-            toneMapped={false}
-            depthWrite={false}
-            alphaMap={wingAlpha}
-          />
-        </mesh>
-      </group>
-      <group ref={urPivot} position={[0.02, 0, 0]}>
-        <mesh position={[0.3, 0.1, 0]} rotation={[0, 0, 0.2]} scale={[0.65, 0.5, 1]}>
-          <planeGeometry args={[1, 1]} />
-          <meshPhysicalMaterial
-            color="#D4913D"
-            emissive="#F1C98A"
-            emissiveIntensity={0.55}
-            transparent
-            opacity={0.65}
-            roughness={0.3}
-            metalness={0.1}
-            side={THREE.DoubleSide}
-            toneMapped={false}
-            depthWrite={false}
-            alphaMap={wingAlpha}
-          />
-        </mesh>
-      </group>
-    </group>
+  // Shared glass material — meshPhysicalMaterial with transmission for refractive glass
+  const glassMaterial = (
+    <meshPhysicalMaterial
+      color="#221C17"
+      metalness={0.05}
+      roughness={0.05}
+      transmission={0.92}
+      thickness={0.6}
+      ior={1.45}
+      clearcoat={1}
+      clearcoatRoughness={0.08}
+      attenuationColor="#8A3C24"
+      attenuationDistance={1.2}
+      transparent
+      opacity={0.9}
+    />
   );
-}
 
-function SideCreatures() {
   return (
-    <>
-      <MiniMoth startX={-3.2} startY={0.5} z={-0.5} phaseOffset={0} />
-      <MiniMoth startX={3.4} startY={0.7} z={-0.3} phaseOffset={2.7} />
-    </>
+    <group ref={groupRef} position={[0, 0, 0]}>
+      {/* Round-bottom flask body */}
+      <mesh position={[0, -0.4, 0]}>
+        <sphereGeometry args={[0.55, 48, 48]} />
+        {glassMaterial}
+      </mesh>
+
+      {/* Neck — open-ended cylinder */}
+      <mesh position={[0, 0.25, 0]}>
+        <cylinderGeometry args={[0.12, 0.14, 0.5, 32, 1, true]} />
+        {glassMaterial}
+      </mesh>
+
+      {/* Top cap — upper hemisphere only */}
+      <mesh position={[0, 0.52, 0]}>
+        <sphereGeometry
+          args={[0.13, 32, 32, 0, Math.PI * 2, 0, Math.PI / 2]}
+        />
+        {glassMaterial}
+      </mesh>
+
+      {/* Ember inside the vessel */}
+      <Ember progress={progress} />
+    </group>
   );
 }
 
@@ -427,33 +242,45 @@ function SceneContents({ progress }: { progress?: MotionValue<number> }) {
   return (
     <>
       <color attach="background" args={["#0E0C0A"]} />
-      <fog attach="fog" args={["#0E0C0A", 6, 18]} />
+      <fog attach="fog" args={["#0E0C0A", 5, 14]} />
 
-      <ambientLight intensity={0.25} color="#221C17" />
+      {/* Ambient */}
+      <ambientLight intensity={0.2} color="#221C17" />
+
+      {/* Main warm lamp — slightly from above, in front */}
       <pointLight
-        position={[0, 0.2, 2]}
-        intensity={2.4}
-        color="#F1C98A"
+        position={[0, 0.8, 2]}
+        intensity={3.6}
+        color="#D4913D"
         distance={8}
         decay={2}
       />
+
+      {/* Oxblood rim — darker edge from behind-left */}
       <pointLight
-        position={[-2, 1, -1]}
-        intensity={1.4}
-        color="#D4913D"
-        distance={7}
+        position={[-1.6, -0.4, -1]}
+        intensity={0.9}
+        color="#8A3C24"
+        distance={6}
         decay={2}
       />
-      <directionalLight position={[2, 3, 4]} intensity={0.9} color="#E8A861" />
+
+      {/* Pale-gold fill */}
+      <pointLight
+        position={[1.2, 0.2, 2]}
+        intensity={0.6}
+        color="#F1C98A"
+        distance={6}
+        decay={2}
+      />
 
       <StarField />
-      <ForegroundFlora />
-      <SideCreatures />
-      <LuminousMoth progress={progress} />
+      <Vessel progress={progress} />
+      <OuroborosRing />
       <DustMotes />
 
       <EffectComposer>
-        <Bloom intensity={1.8} luminanceThreshold={0.15} luminanceSmoothing={0.4} mipmapBlur />
+        <Bloom intensity={1.6} luminanceThreshold={0.2} mipmapBlur />
         <Vignette offset={0.25} darkness={0.8} />
       </EffectComposer>
     </>
@@ -465,7 +292,7 @@ function SceneContents({ progress }: { progress?: MotionValue<number> }) {
 export function HeroScene({ progress }: { progress?: MotionValue<number> }) {
   return (
     <Canvas
-      camera={{ position: [0, 0.3, 4.8], fov: 38 }}
+      camera={{ position: [0, -0.3, 4.6], fov: 40 }}
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       dpr={[1, 2]}
       style={{ position: "absolute", inset: 0 }}

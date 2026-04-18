@@ -25,6 +25,14 @@
   --color-rule:        #3D3329;   /* warm brown border */
   --color-whisper:     #8F8270;   /* warm muted tan */
 
+  /* Alchemical phase tokens — semantic names for the four stages.
+     Nigredo/albedo are distinct hues; citrinitas == --color-violet,
+     rubedo == --color-soul (intentional — semantic aliases only). */
+  --color-nigredo:     #1A1410;   /* the raw material; deeper than ink */
+  --color-albedo:      #E8DCC4;   /* the whitening; pale bone/silver-cream */
+  --color-citrinitas:  #D4913D;   /* warm gold; alias of --color-violet */
+  --color-rubedo:      #8A3C24;   /* deep oxblood; alias of --color-soul */
+
   /* Status */
   --color-positive:    #7BDBAF;
   --color-warning:     #E8A861;
@@ -32,7 +40,7 @@
   /* Type */
   --font-sans:    var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-serif:   var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-serif:   var(--font-eb-garamond), var(--font-instrument-serif), ui-serif, Georgia, serif;
   --font-mono:    ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* Editorial scale */
@@ -66,9 +74,9 @@
     font-size: var(--text-base);
     line-height: 1.55;
     background:
-      radial-gradient(ellipse at 20% 0%, rgba(212, 145, 61, 0.12), transparent 55%),
-      radial-gradient(ellipse at 80% 30%, rgba(241, 201, 138, 0.05), transparent 50%),
-      radial-gradient(ellipse at 50% 100%, rgba(138, 60, 36, 0.06), transparent 40%),
+      radial-gradient(ellipse at 15% 10%, rgba(212, 145, 61, 0.16), transparent 55%),
+      radial-gradient(ellipse at 50% 50%, rgba(138, 60, 36, 0.08), transparent 55%),
+      radial-gradient(ellipse at 85% 90%, rgba(241, 201, 138, 0.05), transparent 50%),
       var(--color-ink);
     min-height: 100vh;
   }
