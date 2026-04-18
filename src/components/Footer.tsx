@@ -21,11 +21,6 @@ export function Footer() {
                 {site.contactEmail}
               </a>
             </li>
-            <li>
-              <a className="text-whisper transition hover:text-ember" href={`mailto:${site.adminEmail}`}>
-                {site.adminEmail}
-              </a>
-            </li>
           </ul>
         </div>
 

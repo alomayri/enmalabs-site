@@ -11,7 +11,6 @@ export const site = {
   location: "Riyadh",
   url: "https://enmalabs.com",
   contactEmail: "hello@enmalabs.com",
-  adminEmail: "admin@enmalabs.com",
 };
 
 export const hero = {
