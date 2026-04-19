@@ -279,6 +279,85 @@ export const supportPage = {
         "If you are writing about enrollment, legal identity, company details, or verification, say that plainly in the subject line.",
       ],
     },
+    {
+      heading: "What Balsam is and is not",
+      points: [
+        "Balsam is a self-guided app for inner work. It is not medical care, therapy, or crisis response.",
+        "Support replies are not live-monitored, and they are not the right channel for emergencies or urgent mental health needs.",
+        "If you are in immediate danger or need urgent care, contact local emergency services or a licensed professional where you are.",
+      ],
+    },
+  ],
+};
+
+export const termsPage = {
+  title: "Terms of Use",
+  lead:
+    "These terms describe the basic shape of the relationship between you, the site, and the pre-release versions of Balsam. They are written plainly on purpose.",
+  updated: "April 19, 2026",
+  facts: [
+    { label: "Company", value: "ENMA LABS, LLC" },
+    { label: "Applies to", value: "enmalabs.com, the waitlist, and Balsam pre-release access" },
+    { label: "Contact", value: "hello@enmalabs.com · (567) 221-9984" },
+  ],
+  sections: [
+    {
+      heading: "What these terms cover",
+      body: [
+        "These terms apply to your use of enmalabs.com, your communication with Enma Labs through the site, and any pre-release or beta access to Balsam that Enma Labs chooses to provide.",
+        "If a later public release of Balsam requires product-specific terms, those terms may sit alongside these rather than replacing them entirely.",
+      ],
+    },
+    {
+      heading: "What Enma Labs is providing",
+      body: [
+        "The site exists to describe the lab, collect waitlist interest, publish notes, and provide support and contact information.",
+        "Pre-release access to Balsam, when offered, is offered as a developing product that may change, break, pause, or disappear while the work is still being shaped.",
+      ],
+    },
+    {
+      heading: "Boundaries of the product",
+      body: [
+        "Balsam is a tool for reflection and inner work. It is not medical treatment, psychotherapy, diagnosis, or emergency support.",
+        "Nothing on the site or in the app should be taken as a substitute for care from a licensed clinician or emergency service.",
+        "If you are in crisis, believe you may harm yourself or someone else, or need urgent support, do not wait for the app or an email reply. Contact local emergency services or a qualified professional where you are.",
+      ],
+    },
+    {
+      heading: "Accounts, access, and beta participation",
+      body: [
+        "Joining the waitlist does not guarantee access to a beta, a public release, or a particular timeline.",
+        "If Enma Labs grants you pre-release access, that access may be limited, suspended, or revoked if the build becomes unstable, the program changes, or the testing needs change.",
+      ],
+    },
+    {
+      heading: "Your use of the site and app",
+      body: [
+        "Use the site and any pre-release software lawfully and in good faith. Do not try to interfere with the service, bypass reasonable restrictions, or use the work in a way that harms others.",
+        "If you send feedback, bug reports, or feature ideas, Enma Labs may use that input to improve the work without owing compensation for the suggestion.",
+      ],
+    },
+    {
+      heading: "Content, ownership, and availability",
+      body: [
+        "The site, app, writing, design, and related materials remain the property of ENMA LABS, LLC unless a different owner is explicitly stated.",
+        "Enma Labs may update, pause, or remove parts of the site or beta software at any time, especially while the work is still in development.",
+      ],
+    },
+    {
+      heading: "Warranty and liability",
+      body: [
+        "The site and any pre-release software are provided as they are, without promises that they will be uninterrupted, error-free, or fit for every situation.",
+        "To the extent allowed by law, ENMA LABS, LLC is not liable for indirect, incidental, special, consequential, or punitive damages arising from your use of the site or pre-release software.",
+      ],
+    },
+    {
+      heading: "Changes",
+      body: [
+        "If these terms change, the date at the top of the page will change with them.",
+        "Material changes will appear here before Enma Labs relies on them.",
+      ],
+    },
   ],
 };
 
@@ -366,6 +445,7 @@ export const nav = [
 export const companyLinks = [
   { label: "Support", href: "/support" },
   { label: "Privacy", href: "/privacy" },
+  { label: "Terms", href: "/terms" },
   { label: "Contact", href: "/contact" },
 ] as const;
 
