@@ -33,7 +33,7 @@ export type Project = {
   readonly platform: string;
   readonly kind: string;
   readonly description: string;
-  readonly status: "Active" | "In notes" | "Distant";
+  readonly status: "In development" | "Forming" | "Distant";
 };
 
 export type OpusGridProps = {

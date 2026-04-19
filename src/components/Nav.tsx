@@ -24,19 +24,25 @@ export function Nav() {
             aria-label="Primary navigation"
             className={cx("hidden items-center gap-1 md:flex", surfaces.navCapsule)}
           >
-            {nav.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className={controls.navLink}
-              >
-                {item.label}
-              </a>
-            ))}
+            {nav.map((item) =>
+              item.href.startsWith("/") ? (
+                <Link key={item.href} href={item.href} className={controls.navLink}>
+                  {item.label}
+                </Link>
+              ) : (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className={controls.navLink}
+                >
+                  {item.label}
+                </a>
+              ),
+            )}
           </nav>
 
           <a href="#waitlist" className={controls.pillButton}>
-            Balsam beta
+            Join waitlist
           </a>
         </div>
 
@@ -46,15 +52,21 @@ export function Nav() {
             className="overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
             <div className={cx("flex min-w-max items-center gap-1", surfaces.navCapsule)}>
-              {nav.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className={controls.navLink}
-                >
-                  {item.label}
-                </a>
-              ))}
+              {nav.map((item) =>
+                item.href.startsWith("/") ? (
+                  <Link key={item.href} href={item.href} className={controls.navLink}>
+                    {item.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className={controls.navLink}
+                  >
+                    {item.label}
+                  </a>
+                ),
+              )}
             </div>
           </nav>
         </div>

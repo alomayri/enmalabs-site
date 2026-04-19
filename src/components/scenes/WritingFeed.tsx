@@ -76,6 +76,7 @@ export function WritingFeed({ id, eyebrow, heading, lead, entries }: WritingFeed
                 <p className={cx("mt-4 max-w-prose", typography.body)}>{entry.excerpt}</p>
                 <Link
                   href={`/journal/${entry.slug}`}
+                  aria-label={`Open note: ${entry.title}`}
                   className={cx("mt-5 inline-flex", controls.footerLink, typography.meta)}
                 >
                   Open note

@@ -5,8 +5,9 @@ import { HeroSection } from "@/components/sections/HeroSection";
 import { ManifestoSceneClient } from "@/components/scenes/ManifestoSceneClient";
 import { ClosingSceneClient } from "@/components/scenes/ClosingSceneClient";
 import { OpusGrid } from "@/components/scenes/OpusGrid";
+import { BalsamPreviewScene } from "@/components/scenes/BalsamPreviewScene";
 import { WritingFeed } from "@/components/scenes/WritingFeed";
-import { hero, manifesto, projects, writing, closingCta } from "@/lib/content";
+import { hero, manifesto, projects, writing, closingCta, balsamPreview } from "@/lib/content";
 
 export default function Home() {
   return (
@@ -23,17 +24,26 @@ export default function Home() {
 
         <OpusGrid
           id="work"
-          eyebrow="What is real"
-          heading="Balsam is first."
-          lead="The lab matters because one product is being made in public. The rest stays quieter until it earns more weight."
+          eyebrow="The Work"
+          heading="Balsam is first. The rest is still forming."
+          lead="One tool is being made in public. The others are still in outline."
           projects={projects}
+        />
+
+        <BalsamPreviewScene
+          id="balsam-preview"
+          eyebrow={balsamPreview.eyebrow}
+          heading={balsamPreview.heading}
+          lead={balsamPreview.lead}
+          helper={balsamPreview.helper}
+          moments={balsamPreview.moments}
         />
 
         <WritingFeed
           id="journal"
           eyebrow="Journal"
-          heading="Notes from the work."
-          lead="Short writing from the lab while the products are still taking shape."
+          heading="Notes from the process."
+          lead="The journal stays public while the products are still finding their shape."
           entries={writing}
         />
 

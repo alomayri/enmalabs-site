@@ -30,7 +30,7 @@ export function WaitlistForm() {
         return;
       }
       setStatus("success");
-      setMessage("You're on the Balsam list. I'll write when the beta is ready.");
+      setMessage("You're on the list. I'll write when Balsam is ready.");
       setEmail("");
     } catch {
       setStatus("error");
@@ -42,13 +42,15 @@ export function WaitlistForm() {
 
   return (
     <form onSubmit={onSubmit} className="flex w-full max-w-xl flex-col gap-3">
+      <label htmlFor="waitlist-email" className="text-sm text-paper/88">
+        Email for the Balsam beta
+      </label>
       <div className="flex flex-col gap-2 sm:flex-row">
-        <label htmlFor="waitlist-email" className="sr-only">
-          Email address
-        </label>
         <input
           id="waitlist-email"
           type="email"
+          autoComplete="email"
+          inputMode="email"
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -63,7 +65,7 @@ export function WaitlistForm() {
           disabled={disabled}
           className={controls.primaryButton}
         >
-          {status === "loading" ? "Joining..." : status === "success" ? "Joined" : "Join for beta"}
+          {status === "loading" ? "Joining..." : status === "success" ? "Joined" : "Join waitlist"}
         </button>
       </div>
       {message && (
@@ -71,12 +73,13 @@ export function WaitlistForm() {
           id={statusId}
           className={cx("text-sm", status === "error" ? "text-ember" : "text-glow")}
           role={status === "error" ? "alert" : "status"}
+          aria-live={status === "error" ? "assertive" : "polite"}
         >
           {message}
         </p>
       )}
       <p id={noteId} className="text-xs text-whisper">
-        Balsam beta first. Rare notes from the lab after that. No noise.
+        Balsam first. Occasional notes from the lab after that. No noise.
       </p>
     </form>
   );

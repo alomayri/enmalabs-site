@@ -16,22 +16,22 @@
 
 export const site = {
   name: "Enma Labs",
-  tagline: "Software for inner work.",
+  tagline: "A workshop for inner software.",
   url: "https://enmalabs.com",
   contactEmail: "hello@enmalabs.com",
 };
 
 export const hero = {
-  eyebrow: "Enma Labs",
+  eyebrow: "A lab for inner work",
   title: {
     line1: "Software for the parts",
-    line2: "of inner work",
-    line3: "that most software mishandles.",
+    line2: "of becoming",
+    line3: "that most software ignores.",
   },
   sub:
-    "Enma Labs is where I make software for inner work. Balsam is the first " +
-    "release and the reason to join the list. The rest of the lab stays quiet " +
-    "until there is something real to show.",
+    "Enma Labs is a small software studio for inner work. " +
+    "Balsam is the first product. The journal keeps the notes while the " +
+    "rest of the lab is still taking shape.",
 };
 
 export const manifesto = {
@@ -44,10 +44,10 @@ export const manifesto = {
     trail: "",
   },
   paragraphs: [
-    "Most software is tuned for return. It learns the habit, rewards the loop, and keeps asking for one more visit.",
-    "That logic breaks when the work is private. Grief, repair, steadiness, and attention do not need a product pushing back at them.",
-    "Enma Labs exists to make smaller tools for those moments. Balsam is the first. Anything else will stay in outline until it earns a name.",
-    "I would rather release one useful thing slowly than publish a confident roadmap too early.",
+    "Most software knows exactly what it's doing. It tracks. It gamifies. It sends notifications at the moment you're least likely to ignore them. The business model assumes your attention is the unit of value, and shapes the product to extract it.",
+    "That's fine for some kinds of work. Not the kind I'm interested in. The quiet operations a person runs on themselves during a difficult year don't respond well to tools that want something from them.",
+    "So the lab exists to try the other direction. Each project starts from a specific inner operation, a particular weight someone is carrying, and is shaped around that work. Not around what makes them open the app tomorrow.",
+    "It's a small thing to say out loud. I'd rather say it plainly than dress it up in product language.",
   ],
 };
 
@@ -63,7 +63,7 @@ export const projects = [
     kind: "For the work of inner healing",
     description:
       "An iPhone companion for the weeks you need a thing that doesn't make the weeks worse. It remembers where you left off, and it doesn't ask you to rate your mood on a ten-point scale.",
-    status: "Active" as const,
+    status: "In development" as const,
   },
   {
     index: "II",
@@ -71,10 +71,10 @@ export const projects = [
     tint: "warm",
     sigil: "Sulfur",
     platform: "macOS",
-    kind: "For clearing the noise",
+    kind: "For burning the noise away",
     description:
-      "Still in notes. A desktop tool for protecting attention instead of farming it.",
-    status: "In notes" as const,
+      "Still forming. The intent: what happens when a tool treats attention as something to protect, not harvest. More when there's more to say.",
+    status: "Forming" as const,
   },
   {
     index: "III",
@@ -82,10 +82,10 @@ export const projects = [
     tint: "gold",
     sigil: "Salt",
     platform: "iOS",
-    kind: "For keeping what changed",
+    kind: "For holding what you've learned",
     description:
-      "Still in notes. A quieter companion for holding onto what you learned after the hard part passes.",
-    status: "In notes" as const,
+      "This one comes later. The intent: helping a person keep what they've actually learned about themselves, instead of losing it to the next week.",
+    status: "Forming" as const,
   },
   {
     index: "IV",
@@ -93,9 +93,9 @@ export const projects = [
     tint: "ember",
     sigil: "Rebis",
     platform: "iOS + macOS",
-    kind: "For work that spans devices",
+    kind: "For the parts that only make sense together",
     description:
-      "Further out. One system for the things that only make sense together.",
+      "Further out. This one might not happen for a long time. But it's where the lab is pointed.",
     status: "Distant" as const,
   },
 ] as const;
@@ -143,19 +143,214 @@ export const writing = [
   },
 ];
 
+export const balsamPreview = {
+  eyebrow: "A small evening with Balsam",
+  heading: "Try the rhythm before the app exists in your hand.",
+  lead:
+    "This is not the finished product. It is a small interactive study of how Balsam should feel when a tired person opens it at night.",
+  helper: "Tap the moments. The phone changes with them.",
+  moments: [
+    {
+      time: "9:12 PM",
+      label: "Arrive",
+      title: "You open the app and it resumes the room instead of starting over.",
+      body:
+        "No feed. No shove toward discovery. The session begins from where you left it, as if the lamp was already lit.",
+      screenTitle: "Resume last session",
+      screenMeta: "Last night, unfinished.",
+      accent: "Continue where you left off",
+      queue: [
+        { label: "Resume the same sequence", state: "Ready" },
+        { label: "Saved for tonight", state: "Queued" },
+        { label: "Return to this tomorrow", state: "Saved" },
+      ],
+      noteLabel: "Listening memory",
+      note: "The app keeps the shape of the evening so you do not have to build it again.",
+    },
+    {
+      time: "9:16 PM",
+      label: "Hold",
+      title: "The queue feels like a gentle decision, not another management task.",
+      body:
+        "You can move one thing higher, let another wait, and keep the mood intact. Nothing on screen behaves like it needs your urgency.",
+      screenTitle: "Queue for tonight",
+      screenMeta: "Held with the mood intact.",
+      accent: "A few things, in order",
+      queue: [
+        { label: "Start where you are already settled", state: "Ready" },
+        { label: "One thing to deepen the room", state: "Queued" },
+        { label: "One thing for after", state: "Later" },
+      ],
+      noteLabel: "Queue note",
+      note: "The queue behaves like a soft intention, not a task list asking to be cleared.",
+    },
+    {
+      time: "9:47 PM",
+      label: "Settle",
+      title: "The player starts to disappear once the listening has taken over.",
+      body:
+        "The controls stay near. The light stays low. The app remembers that the point is not to keep interacting with it.",
+      screenTitle: "Session mode",
+      screenMeta: "Low light. No interruption.",
+      accent: "The screen gives way",
+      queue: [
+        { label: "Minimal controls still within reach", state: "Live" },
+        { label: "No feed interrupting the mood", state: "Quiet" },
+        { label: "Keep the room steady", state: "On" },
+      ],
+      noteLabel: "Session note",
+      note: "The interface keeps enough shape to be useful, then stops trying to be the main event.",
+    },
+    {
+      time: "Tomorrow",
+      label: "Return",
+      title: "When you come back, the residue is still there.",
+      body:
+        "A useful player remembers what soothed you, what held, and what should be waiting again. Memory should feel like care, not surveillance.",
+      screenTitle: "Return path",
+      screenMeta: "Saved for the next difficult evening.",
+      accent: "What helped is still here",
+      queue: [
+        { label: "What soothed you last time", state: "Saved" },
+        { label: "What you meant to return to", state: "Waiting" },
+        { label: "What can stay quiet for now", state: "Paused" },
+      ],
+      noteLabel: "Return note",
+      note: "The app notices what mattered and leaves it where you can find it again without effort.",
+    },
+  ],
+} as const;
+
 export const closingCta = {
-  eyebrow: "Join for Balsam",
-  title: "Get the beta note.",
+  eyebrow: "Before you go",
+  title: "Stay close.",
   sub:
-    "The list is for Balsam first. If another Enma Labs tool becomes real, you'll hear when it has shape, not before.",
+    "The list is for Balsam first. I'll write when the beta is ready, and if another part of the lab earns a name. Not before.",
+};
+
+export const company = {
+  summary:
+    "Enma Labs is a small software studio building tools for inner work. Balsam is the first product in development.",
+  supportEmail: "hello@enmalabs.com",
+  responseWindow: "I usually reply within a few business days.",
+  supportNote:
+    "For beta support, bug reports, or App Store questions, write from the email address you used for TestFlight or the waitlist if you can.",
+};
+
+export const contactPage = {
+  title: "Contact Enma Labs",
+  lead:
+    "The easiest way to reach the studio is still email. Write if you need help with Balsam, have a partnership question, or need a human answer about the work.",
+};
+
+export const supportPage = {
+  title: "Support",
+  lead:
+    "Support is handled directly by email right now. If you are using a beta build of Balsam, include enough detail that I can actually reproduce what happened.",
+  sections: [
+    {
+      heading: "For Balsam beta support",
+      points: [
+        "Describe what you were trying to do.",
+        "Say what happened instead, and whether you can reproduce it.",
+        "Include your device model, iOS version, and app build if you have it.",
+        "If the issue involves playback or history, mention the last thing you remember doing before it broke.",
+      ],
+    },
+    {
+      heading: "For general questions",
+      points: [
+        "Use the same address for press, partnerships, and product questions.",
+        "If you are asking about enrollment, legal identity, or company information, say that plainly in the subject line.",
+      ],
+    },
+  ],
+};
+
+export const privacyPage = {
+  title: "Privacy Policy",
+  lead:
+    "This page covers enmalabs.com, the waitlist, and pre-release communication around Balsam. If the shipped app handles data differently, this policy will be updated before release.",
+  updated: "April 19, 2026",
+  facts: [
+    { label: "Applies to", value: "enmalabs.com and Balsam pre-release communication" },
+    { label: "Controller", value: "Enma Labs" },
+    { label: "Contact", value: "hello@enmalabs.com" },
+  ],
+  sections: [
+    {
+      heading: "What this policy covers",
+      body: [
+        "This policy covers the Enma Labs website, the waitlist, support communication, and pre-release communication around Balsam.",
+        "It does not try to describe data handling for a shipped Balsam app that is not live yet. If the released app collects, stores, or transmits anything beyond what is described here, this policy will be updated before that release.",
+      ],
+    },
+    {
+      heading: "What Enma Labs collects",
+      body: [
+        "If you join the waitlist, Enma Labs collects the email address you submit so I can send product updates about Balsam and occasional studio notes.",
+        "If you write for support or contact, Enma Labs receives the information you choose to send, which may include your name, email address, device details, app build information, or a description of the issue.",
+        "The site and its infrastructure may also receive standard technical request data such as IP address, browser information, and request logs used to operate, secure, and troubleshoot the service.",
+      ],
+    },
+    {
+      heading: "How that information is used",
+      body: [
+        "Waitlist information is used to send product updates, beta invitations, and related support communication.",
+        "Support information is used to answer your question, reproduce bugs, improve the product, and keep a record of what was resolved.",
+        "Enma Labs does not sell personal information and does not use the waitlist for third-party advertising.",
+      ],
+    },
+    {
+      heading: "Third-party services and processors",
+      body: [
+        "Some information is processed by third-party services used to run the site and communication around it. Those services act on behalf of Enma Labs rather than buying the information for their own marketing use.",
+        "As of this version, that can include website hosting and email or waitlist infrastructure. If those providers change in a way that materially changes what happens to your information, this policy will be updated.",
+      ],
+    },
+    {
+      heading: "Retention",
+      body: [
+        "Waitlist information is kept for as long as it is needed to run the waitlist, send updates, manage beta access, and maintain a basic record of who asked to hear from the lab.",
+        "Support messages may be kept for as long as they are useful to resolve issues, understand product history, or meet legal and operational obligations.",
+      ],
+    },
+    {
+      heading: "Your choices",
+      body: [
+        "You can unsubscribe from email updates at any time using the unsubscribe link in the email, when available, or by writing to hello@enmalabs.com.",
+        "You can request access to, correction of, or deletion of the personal information Enma Labs holds about you by email.",
+      ],
+    },
+    {
+      heading: "What Enma Labs does not do",
+      body: [
+        "Enma Labs is not in the business of building ad profiles, selling mailing lists, or turning support messages into a secondary product.",
+        "If that ever changes in a meaningful way, this page will have to change first.",
+      ],
+    },
+    {
+      heading: "Changes",
+      body: [
+        "If this policy changes, the date at the top of the page will change with it.",
+        "Material changes will be reflected here before they are relied on in the product or the site.",
+      ],
+    },
+  ],
 };
 
 export const nav = [
   { label: "Why", href: "#manifesto" },
-  { label: "Balsam", href: "#work" },
+  { label: "The Work", href: "#work" },
   { label: "Journal", href: "#journal" },
-  { label: "Contact", href: "#contact" },
+  { label: "Contact", href: "/contact" },
 ];
+
+export const companyLinks = [
+  { label: "Support", href: "/support" },
+  { label: "Privacy", href: "/privacy" },
+  { label: "Contact", href: "/contact" },
+] as const;
 
 export const socials = [
   { label: "X / Twitter", href: "https://x.com/enmalabs" },

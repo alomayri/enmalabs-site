@@ -1,4 +1,5 @@
-import { site, socials } from "@/lib/content";
+import Link from "next/link";
+import { company, companyLinks, site, socials } from "@/lib/content";
 import { controls, cx, layout, surfaces, typography } from "@/lib/design-system";
 
 export function Footer() {
@@ -8,13 +9,15 @@ export function Footer() {
         <div
           className={cx(
             surfaces.footerPanel,
-            "grid gap-12 p-8 md:grid-cols-[2fr_1fr_1fr] md:p-10",
+            "grid gap-12 p-8 md:grid-cols-[2fr_1fr_1fr_1fr] md:p-10",
           )}
         >
           <div>
             <p className="font-display text-2xl tracking-tight">{site.name}</p>
             <p className="mt-3 max-w-md text-base text-whisper">
-              A one-person lab making software for inner work. Balsam is the first release.
+              <em className="italic-display text-lg text-paper">Anima</em> and{" "}
+              <em className="italic-display text-lg text-paper">إنماء</em>. Soul and growth.
+              {` ${company.summary}`}
             </p>
           </div>
 
@@ -26,6 +29,20 @@ export function Footer() {
                   {site.contactEmail}
                 </a>
               </li>
+              <li className="text-sm text-whisper">{company.responseWindow}</li>
+            </ul>
+          </div>
+
+          <div>
+            <p className={typography.eyebrow}>Company</p>
+            <ul className="mt-4 space-y-2 text-base">
+              {companyLinks.map((link) => (
+                <li key={link.href}>
+                  <Link className={controls.footerLink} href={link.href}>
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -52,7 +69,7 @@ export function Footer() {
           )}
         >
           <p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
-          <p className="font-mono">enmalabs.com</p>
+          <p className="font-mono">{site.url.replace("https://", "")}</p>
         </div>
       </div>
     </footer>

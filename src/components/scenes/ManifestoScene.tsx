@@ -25,6 +25,17 @@ export function ManifestoScene({ eyebrow, heading, paragraphs }: ManifestoSceneP
         className={cx("pointer-events-none absolute inset-0", gradients.manifestoAura)}
       />
 
+      <motion.div
+        aria-hidden
+        initial={reducedMotion ? false : { opacity: 0, scale: 0.96, y: 12 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        viewport={motionSystem.listViewport}
+        transition={{ duration: 0.9, ease: motionSystem.reveal.ease }}
+        className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center font-display text-violet-soft/10 [direction:rtl] [font-size:min(54vh,40vw)] leading-none select-none"
+      >
+        إنماء
+      </motion.div>
+
       <div className={cx(layout.reading, layout.sectionSpace, "relative")}>
         <p className={cx("mb-8", typography.eyebrow)}>{eyebrow}</p>
         <div className="max-w-4xl">

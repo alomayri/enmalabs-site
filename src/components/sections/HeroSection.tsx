@@ -1,8 +1,16 @@
 "use client";
 
 import { useRef } from "react";
-import { useReducedMotion, useScroll } from "framer-motion";
-import { controls, cx, gradients, layout, typography } from "@/lib/design-system";
+import { motion, useReducedMotion, useScroll } from "framer-motion";
+import {
+  controls,
+  cx,
+  gradients,
+  layout,
+  motion as motionSystem,
+  scene,
+  typography,
+} from "@/lib/design-system";
 import { HeroSceneClient } from "@/components/HeroSceneClient";
 import { Reveal } from "@/components/Reveal";
 
@@ -53,6 +61,39 @@ export function HeroSection({ eyebrow, title, sub }: HeroSectionProps) {
         className={cx("pointer-events-none absolute inset-0 z-[1]", gradients.heroTextWash)}
       />
 
+      {!reducedMotion && (
+        <>
+          <motion.div
+            aria-hidden
+            className="pointer-events-none absolute right-[-6%] top-[11%] z-[1] h-[58vh] w-[44vw] bg-[radial-gradient(circle,rgba(241,201,138,0.18)_0%,rgba(241,201,138,0.08)_22%,rgba(241,201,138,0.02)_42%,transparent_66%)] blur-2xl"
+            animate={{
+              opacity: [...scene.heroAtmosphere.auraOpacity],
+              scale: [...scene.heroAtmosphere.auraScale],
+              x: [...scene.heroAtmosphere.auraX],
+              y: [...scene.heroAtmosphere.auraY],
+            }}
+            transition={{
+              duration: motionSystem.heroAura.duration,
+              ease: motionSystem.heroAura.ease,
+              repeat: Number.POSITIVE_INFINITY,
+            }}
+          />
+          <motion.div
+            aria-hidden
+            className="pointer-events-none absolute right-[7%] top-[22%] z-[1] h-[26vh] w-[18vw] rounded-full bg-[radial-gradient(circle,rgba(241,201,138,0.14)_0%,rgba(241,201,138,0.06)_24%,transparent_62%)] blur-3xl"
+            animate={{
+              opacity: [...scene.heroAtmosphere.flickerOpacity],
+              scale: [...scene.heroAtmosphere.flickerScale],
+            }}
+            transition={{
+              duration: 4.4,
+              ease: motionSystem.heroAura.ease,
+              repeat: Number.POSITIVE_INFINITY,
+            }}
+          />
+        </>
+      )}
+
       <div
         aria-hidden
         className={cx(
@@ -88,13 +129,30 @@ export function HeroSection({ eyebrow, title, sub }: HeroSectionProps) {
           <Reveal delay={0.45}>
             <div className="mt-10 flex flex-wrap gap-3">
               <a href="#waitlist" className={controls.primaryButton}>
-                Join for Balsam
+                Join waitlist
               </a>
               <a href="#manifesto" className={controls.secondaryButton}>
-                Read why
+                Why this exists
               </a>
             </div>
           </Reveal>
+          {!reducedMotion && (
+            <motion.div
+              aria-hidden
+              className="mt-14 flex items-center gap-3 text-whisper/72"
+              animate={{ y: [0, 8, 0], opacity: [0.55, 0.9, 0.55] }}
+              transition={{
+                duration: motionSystem.scrollCue.duration,
+                ease: motionSystem.scrollCue.ease,
+                repeat: Number.POSITIVE_INFINITY,
+              }}
+            >
+              <span className="font-mono text-[0.62rem] uppercase tracking-[0.32em]">
+                Scroll
+              </span>
+              <span className="h-px w-14 bg-gradient-to-r from-violet-soft/70 to-transparent" />
+            </motion.div>
+          )}
         </div>
       </div>
     </section>

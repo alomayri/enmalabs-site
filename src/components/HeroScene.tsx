@@ -72,6 +72,7 @@ function DustMotes() {
     if (reducedMotion || !pointsRef.current) return;
     pointsRef.current.rotation.y += 0.0006;
     pointsRef.current.rotation.x += 0.0002;
+    pointsRef.current.position.y = Math.sin(performance.now() * 0.00018) * 0.03;
   });
 
   return (
@@ -117,18 +118,22 @@ function InteractiveGroup({
     return () => window.removeEventListener("pointermove", onMove);
   }, [reducedMotion]);
 
-  useFrame(() => {
+  useFrame((state) => {
     if (!groupRef.current) return;
 
     if (!reducedMotion) {
-      targetRef.current.x = lerp(targetRef.current.x, -pointer.x * 0.18, 0.06);
-      targetRef.current.y = lerp(targetRef.current.y, -pointer.y * 0.12, 0.06);
-      groupRef.current.position.x = targetRef.current.x;
-      groupRef.current.position.y = targetRef.current.y;
+      targetRef.current.x = lerp(targetRef.current.x, -pointer.x * scene.heroAtmosphere.pointerX, 0.06);
+      targetRef.current.y = lerp(targetRef.current.y, -pointer.y * scene.heroAtmosphere.pointerY, 0.06);
     }
 
     const p = progress?.get() ?? 0;
-    const scale = lerp(1.0, 1.12, p);
+    const driftX = Math.cos(state.clock.elapsedTime * 0.14) * scene.heroAtmosphere.driftX;
+    const driftY = Math.sin(state.clock.elapsedTime * 0.18) * scene.heroAtmosphere.driftY;
+    const scale = lerp(1.0, scene.heroAtmosphere.scaleEnd, p) + Math.sin(state.clock.elapsedTime * 0.22) * scene.heroAtmosphere.driftScale;
+    groupRef.current.position.x = targetRef.current.x + driftX;
+    groupRef.current.position.y = targetRef.current.y + driftY;
+    groupRef.current.rotation.y = -pointer.x * scene.heroAtmosphere.rotateY;
+    groupRef.current.rotation.x = pointer.y * scene.heroAtmosphere.rotateX;
     groupRef.current.scale.setScalar(scale);
   });
 
