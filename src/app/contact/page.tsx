@@ -33,9 +33,10 @@ export default function ContactPage() {
         <div>
           <h2 className={typography.journalTitle}>What belongs here</h2>
           <ul className="mt-4 space-y-3 text-whisper">
-            <li>Balsam beta questions and support</li>
-            <li>Partnership, press, or collaboration inquiries</li>
-            <li>Company and enrollment verification questions</li>
+            <li>Balsam beta questions, bug reports, and playback issues</li>
+            <li>Feature requests, notes about what would make the app feel better, and the small things that still resist you</li>
+            <li>A simple hello, if you want to say one</li>
+            <li>Partnership, press, company, and enrollment verification questions</li>
           </ul>
 
           <div className="mt-8 flex flex-wrap gap-3">

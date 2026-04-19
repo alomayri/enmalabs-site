@@ -234,19 +234,19 @@ export const company = {
   supportEmail: "hello@enmalabs.com",
   responseWindow: "I usually reply within a few business days.",
   supportNote:
-    "For beta support, bug reports, or App Store questions, write from the email address you used for TestFlight or the waitlist if you can.",
+    "Write if you need help with Balsam, want to say hello, have an idea that would make the experience gentler, or need a plain answer about the company or the work.",
 };
 
 export const contactPage = {
   title: "Contact Enma Labs",
   lead:
-    "The easiest way to reach the studio is still email. Write if you need help with Balsam, have a partnership question, or need a human answer about the work.",
+    "Email is still the clearest way into the lab. Write if you need help with Balsam, want to recommend a feature, want to say hello, or need a human answer about the work.",
 };
 
 export const supportPage = {
   title: "Support",
   lead:
-    "Support is handled directly by email right now. If you are using a beta build of Balsam, include enough detail that I can actually reproduce what happened.",
+    "Support is handled directly by email right now. Write if Balsam breaks, if something in the app feels off, or if you want to say what would make the experience calmer, clearer, or more useful.",
   sections: [
     {
       heading: "For Balsam beta support",
@@ -258,10 +258,18 @@ export const supportPage = {
       ],
     },
     {
-      heading: "For general questions",
+      heading: "For feedback and feature requests",
       points: [
-        "Use the same address for press, partnerships, and product questions.",
-        "If you are asking about enrollment, legal identity, or company information, say that plainly in the subject line.",
+        "Say what part of the experience felt heavy, unclear, or missing.",
+        "If a feature almost works, describe what would make it click for you.",
+        "If you want to say hello or tell me how the app met you, that belongs here too.",
+      ],
+    },
+    {
+      heading: "For general and company questions",
+      points: [
+        "Use the same address for press, partnerships, product questions, and App Store support matters.",
+        "If you are writing about enrollment, legal identity, company details, or verification, say that plainly in the subject line.",
       ],
     },
   ],
