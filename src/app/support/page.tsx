@@ -18,18 +18,28 @@ export default function SupportPage() {
       <div className="space-y-10">
         <div className="rounded-[1.5rem] border border-rule bg-mist/30 p-6">
           <p className={typography.eyebrow}>Support contact</p>
+          <p className="mt-4 text-sm text-whisper">Legal entity</p>
+          <p className="mt-2 text-lg text-paper">{company.legalEntity}</p>
+          <p className="mt-4 text-sm text-whisper">Email</p>
           <p className="mt-4 text-lg text-paper">
             <a className={controls.footerLink} href={`mailto:${site.contactEmail}`}>
               {site.contactEmail}
             </a>
           </p>
+          <p className="mt-4 text-sm text-whisper">Phone</p>
           <p className="mt-2 text-lg text-paper">
             <a className={controls.footerLink} href={`tel:${company.supportPhone.replace(/[^\d+]/g, "")}`}>
               {company.supportPhone}
             </a>
           </p>
+          <p className="mt-4 text-sm text-whisper">Mailing address</p>
+          <address className="mt-2 not-italic text-whisper">
+            {company.mailingAddress.map((line) => (
+              <div key={line}>{line}</div>
+            ))}
+          </address>
           <p className="mt-3 text-sm text-whisper">
-            Use this address for app issues, general feedback, feature requests,
+            Use these details for app issues, general feedback, feature requests,
             and company or enrollment questions.
           </p>
           <p className="mt-2 text-sm text-whisper">{company.responseWindow}</p>

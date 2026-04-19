@@ -18,20 +18,30 @@ export default function ContactPage() {
     >
       <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr]">
         <div>
-          <h2 className={typography.journalTitle}>Email</h2>
+          <h2 className={typography.journalTitle}>Contact details</h2>
           <p className="mt-4 text-whisper">
             {company.supportNote}
           </p>
+          <p className="mt-6 text-sm text-whisper">Legal entity</p>
+          <p className="mt-2 text-paper">{company.legalEntity}</p>
+          <p className="mt-6 text-sm text-whisper">Email</p>
           <p className="mt-6">
             <a className={controls.footerLink} href={`mailto:${site.contactEmail}`}>
               {site.contactEmail}
             </a>
           </p>
+          <p className="mt-4 text-sm text-whisper">Phone</p>
           <p className="mt-3">
             <a className={controls.footerLink} href={`tel:${company.supportPhone.replace(/[^\d+]/g, "")}`}>
               {company.supportPhone}
             </a>
           </p>
+          <p className="mt-4 text-sm text-whisper">Mailing address</p>
+          <address className="mt-2 not-italic text-whisper">
+            {company.mailingAddress.map((line) => (
+              <div key={line}>{line}</div>
+            ))}
+          </address>
           <p className="mt-3 text-sm text-whisper">{company.responseWindow}</p>
         </div>
 

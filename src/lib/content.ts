@@ -231,8 +231,14 @@ export const closingCta = {
 export const company = {
   summary:
     "Enma Labs is a small software studio building tools for inner work. Balsam is the first product in development.",
+  legalEntity: "ENMA LABS, LLC",
   supportEmail: "hello@enmalabs.com",
   supportPhone: "(567) 221-9984",
+  mailingAddress: [
+    "131 Continental Dr Ste 305",
+    "Newark, Delaware 19713-4324",
+    "United States",
+  ],
   responseWindow: "I usually reply within a few business days.",
   supportNote:
     "Write if you need help with Balsam, want to say hello, have an idea that would make the experience gentler, or need a plain answer about the company or the work.",
@@ -283,7 +289,9 @@ export const privacyPage = {
   updated: "April 19, 2026",
   facts: [
     { label: "Applies to", value: "enmalabs.com and Balsam pre-release communication" },
-    { label: "Controller", value: "Enma Labs" },
+    { label: "Controller", value: "ENMA LABS, LLC" },
+    { label: "Legal entity", value: "ENMA LABS, LLC" },
+    { label: "Address", value: "131 Continental Dr Ste 305, Newark, Delaware 19713-4324, United States" },
     { label: "Contact", value: "hello@enmalabs.com · (567) 221-9984" },
   ],
   sections: [
