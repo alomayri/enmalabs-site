@@ -16,7 +16,7 @@
 
 export const site = {
   name: "Enma Labs",
-  tagline: "A workshop for inner software.",
+  tagline: "A studio for inner software.",
   url: "https://enmalabs.com",
   contactEmail: "hello@enmalabs.com",
 };
