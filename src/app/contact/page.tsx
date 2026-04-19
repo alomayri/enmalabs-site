@@ -27,6 +27,11 @@ export default function ContactPage() {
               {site.contactEmail}
             </a>
           </p>
+          <p className="mt-3">
+            <a className={controls.footerLink} href={`tel:${company.supportPhone.replace(/[^\d+]/g, "")}`}>
+              {company.supportPhone}
+            </a>
+          </p>
           <p className="mt-3 text-sm text-whisper">{company.responseWindow}</p>
         </div>
 

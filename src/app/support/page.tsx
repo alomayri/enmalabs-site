@@ -23,6 +23,11 @@ export default function SupportPage() {
               {site.contactEmail}
             </a>
           </p>
+          <p className="mt-2 text-lg text-paper">
+            <a className={controls.footerLink} href={`tel:${company.supportPhone.replace(/[^\d+]/g, "")}`}>
+              {company.supportPhone}
+            </a>
+          </p>
           <p className="mt-3 text-sm text-whisper">
             Use this address for app issues, general feedback, feature requests,
             and company or enrollment questions.
