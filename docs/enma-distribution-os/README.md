@@ -48,3 +48,9 @@ That changes the next plan: stop optimizing the public website for enrollment pr
 - Blogs, journal posts, social posts, videos, newsletters, and App Store copy must trace back to one Directus source object.
 - Distribution work must feed learning back into the product and roadmap, not just create more posts.
 - The stack should be replaceable by parts. No single tool becomes the whole system.
+
+## Boundary With EnmaWeb Ops
+
+Use `docs/enma-web-ops/README.md` for client identity, accounts, waitlists, newsletters, support, subscriptions, entitlements, and the app portfolio model.
+
+Use this directory for campaigns, content, channel publishing, App Store growth, ads, creative, and performance loops.

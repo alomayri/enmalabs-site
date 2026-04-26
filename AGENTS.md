@@ -71,7 +71,8 @@ public/
 docs/
 ├── CREATIVE-DIRECTION.md       Upstream visual direction, anti-patterns, and ingestion guardrails.
 ├── enma-soul-system/           Product soul, narrative, visual system, motion, and image direction.
-└── enma-distribution-os/       Open-source growth, CMS/blogs, publishing, App Store, automation, MCP, and agent handover plan.
+├── enma-distribution-os/       Open-source growth, CMS/blogs, publishing, App Store, automation, MCP, and agent handover plan.
+└── enma-web-ops/               EnmaWeb clients, accounts, waitlist, newsletter, subscriptions, and app portfolio plan.
 
 scripts/
 ├── generate-ambient.ts     Regen audio via fal.ai stable-audio-25 ($0.20/run).
@@ -83,6 +84,7 @@ scripts/
 All copy lives in `src/lib/content.ts`. Read that file's header docstring; rules are enforced there.
 Visual authority lives in `docs/CREATIVE-DIRECTION.md` and `src/lib/design-system.ts`.
 Distribution authority lives in `docs/enma-distribution-os/README.md`.
+Client/account/subscription authority lives in `docs/enma-web-ops/README.md`.
 
 TL;DR:
 - **No em dashes.** Use periods, commas, or sentence breaks. Em dashes are an LLM tell.
