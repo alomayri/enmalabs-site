@@ -6,10 +6,10 @@ The system should feel like a monthly operating rhythm, not a pile of dashboards
 
 1. Directus holds campaign goals, app priorities, current audience, and content inventory.
 2. Research Agent drafts channel opportunities and angles.
-3. Editorial Agent drafts one month of posts, emails, journal notes, and launch assets.
+3. Editorial Agent drafts one month of blog posts, channel variants, emails, journal notes, and launch assets.
 4. Creative Agent prepares video and image briefs.
 5. Human reviews one monthly packet.
-6. Approved items move to Postiz, Mautic, Listmonk, and creative production.
+6. Approved channel variants move to Postiz, approved emails move to Mautic/Listmonk, and approved media briefs move to creative production.
 7. Activepieces schedules and watches execution.
 
 Exit evidence:
@@ -17,6 +17,7 @@ Exit evidence:
 - approved content calendar
 - approved campaign budget
 - approved creative queue
+- approved blog and channel variants
 - scheduled posts
 - email drafts ready or scheduled
 

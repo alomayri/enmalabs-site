@@ -33,6 +33,7 @@ This file records the research basis for the Enma Distribution OS.
 
 - Postiz app: https://github.com/gitroomhq/postiz-app
 - Postiz agent: https://github.com/gitroomhq/postiz-agent
+- Postiz docs: https://github.com/gitroomhq/postiz-docs
 - Mixpost: https://github.com/inovector/mixpost
 
 ### Email and Lifecycle
@@ -83,4 +84,5 @@ The strongest current open-source stack is not a single project. It is a composa
 - Whether `asc-mcp` is mature enough for write operations or should stay read-only.
 - Whether Postiz supports every target platform needed for Enma accounts.
 - Whether TikTok and Reddit publishing require official app approvals or platform-specific limitations.
+- Whether Postiz account connections for X, TikTok, Instagram, Pinterest, YouTube, Reddit, and LinkedIn are stable in the chosen hosted or self-hosted mode.
 - Whether Mautic alone can cover newsletter needs before adding Listmonk.

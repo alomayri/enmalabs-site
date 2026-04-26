@@ -79,6 +79,45 @@ Fields:
 - `created_by`
 - `reviewed_by`
 
+### Blog Post
+
+Represents a canonical longform piece for the Enma site.
+
+Fields:
+
+- `id`
+- `content_asset_id`
+- `app_id`
+- `slug`
+- `title`
+- `excerpt`
+- `body`
+- `seo_title`
+- `seo_description`
+- `canonical_url`
+- `status`
+- `published_at`
+
+### Channel Variant
+
+Represents a platform-specific adaptation of a source idea.
+
+Fields:
+
+- `id`
+- `content_asset_id`
+- `platform`
+- `format`
+- `copy`
+- `hook`
+- `media_requirements`
+- `utm_url`
+- `postiz_integration_id`
+- `postiz_post_id`
+- `approval_status`
+- `scheduled_at`
+- `published_at`
+
 ### Post
 
 Represents a platform-specific publication.
@@ -177,7 +216,9 @@ Fields:
 | Data | Primary Owner | Mirrors |
 | --- | --- | --- |
 | App catalog | Directus | Plane, PostHog |
-| Content calendar | Directus | Postiz, Mautic |
+| Content calendar | Directus | Postiz, Mautic, Listmonk |
+| Blog posts | Directus | Enma site |
+| Channel variants | Directus | Postiz |
 | Contact identity | Better Auth / Postgres | Twenty, Mautic, PostHog |
 | Product analytics | PostHog | Directus weekly snapshots |
 | Community posts | Discourse | Directus summary records |

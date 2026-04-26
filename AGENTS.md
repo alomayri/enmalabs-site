@@ -71,7 +71,7 @@ public/
 docs/
 ├── CREATIVE-DIRECTION.md       Upstream visual direction, anti-patterns, and ingestion guardrails.
 ├── enma-soul-system/           Product soul, narrative, visual system, motion, and image direction.
-└── enma-distribution-os/       Open-source growth, App Store, automation, MCP, and agent handover plan.
+└── enma-distribution-os/       Open-source growth, CMS/blogs, publishing, App Store, automation, MCP, and agent handover plan.
 
 scripts/
 ├── generate-ambient.ts     Regen audio via fal.ai stable-audio-25 ($0.20/run).

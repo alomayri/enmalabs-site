@@ -38,11 +38,13 @@ That changes the next plan: stop optimizing the public website for enrollment pr
 6. [05-apple-after-approval-plan.md](05-apple-after-approval-plan.md)
 7. [06-rollout-plan.md](06-rollout-plan.md)
 8. [07-source-register.md](07-source-register.md)
+9. [08-content-management-and-publishing.md](08-content-management-and-publishing.md)
 
 ## Non-Negotiables
 
 - Agents may create drafts, run analysis, prepare schedules, and produce recommendations.
 - Humans approve monthly calendars, budget increases, ad launches, production publishing, App Store metadata changes, and public claims.
 - Every artifact belongs to one app, one campaign, one channel, and one measurement loop.
+- Blogs, journal posts, social posts, videos, newsletters, and App Store copy must trace back to one Directus source object.
 - Distribution work must feed learning back into the product and roadmap, not just create more posts.
 - The stack should be replaceable by parts. No single tool becomes the whole system.

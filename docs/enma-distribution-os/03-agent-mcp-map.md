@@ -16,7 +16,7 @@ This file defines how Codex, Claude, and future agents should operate the distri
 
 | System | Wrapper Shape | First Wrapper |
 | --- | --- | --- |
-| Postiz | REST/API wrapper | Create draft post, list channels, schedule approved post, fetch analytics. |
+| Postiz | REST/API wrapper and CLI | Create draft post, list channels, inspect platform settings, upload media, schedule approved post, fetch analytics. |
 | Mautic | API wrapper or Activepieces piece | Create/update contact, add segment, start campaign. |
 | Listmonk | API wrapper | Create campaign draft, sync list, fetch campaign metrics. |
 | Twenty | API wrapper | Create contact, update relationship stage, log outreach. |
@@ -47,6 +47,8 @@ Turns approved angles into posts, journal drafts, emails, release notes, and App
 Outputs:
 
 - Directus content assets
+- Directus blog drafts
+- Directus channel variants
 - Mautic email drafts
 - Postiz post drafts
 - App Store metadata drafts
@@ -89,6 +91,8 @@ Outputs:
 Agents may:
 
 - draft content
+- draft blog posts
+- create platform variants
 - create internal records
 - prepare schedules
 - generate creative options
@@ -99,6 +103,7 @@ Agents may:
 Agents may not do without human approval:
 
 - publish public content
+- publish blog posts
 - launch or increase ad spend
 - mutate App Store metadata
 - reply publicly to sensitive reviews

@@ -8,7 +8,7 @@
 | Database | Postgres | Shared relational substrate | Every tool can integrate with it. |
 | Control plane | Directus | Content, data, assets, app catalog, campaigns | Strong API surface, flows, and agent-control posture. |
 | Automation | Activepieces | Workflows, approvals, integrations, agent tools | Strong MCP and piece model. |
-| Publishing | Postiz | Social scheduling and analytics | Strongest open-source social publishing candidate. |
+| Publishing | Postiz | Social scheduling, channel variants, and analytics | Strongest open-source social publishing candidate. |
 | Analytics | PostHog | Funnels, events, feature flags, experiments, surveys | Most complete open-source product analytics layer. |
 | Lifecycle | Mautic | Segments, campaigns, lifecycle journeys | Mature open-source marketing automation. |
 | Newsletter | Listmonk | Lightweight newsletters and bulk sends | Faster and simpler than Mautic for editorial mail. |
@@ -44,6 +44,14 @@
 | Umami | Use only if a very lightweight privacy-first web analytics layer is needed. |
 | n8n | Use if Activepieces cannot cover a specific connector or workflow. |
 | Payload | Use if Enma later wants the CMS to live inside the Next.js repo instead of a separate control plane. |
+
+## Content Management Decision
+
+Directus is the content brain. It should hold blog posts, journal notes, editorial briefs, campaign records, channel variants, media assets, App Store metadata drafts, and learning notes.
+
+Postiz is the publishing outlet. It should connect to X, TikTok, Instagram, Pinterest, YouTube, Reddit, LinkedIn, Threads, Medium, Dev.to, Hashnode, WordPress, Bluesky, Mastodon, Discord, Telegram, Slack, and Listmonk where Enma decides to operate.
+
+Activepieces bridges the two: approved Directus channel variants become Postiz drafts, never automatic public posts unless a later phase explicitly approves that behavior.
 
 ## Decision Notes
 

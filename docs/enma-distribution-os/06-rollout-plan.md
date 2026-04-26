@@ -40,14 +40,16 @@ Install or configure:
 Tasks:
 
 - Create Directus app catalog with Balsam as the first app.
-- Create campaign, content asset, post, experiment, and metadata collections.
+- Create campaign, content asset, blog post, channel variant, post, experiment, and metadata collections.
 - Connect site waitlist events to PostHog.
-- Create Postiz draft workflow from Directus approved posts.
+- Create Postiz draft workflow from Directus approved channel variants.
+- Connect Postiz to X, Instagram, TikTok, YouTube, Pinterest, Reddit, and LinkedIn first.
 - Create monthly approval packet flow in Activepieces.
 
 Exit criteria:
 
 - one month of Balsam content can be drafted, approved, scheduled, and measured
+- one blog post can create approved platform variants without copy-paste drift
 - no public publish happens without approval
 - PostHog can show waitlist conversion by source
 
