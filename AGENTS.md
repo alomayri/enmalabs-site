@@ -69,7 +69,9 @@ public/
     └── ambient.m4a         128kbps AAC, Safari fallback (2.9MB).
 
 docs/
-└── CREATIVE-DIRECTION.md   Upstream visual direction, anti-patterns, and ingestion guardrails.
+├── CREATIVE-DIRECTION.md       Upstream visual direction, anti-patterns, and ingestion guardrails.
+├── enma-soul-system/           Product soul, narrative, visual system, motion, and image direction.
+└── enma-distribution-os/       Open-source growth, App Store, automation, MCP, and agent handover plan.
 
 scripts/
 ├── generate-ambient.ts     Regen audio via fal.ai stable-audio-25 ($0.20/run).
@@ -80,6 +82,7 @@ scripts/
 
 All copy lives in `src/lib/content.ts`. Read that file's header docstring; rules are enforced there.
 Visual authority lives in `docs/CREATIVE-DIRECTION.md` and `src/lib/design-system.ts`.
+Distribution authority lives in `docs/enma-distribution-os/README.md`.
 
 TL;DR:
 - **No em dashes.** Use periods, commas, or sentence breaks. Em dashes are an LLM tell.
